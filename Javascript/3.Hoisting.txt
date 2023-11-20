@@ -1,0 +1,54 @@
+JavaScript hoisting occurs during the creation phase of the execution context that moves the variable and function declarations to the top of the script.
+there are 2 types of hoisting, 
+1.Variable hoisting 
+2.Funtional hoisting
+
+console.log(foo) // prints 'undefined' as only the _declaration_ was hoisted
+var foo; // declaration
+foo = "bar"; // initialization
+
+------------- Variable hoisting
+-var
+console.log(a);//prints undefined
+var a=6;
+
+-let 
+console.log(a);//throws error,Cannot access 'a' before initialization
+let a=5;
+
+-const
+console.log(a);//throws error,Cannot access 'a' before initialization
+const a=5;
+
+for let and const , when the variable are hoisted, during creation phase and initialization phase, the varaibles cannot be accessed, this is known as Temporal Dead Zone, TDZ
+The variables are hoisted to the top of the scope they are declared in (local, global, or block), but are not accessible because they have not been initialized. This concept is also referred to as the Temporal Dead Zone.
+
+
+-----------------Funtion hoisting
+
+a();//hello world
+function a(){
+  console.log("hello world");
+}
+
+- function definations are hoisted, it is moved to the top of the script,
+
+--------- Function Expressions
+
+foo();//error, function not defined
+console.log(foo);//undefined
+var foo=function(){
+  console.log("function exp");
+ }
+
+----------------------------------------------- special cases
+
+function doSomething() {
+  doing = "something";
+}
+
+console.log(doing); // ReferenceError: doing is not defined
+doSomething();
+console.log(doing); // something
+
+-- here "doing" is moved to global context after the execution context for the function "doSomething" is created
