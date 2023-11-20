@@ -1,0 +1,35 @@
+- Execution context in Js
+
+-In Js, when a JS program is executed, a Global Execution Context is created. There is 2 phase that happens,
+
+1.Creation phase- during this time , all the variables and the functions are hoisted.
+2.Execution phase- during this phase, the values are assigned to the variables and the program is executed orderly.
+
+- For Function, when the functions are executed, another functional Execution Context is created, inside which the variable/functions defined inside
+  are hoisted.
+
+- For functions, the functional scope can access the parent scope or its Lexical Environment.
+
+---------------------------------Execution Context---------------------------------------------
+
+console.log(a);//undefined, as in GEC, during Creation phase, the var is hoisted and assigned a value undefined.
+var a=1;
+console.log(a);// during execution phase, it gets assigned with value 1, and prints 1.
+
+--------------------------------Execution Context in Funtions----------------------------------
+
+var a=1;
+function foo(){
+  console.log(a);
+}
+foo();//1,here we can access 'a' inside foo, as it is it's Lexical environment, it can access its parent scope
+
+case 2: variable hoisting & function hoisting
+
+foo();
+var a=1;
+function foo(){
+  console.log(a);
+}
+
+output: undefined, as var is hoisted and console.log is before the execution phase. as functions are hoisted.
