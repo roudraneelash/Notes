@@ -1,0 +1,59 @@
+There are three types of keywords for a variable declaration in JS: var, let, and const
+
+- there are primarily 2 important concepts, Scope, and its associated topics hoisting
+
+---
+
+- var,
+
+- it has global/functional scope
+- it can be redefined and reassigned value again
+- variable hoisting
+
+{
+var a=5;
+var a=6;// we can define and reassign a again
+}
+
+function x(){
+var b=6;
+console.log(a);
+// a can be accessible within the function a
+}
+x();
+//where as b cannot be accessible outside function.
+console.log(b);
+
+-----------------------let
+
+- it has block scope access
+- it can have value reassigned , but the same variable cannot be redefined
+- is hoisted , but cannot be accessed
+
+let a=5;
+let a=6;// throw error
+a=6;//we can reassign another value
+function x(){
+let b=6;
+console.log(a);
+// a can be accessible within the function a
+}
+x();
+//where as b cannot be accessible outside function.
+console.log(b);
+
+--------------Block scope----------
+{
+let cho=7;
+}
+console.log(cho);//cho is not defined
+
+-----------------------const
+
+- it has block scope access
+- it cannot have value reassigned, and we need to initialize a value when defining it.
+  {
+  const cho=1;
+  cho=2;//throw an error
+  }
+  console.log(cho);//cho is not defined
