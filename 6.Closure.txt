@@ -1,0 +1,56 @@
+Function along with its lexical scope(i.e its parent execution scope) is known as closure.
+
+eg:
+function a(){
+  var a=1;
+  function y(){
+    console.log(a);//closure
+  }
+  y();
+}
+a();
+
+--------------------------------------------------------
+
+function a(){
+  var a=1;
+  function y(){
+    console.log(a);
+  }
+}
+
+var b=a();
+console.log(b);
+b();//output 1
+
+after line 22, the execution context of funtion a is poped out of the call stack, and a return the funtion defination of y
+console.log(b);//return y defination
+
+var b=ƒ y(){
+    console.log(a);
+  }
+on executing b();//gives 1.
+
+*****
+Summary: when a function is returned from another funtion, it is returned along with its lexical scope, so closure is the funtion bind along with its lexical scope,
+even after the execution context of the parent is removed from the call stack.
+
+example.
+
+function outer() {
+  let j = 20;
+  function inner() {
+    let k = 30;
+    console.log(j, k);
+    k++;
+    j++;
+  }
+  return inner;
+}
+
+const inner = outer();
+inner(); //output: 20,30
+inner(); //output: 21,30
+
+//javascript callstack put the functions in queue, after each completion the fuctions get discarded for the call stack.
+//but for closure the outer context is kept in the memory, when the function is made available outside the fucntion scope;
