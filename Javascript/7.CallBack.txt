@@ -1,0 +1,44 @@
+what is a callback function?
+when we pass a function inside another function as an arg, it is known as Callback function.
+
+function x(y){
+  //it is upto x, when y is called.
+}
+x(function y(){});
+
+example.
+
+-------------------------------------------------
+
+setTimeout(function x(){
+  console.log('timer')
+},500)
+
+//event listeners
+
+document.getElementById('clickMe').addEventListener('click',function x(){
+  console.log("Button Clicked");
+});
+
+
+//closures demo with event listener
+
+const click = document.getElementById("click-me");
+    {
+      let count = 0;
+      const print = () => {
+        console.log("button clicked", ++count);
+      };
+      click.addEventListener("click", print);
+      click.removeEventListener("click", () => {
+        console.log("removed");
+      });
+    }
+
+//garbage collection and removeEventListeners
+
+we need to removeEventListener, as it holds its lexical scope and its scope variables
+
+//callBack hell
+
+nested callBack

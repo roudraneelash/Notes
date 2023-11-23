@@ -1,0 +1,45 @@
+const obj={
+  firstName:"Sachin",
+  printName:function(){
+    console.log(this.firstName);
+  },
+  arrow:()=>{
+    console.log("arrow function");
+    console.log(this.firstName);
+  }
+}
+obj.printName();// print Sachin
+obj.arrow();// here for an arrow function it does'nt have this ref,inside the arrow function, this refer to the outer this.i.e window obj
+// now if we want to use property of another object, w.r.t to another obj,
+
+1.Call
+const obj={
+  firstName:"Sachin",
+  printName:function(){
+    console.log(this.firstName);
+  },
+  fullName:function(lastName){
+    console.log(this.firstName,lastName);
+  }
+}
+const obj1={
+  firstName:'Sunny',
+}
+
+obj.fullName.call(obj1,"Ash");
+Here we can pass arguments, and the function will be executed
+
+2.Apply
+obj.fullName.apply(obj1,["Ash"]);
+here the primary diff between call and apply is that, we have to pass args via a array in apply.
+
+3.Bind
+const fun=obj.fullName.bind(obj1,"Ash");
+fun();
+
+here the bind method bind the context with the obj function, and return us the function.
+
+on executing, the returned function we can get result with the new context.
+
+call and apply call a function while bind creates a function. Though with call() you pass arguments individually and apply() as an argument array.
+
