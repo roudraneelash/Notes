@@ -1,4 +1,6 @@
 - Functions in Js, it is a block of code to execute/ perform a specific task .
+- it is considered as an a first-class-fuctions, i.e in JS it can be passed as an parameter
+
 - it has its one execution context, i.e the variables inside function cannot be accessed outside the function scope.
 - Hoisting is different for function declaration & function expressions
 - important concept known as Closure.
@@ -22,3 +24,8 @@ const b=()=>{
   console.log("function expression");
 }
 
+
+--------------------------- IIFE(imediate invoked function execution)
+--------------------------- Pure Functions
+--------------------------- Higher order functions
+--------------------------- Currying

@@ -1,7 +1,7 @@
 javaScript Data Types
 
 6 primitive type || Non-primitive Type (1 object)
-number Objects(Arrays are also an obj)
+number               Objects(Arrays are also an obj)
 boolean
 null
 undefined
@@ -41,3 +41,19 @@ console.log(Boolean(NaN));
 // 2 truthy values , string and empty obj
 console.log(Boolean("abc"));
 console.log(Boolean({}))
+
+
+-----------------------------------------------
+
+Type Coersion- Type coercion is the automatic or implicit conversion of values from one data type to another (such as strings to numbers).
+let a="5"+5;
+console.log(typeOf a);//type is string
+a='5'-1;
+console.log(typeOf a);//type is number
+
+Type Conversion- When we convert type explicitly
+.toString();
+String();
+Boolean();
+Number('5');//5 Number type
+Number('value');//NaN

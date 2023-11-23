@@ -1,0 +1,27 @@
+console.log(true+true);/2
+console.log(parseInt('42px'));//42, it will only extract the numeric part
+console.log(Boolean(0));//false
+console.log(Boolean(''));//false
+console.log(Boolean(undefined));//false
+console.log(Boolean(NaN));//false
+
+// 2 truthy values , string and empty obj
+console.log(Boolean("abc"));//true
+console.log(Boolean({}));//true
+
+console.log(typeof typeof 1);//typeOf ('number')//string
+
+function foo(){
+  return 1,2,3;//returns 3, as it identifies comma opt, and returns the last value encountered.
+}
+
+function calc(length,bredth){
+  const area=length*bredth;
+}
+const area=calc(5,5);
+console.log(area);//return undefined, as by default it returns undefined
+
+const teams=["CSK","KKR","MI"];
+// teams.pop();
+teams.splice(1,"GT","RCB");
+console.log(teams);// it skips GT as it is not a number and process RCB

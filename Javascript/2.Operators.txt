@@ -1,0 +1,19 @@
+
+Operators in javaScript
+1.Arithmetic
+(+,-,*,/,%,**,++,--)
+2.Assignment
+(=,+=,-=,*=,/=,%=,**=)
+3.Comparison
+(<,>,<=,>=,==,!=,===,!==)
+4.Logical
+(&&,||,!)
+5.Bitwise
+(>>,<<,&,|,^,~)
+
+
+--------------------------
+
+let a="20";
+let b="5";
+console.log(a<b);//true, as it compares 1st char of a, and 1st char of b

@@ -1,0 +1,49 @@
+Arrays in javaScript, are not homogenous , i.e it can store elements of different datatypes also.(Arrays,objects,primitive datatypes,functions)
+
+type of declaring arrays 
+
+const arr=[1,2,3];
+const arr= new Array(1,2,3);
+
+const arr=[1,"abc",true];//heterogenous array,i.e different datatypes
+
+-------------------Methods in Array--------------
+
+--------------Add/remove------------------
+const teams=["CSK","KKR","MI"];
+
+1.Adding an element(.push())
+
+teams.push("LSG");//add at the end
+
+2.Add an element at the starting(unshift())
+
+teams.unshift("GI");// add at the starting
+
+3.Removing an element(.pop())
+
+teams.pop();//remove the last element
+
+4.Removing from front(.shift())
+
+teams.shift();//remove from the front
+
+-----------------check if element is present-----------------
+
+teams.indexOf('RCB');// if present returns index, else -1;
+teams.includes('RCB');//returns Boolean
+
+-------------------SLICE/SPLICE----------------------------------
+
+.slice(), it returns a new array , more like a substring function in javaScript
+
+teams.slice(start index, end index+1);//return a new array
+
+.splice(), it makes modification to the existing array, does add,remove 
+
+.splice(index,delete count,element to add(optional))
+
+--------------------- Spread/Rest opt -------------------------
+
+Rest operator is use to merge the elements together into an array
+Spread operate is used to expand/concatenate elements in an array
