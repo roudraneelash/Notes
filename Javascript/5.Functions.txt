@@ -26,6 +26,142 @@ const b=()=>{
 
 
 --------------------------- IIFE(imediate invoked function execution)
---------------------------- Pure Functions
+IIFE (Immediately Invoked Function Expression)
+Definition:
+IIFE is a JavaScript design pattern that executes a function immediately after it's created.
+
+Key Points:
+Encapsulation:
+
+IIFE encapsulates its code within a function, preventing variable declarations from polluting the global scope.
+Invocation:
+
+The function is invoked immediately after its creation by placing () at the end.
+Use Cases:
+Example:
+(function() {
+  var localVar = "IIFE Example";
+  console.log(localVar);
+})();
+// localVar is not accessible here
+Parameter Passing:
+IIFE can take parameters like any other function.
+javascript
+Copy code
+(function(param) {
+  console.log(param);
+})(42);
+Benefits:
+Isolation: Prevents conflicts with other scripts.
+Cleaner Code: Enhances code organization and readability.
+Avoids Global Pollution: Keeps variables within a local scope.
+
+
+--------------------------- Pure Functions/Impure functions
+Pure functions are the functions that return same output on same input, i.e no side effects,independent of any external variables
+
+function add(a, b) { 
+      return a + b; 
+} 
+  
+console.log(add(3, 4));
+
+----------------Impure functions
+
+let oldValue = 7; 
+  
+function add(newValue) { 
+      return oldValue += newValue; 
+} 
+  
+console.log(add(5));
+
+here the output is dependent on the outer variable oldValue.
+
 --------------------------- Higher order functions
+
+A function that takes a function as an arg, or returns another function , is known as Higher order function.
+
+design pattern , using HOC,
+DRY/SOLID
+
+const arr=[1,2,3,4,5];//array of radius
+
+//to calculate area
+function area(arr){
+  let output=[];
+  for(let i=0;i<arr.length;i++)
+  {
+      output[i]=Math.PI* arr[i]*arr[i];
+  }
+  return output;
+}
+function circumference(arr){
+  let output=[];
+  for(let i=0;i<arr.length;i++)
+  {
+    output[i]=2*Math.PI*arr[i];
+  }
+  return output;
+}
+
+----------------------------to optimise the ode using DRY/SOLID principles
+
+function area(radius){
+  return Math.PI* radius* radius;
+}
+function circumference(radius){
+  return 2*Math.PI*radius;
+}
+function calculate(arr,fn){
+  let output=[];
+  for(let i=0;i<arr.length;i++)
+  {
+    output[i]=fn(arr[i]);
+  }
+  return output;
+}
+
+console.log(calculate(arr,area));//segregate the responsibility to sepreate function.
+
+// polyfill for Map function
+Array.prototype.alternateMapFunction=(x)=>{
+  let output=[];
+  for(let i=0;i<this.length;i++)
+  {
+    output[i]=this[i]*x;
+  }
+  return output;
+}
+
+//polyfill for Map
+const ans=arr.alternateMapFunction(3);//return new function, each element multiplied with 3;
+
+
+
 --------------------------- Currying
+Currying is a functional programming technique in which a function that takes multiple arguments is transformed into a sequence of functions, each taking a single argument.
+Advantage-
+Partial Application:
+
+Allows creating more specialized functions by fixing some of the parameters.
+Reuse of Functions:
+
+Promotes code reuse by creating smaller, composable functions.
+
+// Currying function for calculating discounted price
+function curryDiscount(discountRate) {
+  return function(item) {
+    return function(price) {
+      const discountedPrice = price - price * (discountRate / 100) * item;
+      return discountedPrice > 0 ? discountedPrice : 0;
+    };
+  };
+}
+
+// Example usage:
+const tenPercentDiscount = curryDiscount(10);
+
+// Calculate discounted price for 3 items with an original price of $20 each
+const discountedPrice = tenPercentDiscount(3)(20);
+console.log(`Discounted Price: $${discountedPrice}`);

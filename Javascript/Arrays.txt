@@ -47,3 +47,20 @@ teams.slice(start index, end index+1);//return a new array
 
 Rest operator is use to merge the elements together into an array
 Spread operate is used to expand/concatenate elements in an array
+
+--------------------------Map/Filter/Reduce
+
+map function:
+
+const arr=[1,2,3,4];
+const newArr=arr.map((x)=>x*2);// it multiplies each item with 2, and returns a new array
+
+filter function:
+const filterArr= arr.filter((x)=>x%2==0);//returns an array according to the filter
+
+Reduce function:
+// Summing all elements in an array
+const numbers = [1, 2, 3, 4, 5];
+const sum = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);//syntaxt , .reduce(callback,intialValue)
+
+console.log(`Sum of array elements: ${sum}`);
