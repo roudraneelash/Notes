@@ -1,0 +1,97 @@
+classes concept is introduced in ES6 , as it is a super set of contructor function/prototypal inheritance
+-- classes are not hoisted.
+
+function Vehicle(car){
+  this.car=car;
+  this.getDetails=function(){
+    console.log(`car name: ${car});
+  }
+}
+const car= new Vehicle("Audi");
+console.log(car);
+/*
+Vehicle {car: 'Audi', getDetails: ƒ}
+car:"Audi"
+getDetails: ƒ ()
+*/
+-------------------------------------------Class declaration
+class Vehicle{
+  constructor(car){
+    this.car=car;
+  }
+  getDetails(){
+    console.log(`car name:${this.car}`);
+  }
+}
+
+const bike=new Vehicle("hayabusa");
+console.log(bike);
+/*
+Vehicle {car: 'hayabusa'}
+car: "hayabusa"
+*/
+Here the methods are inherited,via prototypal inheritance
+
+---------------------------------------------Class expressions
+
+const Vehicle= class{
+  constructor(car){
+    this.car=car;
+  }
+  getDetails(){
+    console.log(`car name:${this.car}`);
+  }
+}
+
+------------------------------------------Constructor function/Class(prototypal inheritance for Classes)
+function Vehicle(car){
+  this.car=car;
+  this.getDetails=function(){
+    console.log(`car name: ${car});
+  }
+}
+const car= new Vehicle("Audi");
+console.log(car);
+/*
+Vehicle {car: 'Audi', getDetails: ƒ}
+car:"Audi"
+getDetails: ƒ ()
+*/
+
+const bike=new Vehicle("hayabusa");
+console.log(bike);
+/*
+Vehicle {car: 'hayabusa'}
+car: "hayabusa"
+*/
+Here the methods are inherited,via prototypal inheritance
+
+------------------------------------- Encapsulation (private members)
+
+class Vehicle{
+  #regNumber;//with # symbol, the property becomes private , cannot be accessed outside the class itself.
+  constructor(regNumber){
+    this.#regNumber=regNumber;
+  }
+}
+
+------------------------------------- inheritance( extends )
+
+class Vehicle{
+  constructor(brand){
+    this.#wheels=4;
+    this.brand=brand;
+  }
+  getDetails(){
+    console.log(`${this.#wheels} ${this.brand}`);
+  }
+}
+class Car extends Vehicle{
+  constructor(name,brand){
+    super(brand);
+    this.name=name;
+  }
+  getDetails(){
+    console.log(`${this.#wheels}`);//gives error, cannot inherit private members
+  }//method overriding
+}

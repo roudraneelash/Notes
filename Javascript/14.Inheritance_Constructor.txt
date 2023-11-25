@@ -1,0 +1,36 @@
+JS is based on prototypal inheritance , so the classes are also interpreted as prototypal inheritance
+
+// Parent constructor function
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+// Adding a method to the prototype
+Person.prototype.speak = function() {
+    console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+};
+
+// Child constructor function inheriting from Person
+function Student(name, age, major, gpa) {
+    // Call the parent constructor with the current instance as 'this'
+    Person.call(this, name, age);
+
+    // Add properties specific to the Student
+    this.major = major;
+    this.gpa = gpa;
+}
+
+// Set up the prototype chain
+Student.prototype = Object.create(Person.prototype);
+Student.prototype.constructor = Student;
+
+// Add a method specific to Student
+Student.prototype.study = function() {
+    console.log(`I am studying ${this.major} and my GPA is ${this.gpa}.`);
+};
+
+// Example usage
+const student = new Student("John", 20, "Computer Science", 3.5);
+student.speak(); // Output: Hello, my name is John and I am 20 years old.
+student.study(); // Output: I am studying Computer Science and my GPA is 3.5.
