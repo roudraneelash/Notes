@@ -1,0 +1,90 @@
+---------------------------Constructor function
+//object literals
+const movies= {
+  name:"Avengers",
+  year:2012,
+  getDetails:function(){
+    console.log(`${this.name}\n${this.year}`);
+  }
+}
+//constructor functions,
+function movies(name,year){
+  this.name:name,
+  this.year=year,
+  getDetails:function(){
+     console.log(`${this.name}\n${this.year}`);
+  }
+}
+
+const movie1= new movies("Avengers",2012);
+const movie2= new movies("Spider-man",2014);
+
+--------------------------Prototype in Objects
+Every object in JavaScript is linked to a prototype object, forming a chain known as the prototype chain.
+
+-- Object.prototype is a property of the Object constructor. It is a built-in object in JavaScript 
+    and serves as the prototype for all objects created using object literals or the Object constructor.
+
+-- __proto__ is a non-standard property that is used for the prototype chain. It points to the object's prototype.
+
+const movie1=new movies("Avengers",2012);//this is creating an object, by calling the movies prototypal constructor.
+
+if we check movie1.__proto__, it is made by the default OBJ constructor, Object.prototype;
+
+returns an default OBJ {
+  constructor:Object fn(){}
+}
+
+--------------------------------- Prototypal Inheritance ,like static/non-static element in JAVA
+
+if we define a function inside a Constructor function , it will create for each individual Objects.
+
+but if we want to make a single function of the Object, and all the obj instances can inherit the function, 
+we use.
+
+Object.Prototype._function_name_=function(){
+  console.log(this.name)
+}
+
+all the instance of the Object can access the function,
+
+optimised code for movies using Prototypal Inheritance,
+
+function movies(name,year){
+  this.name=name;
+  this.year=year;
+}
+
+movies.prototype.getDetails=function(){
+     console.log(`${this.name}\n${this.year}`);
+}
+
+const movie1=new movies("Avatar",2012); 
+const movie2=new movies("Avengers",2010); 
+
+console.log(movie1);
+//movies {name: 'Avatar', year: 2012}
+movie1.getDetails();
+
+// movie1,movie2 wont create seperate function copy of getDetails inside each instance, 
+but it will inherit the getDetails function
+
+----------------------------------- Object.create
+In a JavaScript game, you have a basePlayer object for common properties.
+You want to create a hero player object that is a prototype of basePlayer, 
+but also has its own unique properties.
+
+
+Object.create(proto) is used to create a new object with proto as its prototype.
+This allows hero to inherit basePlayer properties, and have its own unique ones.
+
+Example;
+
+const car={
+  getDetails=function (name){
+    console.log(`Car name: ${name}`);
+  }
+}
+
+const vehicle= Object.create(car);
+vehicle.getDetails("Audi");

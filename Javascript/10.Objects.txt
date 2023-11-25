@@ -1,0 +1,40 @@
+- Object literals
+- Constructor function
+- Prototypal chain
+- protypal Inheritance, how it is importance
+
+
+const movies={
+  name:"Avengers",
+  year:2012,
+  genre:'Action,Sci-Fi,Thriller',
+  cast:['Robert Downey Jr., Chris Evans'],
+  getDetails:function (){
+    console.log(
+      `Title:${this.name}\nYear:${this.year}\nGenre:${this.genre}\nCasts:${this.cast}
+    )
+  }
+}
+movies.getDetails();
+
+-- this way of defining objects is known as Object literals, Object literals are made of Object constructor
+
+-- ways to add properties to an object;
+
+let obj={name:"Jack"};
+
+obj.age=16;
+
+obj["class"]=10;
+
+obj={...obj,sec:'B'};
+
+----------------------------this in Objects
+** for function (){
+  this;//refers to the current obj
+}
+** for Arrow functions, they dont have this reference.
+obj.find:()=>{
+  this;//does'nt refers to the current obj, it refers to window obj
+}
+

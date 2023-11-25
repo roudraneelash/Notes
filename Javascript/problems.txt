@@ -25,3 +25,26 @@ const teams=["CSK","KKR","MI"];
 // teams.pop();
 teams.splice(1,"GT","RCB");
 console.log(teams);// it skips GT as it is not a number and process RCB
+
+-------
+
+let obj = { name: "John", country: "India", age: 30 };
+
+let name;
+
+({ name } = obj);
+
+let { country: c, age: a } = obj;
+
+obj.country = "Canada";
+
+console.log(name, c, a);
+
+------------Array destructing
+let inventory = ["Sword", "Health Potion", "Mana Potion", "Stamina
+
+Potion"];
+
+let [weapon, ...potions]=inventory;
+
+console.log(potions);//prints array of [index 1,last]
