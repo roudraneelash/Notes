@@ -35,7 +35,7 @@ returns an default OBJ {
   constructor:Object fn(){}
 }
 
---------------------------------- Prototypal Inheritance ,like static/non-static element in JAVA
+--------------------------------- Prototypal Inheritance 
 
 if we define a function inside a Constructor function , it will create for each individual Objects.
 

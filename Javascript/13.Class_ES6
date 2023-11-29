@@ -95,3 +95,49 @@ class Car extends Vehicle{
     console.log(`${this.#wheels}`);//gives error, cannot inherit private members
   }//method overriding
 }
+
+-------------------- OOPS(static properties)
+
+function Movie(name,year){
+this.name=name;
+this.year=year;
+this.getDetails=function(){
+console.log(this.name,this.year);
+}
+}
+const obj1=new Movie("Avengers",2021);
+// console.log(obj1);
+// obj1.getDetails();
+
+------------------------------- using .prototype(), to create a function for the Movie prototype, here it wont create seperate copies of the property for each obj instance, rather create a commong property for the Movie prototype, i.e inheritance
+
+function Movie(name,year){
+this.name=name;
+this.year=year;
+}
+Movie.prototype.getDetails=function(){
+console.log(this.name,this.year);
+}
+const obj1=new Movie("Avengers",2021);
+console.log(obj1);
+obj1.getDetails();
+
+
+------------------------ classes
+
+class Movies{
+  constructor(name,year)
+  {
+    this.name=name;this.year=year;
+  }
+  //here getDetails is created using .prototype(), we can access with ref to the instance
+  getDetails(){
+    console.log(this.name,this.year);
+  }
+  static print(){
+    console.log("Hello from static method");
+  }
+}
+
+const obj=new Movies("Avatar",2010);
+Movies.print();//can call the static method without creating an obj instance
