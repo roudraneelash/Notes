@@ -48,3 +48,8 @@ Potion"];
 let [weapon, ...potions]=inventory;
 
 console.log(potions);//prints array of [index 1,last]
+
+Q.diff between JSON and Javascript obj
+
+JSON is particularly key value pair , and every key should be a string
+JS object have functions, whose instance can be created

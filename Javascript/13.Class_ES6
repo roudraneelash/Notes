@@ -141,3 +141,31 @@ class Movies{
 
 const obj=new Movies("Avatar",2010);
 Movies.print();//can call the static method without creating an obj instance
+
+------------------------------------------------Getter & Setters 
+
+class Car {
+    #name;
+
+    constructor(name, year) {
+        this.#name = name;
+        this.year = year;
+    }
+
+    get name() {
+        return this.#name;
+    }
+
+    set name(value) {
+        this.#name = value;
+    }
+}
+
+const veh = new Car("a", 1);
+console.log(veh.name); // Output: a
+
+veh.name = "Sunny";
+console.log(veh.name); // Output: Sunny
+
+In the example above, the name property has a getter (get name()) to retrieve its value and a setter (set name(value)) to modify its value. 
+This allows controlled access and modification of the name property within the Car class.
