@@ -1,0 +1,62 @@
+-- Named export
+in a math.js file we defined few named function and want to export it
+
+export const add=(a,b)=>{
+  return a+b;
+}
+export const substract=(a,b)=>{
+  return a-b;
+}
+
+type 1:import {add,substract} from './math.js';
+
+here we execute the fn as add and substract from the file we want to handle
+
+type 2:import {add as addfun,substract as minusfun} from './math.js';
+here we execute the fn as addfun, and minusfun from the file we want to handle.
+
+
+-- Default export
+
+export default const add=(a,b)=>{
+  return a+b;
+}
+//default exports can be exported by any name , as from the file only that default fn is exported.
+
+type 1:
+import add from '/math.js'
+import addFun from './math.js'
+
+
+-- combined export (named/default export)
+
+export default const multiply=(a,b)=>{
+  return a*b;
+}
+export const add=(a,b)=>{
+  return a+b;
+}
+export const substract=(a,b)=>{
+  return a-b;
+}
+
+type 1:
+import multiply,{add,substract} from './math.js';
+type 2:
+import * as math from './math.js'
+
+// execute the functions
+math.add(2,3);
+math.substract(3,2);
+//default function
+math.default(2,3);
+
+
+-- dynamic export
+
+button.addEventListener('click',async ()=>{
+  const module=await import('./math.js');
+  module.add(2,3);
+  module.substract(3,2);
+  module.default(2*3);
+});
