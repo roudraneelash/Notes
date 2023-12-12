@@ -39,6 +39,29 @@ const click = document.getElementById("click-me");
 
 we need to removeEventListener, as it holds its lexical scope and its scope variables
 
-//callBack hell
+---------------------------------Call backk Hell, Inversion of control
 
-nested callBack
+const cart=["kurta","shoes","pant"];
+-we need to complete few steps one after the other
+-- createOrder
+-- proceedToPayment
+-- showOrderSummary
+-- updateWalletBalance
+
+api.createOrder(cart,function(){
+  //depends on the createOrder function to call the proceedToPayment callback
+
+  api.proceedToPayment(function(){
+    //depends on the showOrderSummary function to call showOrderSummary callBack
+
+    api.showOrderSummary(function(){
+      //depens on updateWalletBalance  function to call updateWalletBalance callBack
+      api.updateWalletBalance();
+    });
+  });
+});
+
+-- so here the code is increasing vertically, i.e nested callBack
+-- here the excution of the callbacks are dependent on the function in which the callback is passed to,
+   it is known as inversion of control. solution - promises
+
