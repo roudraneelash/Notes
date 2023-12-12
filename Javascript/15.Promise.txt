@@ -1,26 +1,37 @@
 The Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+1. **Promise Basics:**
+   - The `Promise` object represents the eventual completion or failure of an asynchronous operation and its resulting value.
+   - It has states: `pending`, `fulfilled` (resolved), or `rejected`.
 
--- it is used to handle async operation
+   ```javascript
+   const promise = fetch('http://api.apis.guru/v2/list.json');
+   console.log(promise);
+   // Example output:
+   // { data: // promise resolve data, state: resolved }
+   ```
 
-it returns an object with promise State and promise result , in promise result we get the data that is returned from the promise.
+2. **Inversion of Control and Callback Hell:**
+   - Callback Hell, or Pyramid of Doom, is a situation where asynchronous operations are nested inside each other, leading to unreadable and hard-to-maintain code.
 
-// solve inversion of control and callback Hell
+   ```javascript
+   const cart = ["kurta", "shoes", "pant"];
 
-const cart=["kurta","shoes","pant"];
+   api.createOrder(cart, function () {
+     api.proceedToPayment(function () {
+       api.showOrderSummary(function () {
+         api.updateWalletBalance();
+       });
+     });
+   });
+   ```
 
-api.createOrder(cart,function(){
-  api.proceedToPayment(function(){
-    api.showOrderSummary(function(){
-      api.updateWalletBalance();
-    });
-  });
-});
+3. **Solving Callback Hell with Promises:**
+   - Promises help solve callback hell by allowing a more sequential and readable flow of asynchronous operations.
 
-// this can solved using promise
-
-const promise= fetch('http://api.apis.guru/v2/list.json');
-console.log(promise);
-{
-  data://promise resolve data
-  state:rosolve|rejected|fulfilled
-}
+   ```javascript
+   api.createOrder()
+     .then(() => api.proceedToPayment())
+     .then(() => api.showOrderSummary())
+     .then(() => api.updateWalletBalance())
+     .catch((error) => console.error(error));
+   ```
