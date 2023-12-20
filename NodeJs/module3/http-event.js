@@ -1,6 +1,8 @@
 const http = require("http");
 const server = http.createServer((req, res) => {
   if (req == "POST") {
+    //as data is received in chunks , req.body wont be able to handle it
+    console.log(req.body);
     let body = "";
     //This event allows you to handle the incoming data in chunks.
     req.on("data", (chunk) => {
