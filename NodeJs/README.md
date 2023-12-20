@@ -1,0 +1,5 @@
+-- create a server using inbuild modules
+-- input/output/path, readLine/writeFile/readFile/appendFile/unlink
+-- path, relative/absolute
+-- Debugging in Node Js, node inspect, set break , debugging in VS code
+-- Email handling in NodeJS using nodemailer
