@@ -19,3 +19,9 @@
 -Redirection messages (300 – 399)
 -Client error responses (400 – 499)
 -Server error responses (500 – 599)
+
+-- Architecture patterns (MVC, REST API, MICROSERVICES)
+-- MVC(Model-View-Controller)
+-- Model handles the schema/DB
+-- View handle the UI part
+-- Controller handles the business logics for updating DB/sending response
