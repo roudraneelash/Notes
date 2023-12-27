@@ -32,3 +32,6 @@
 -- Files in the "public" directory can now be accessed directly from the browser. For example, if there is a file named styles.css in the "public" directory, it can be accessed at http://localhost:3000/styles.css
 
 -- veiw engine for rendering dynamic UI, view engine-EJS
+-- submitting form data ,action'/route', method post
+-- parsing the data , using server.use(express.urlencoded({extended:true}))
+-- validation the form submission, i. using middleware(manual logic), ii. using express-validator
