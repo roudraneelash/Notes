@@ -12,7 +12,10 @@ class ProductController {
     });
   }
   createNewProduct(req, res) {
-    productModel.addNew(req.body);
+    const { name, price, description } = req.body;
+    const imageUrl = "images/" + req.file.filename;
+
+    productModel.addNew(name, price, description, imageUrl);
     res.redirect("/");
   }
   getUpdateProduct(req, res, next) {

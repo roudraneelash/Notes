@@ -3,6 +3,7 @@ import path from "path";
 import ejsLayout from "express-ejs-layouts";
 import ProductController from "./src/controllers/product.controller.js";
 import { validateProductForm } from "./src/middlewares/validateProductFrom.js";
+import { uploadFile } from "./src/middlewares/fileUpload.js";
 
 const PORT = 8000;
 const productController = new ProductController();
@@ -20,9 +21,11 @@ app.get("/", productController.getProducts);
 app.get("/addProduct", productController.getAddProduct);
 app.post(
   "/createNewProduct",
+  uploadFile.single("imageUrl"),
   validateProductForm,
   productController.createNewProduct
 );
+// uploadFile.single('pass the image input field name")
 
 app.get("/updateProduct/:id", productController.getUpdateProduct);
 

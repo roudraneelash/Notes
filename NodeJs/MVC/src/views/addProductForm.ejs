@@ -1,6 +1,10 @@
 <div class="container-md mt-3">
   <div class="container-md mt-3">
-    <form action="/createNewProduct" method="POST">
+    <form
+      action="/createNewProduct"
+      enctype="multipart/form-data"
+      method="POST"
+    >
       <% if(errorMessage) { %>
       <div class="mb-3 alert alert-danger" role="alert">
         <%= errorMessage %>
@@ -44,14 +48,14 @@
       </div>
 
       <div class="mb-3">
-        <label for="imageUrl" class="form-label">Image Url</label>
+        <label for="imageUrl" class="form-label">Image File</label>
         <input
-          type="text"
+          type="file"
           class="form-control"
           id="imageUrl"
           name="imageUrl"
           aria-describedby="imageUrl"
-          value="<%= formData ? formData.imageUrl : '' %>"
+          accept="image/*"
         />
       </div>
 

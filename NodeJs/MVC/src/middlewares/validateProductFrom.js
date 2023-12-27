@@ -35,7 +35,13 @@ export const validateProductForm = async (req, res, next) => {
       .isFloat({ gt: 0 })
       .withMessage("Price must be greater than 0"),
 
-    body("imageUrl").isURL().withMessage("Invalid Url"),
+    body("imageUrl").custom((value, { req }) => {
+      // console.log(req.file.mimetype.startsWith("image/"));
+      if (!req.file || !req.file.mimetype.startsWith("image/")) {
+        throw new Error("Image is required");
+      }
+      return true;
+    }),
   ];
 
   // Run rules

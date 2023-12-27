@@ -1,0 +1,45 @@
+-- Handling file uploading in Express using Multer
+
+-- install Multer-done
+-- update views( enctype="multipart/form-data" )
+-- middleware in handling files
+-- apply that middleware 
+-- Update controller to update the img url
+
+------------------------------- middleware in handling files
+// Import the multer library for handling file uploads
+import multer from "multer";
+
+// Configure multer to specify how files should be stored
+const storageConfig = multer.diskStorage({
+  // Specify the destination folder where the uploaded files will be stored
+  destination: (req, file, cb) => {
+    // The callback function receives the error (null if no error) and the destination path
+    cb(null, "/public/images");
+  },
+  // Specify the filename for the uploaded file
+  filename: (req, file, cb) => {
+    // Create a unique filename based on the current timestamp and the original filename
+    const name = Date.now() + "" + file.originalname;
+    // The callback function receives the error (null if no error) and the generated filename
+    cb(null, name);
+  },
+});
+
+// Create a multer middleware with the specified storage configuration
+export const uploadFile = multer({ storage: storageConfig });
+
+----- validation for image 
+
+body("imageUrl").custom((value, { req }) => {
+      // console.log(req.file.mimetype.startsWith("image/"));
+      if (!req.file || !req.file.mimetype.startsWith("image/")) {
+        throw new Error("Image is required");
+      }
+      return true;
+    }),
+
+
+--- while deleting , remove the image from the server 
+    //to unlink the file uploaded
+    //fs.unlinkSync("public/" + products[index].imageUrl);

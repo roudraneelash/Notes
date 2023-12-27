@@ -1,3 +1,4 @@
+import fs from "fs";
 export default class productModel {
   constructor(__id, __name, __description, __price, __imageUrl) {
     this.id = __id;
@@ -9,13 +10,13 @@ export default class productModel {
   static getAll() {
     return products;
   }
-  static addNew(productObj) {
+  static addNew(name, price, description, imageUrl) {
     let newProd = new productModel(
       products.length + 1,
-      productObj.name,
-      productObj.description,
-      productObj.price,
-      productObj.imageUrl
+      name,
+      description,
+      price,
+      imageUrl
     );
     products.push(newProd);
   }
@@ -28,6 +29,9 @@ export default class productModel {
   }
   static deleteProduct(id) {
     const index = products.findIndex((prod) => prod.id == id);
+    //to unlink the file uploaded
+    // fs.unlinkSync("public/" + products[index].imageUrl);
+
     products.splice(index, 1);
   }
 }
