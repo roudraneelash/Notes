@@ -1,4 +1,3 @@
-import path from "path";
 import productModel from "../model/product.model.js";
 
 class ProductController {

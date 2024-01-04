@@ -29,7 +29,7 @@ export default class productModel {
   }
   static deleteProduct(id) {
     const index = products.findIndex((prod) => prod.id == id);
-    //to unlink the file uploaded
+    // to unlink the file uploaded
     // fs.unlinkSync("public/" + products[index].imageUrl);
 
     products.splice(index, 1);

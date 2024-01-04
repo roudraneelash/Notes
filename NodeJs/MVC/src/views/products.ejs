@@ -1,4 +1,9 @@
 <div class="container">
+  <% if (locals.lastVisited) { %>
+  <div class="alert alert-primary" role="alert">
+    Last visited : <%= locals.lastVisited %>
+  </div>
+  <% } %>
   <table class="table table-dark">
     <thead>
       <tr>

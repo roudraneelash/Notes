@@ -1,0 +1,20 @@
+http - it is a stateless protocol, i.e each request is independent of each other/next request
+ 
+ i.e to identify the user , once a session id is created and sent to the client side,
+ to verify each user/session , the sessionID is sent along with the request to validate/authenticate the request.
+
+ in the client side , the session is stored in cookied , and in server side it is stored in the server
+
+
+ -- use express-session to store session details, to secure the routes
+ app.use(session({
+  secret: 'keyboard cat',
+  //secret key to encrypt the details
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+  //here secure means , can access only through https , if false means http
+}))
+
+
+-- cookies, cookie-parser, it parse cookie header from client side and populate req.cookies
