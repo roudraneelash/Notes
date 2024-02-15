@@ -2,6 +2,7 @@ import productModel from "../model/product.model.js";
 
 class ProductController {
   getProducts(req, res) {
+    console.log(productModel.getAll());
     return res.render("products", { products: productModel.getAll() });
   }
   getAddProduct(req, res) {

@@ -1,0 +1,16 @@
+Authentication:
+Verifying user's identity.
+Confirm that a user is who they claim to be.
+Examples incude verifying credentials tokens.
+
+Authorization:
+Granting or denying access to specific resources based on user's privileges.
+Controls access to resources based on the user's privileges.
+Examples include checking if the authenticated user has the permissions to access a resource.
+
+
+Types of Authentication
+Basic Authentication:Require user's credentials on each request
+API Keys:Api keys are provided by signing up users developer portals
+OAuth:Third-party app integration
+JWT:Creates a reusable token with option to refresh

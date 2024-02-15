@@ -10,6 +10,7 @@ import { validateUserRegistration } from "./src/middlewares/validateUserRegistra
 import { auth } from "./src/middlewares/auth.js";
 import cookieParser from "cookie-parser";
 import { lastVisited } from "./src/middlewares/lastvisited.js";
+// import storesession from "./src/middlewares/storesession.js";
 
 const PORT = 8000;
 const productController = new ProductController();
