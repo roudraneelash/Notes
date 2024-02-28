@@ -1,0 +1,32 @@
+--Relational DB
+has strict schema/structure
+Row-Col format
+Predictable Data
+Performance issue while reading large set of Data
+MySQL,ProtgresSQL,SQL server
+
+--NoSQL DB
+Schemaless(i.e flexible with the data atributes, one record can have 2 fields, another might have 4)
+Json format
+Difficult to predict data
+Better at reading large data set as it supports complex nested structure
+MongoDB, redis, couchDB, DynnamicDB   
+
+------------------------------- SQL
+
+-in SQL DataBase, it have a concept of tables, i.e under each DB, it got multiple tables
+-each record is represented by Row
+- each field is represented by column
+
+
+------------------------------- NoSQl
+
+- in NoSQL DB, it has a concept of Collections, i.e under each DB, it got multiple collections
+- each  record is represented by document.
+- each field is represented by Attributes
+
+-------------------------------SQL/NoSQL
+
+tables>>collections
+row>>document
+column>>Attributes
