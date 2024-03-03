@@ -1,0 +1,20 @@
+When we are designing a Notification, client needs to request updates from the server.
+
+scenario 1:Using HTTPs request.
+
+Long Polling: where the client will initiate requests every 5sec, to check for new updates. but here it will face performance issue, as HTTPs is a stateless protocol,
+i.e every request is returned with a response and the connection is closed.
+
+so, when every 5sec new request is being made, the server needs to verify and make the connection.
+
+Scenario 2:
+there is a persistent connection with the server and client, i.e the connection is not closed after 1st response, the server will send the new data to the client.
+-real time
+-low latency
+
+-Applications
+
+- chat app
+- collaborative apps(google docs)
+- Notifications
+- Live updates
