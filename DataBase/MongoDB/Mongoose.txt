@@ -1,0 +1,17 @@
+mongoose is an odm tool , i.e object modeling for document type of database
+
+-Better structure
+-odm
+-Validations
+-More controls using middleware
+-Rich API
+
+- Mongoose allows you to define a schema for your data, providing a clear structure and validation for your documents.
+- Mongoose provides an easy-to-use API for performing queries on MongoDB, making retrieving,updating,and deleting documents more straightforward.
+- Mongoose offers middleware hooks to execute functions before or after specific DB operations, enabling custom logic and data manipulation.
+
+- Models are fancy constructors compiled from Schema definations.
+- An instance of a model is called a document
+- Compiling your first model
+- Constructing Documents
+- CRUD operations
