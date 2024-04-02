@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket app:Chatter</title>
+  </head>
+  <body>
+    <div _ngcontent-rek-c589="" class="description mt-12">
+      <p>
+        The aim of the ChatterUp project is to create an interactive real-time
+        chat application, facilitating seamless communication and interaction
+        between users. This application will be built using Node.js, ExpressJS,
+        Socket.io, and MongoDB to provide a robust and engaging chat experience.
+        <br /><br />
+      </p>
+      <details open="">
+        <summary>
+          <big><b>Acceptance criteria</b></big>
+        </summary>
+        <p></p>
+
+        <pre><b>Socket-Based Architecture</b>
+    
+    The ChatterUp application will utilize the power of WebSockets through the Socket.io library, enabling real-time, bidirectional communication between users.
+    </pre>
+
+        <pre style="font-weight: normal; font-size: 14px"><b>Code Modularity</b>
+    
+    The project will follow modern development practices by employing ES6 Modules for code organization, ensuring maintainability, and making it easier for developers to collaborate.
+    </pre>
+
+        <pre style="font-weight: normal"><b>User-Friendly Chat UI</b>
+    
+    The chat user interface will be carefully designed to enhance the user experience. It will be created using a combination of HTML, CSS, and JavaScript or any modern front-end framework such as React or Angular. The UI will feature components for seamless chatting and a notification panel displaying online users.
+    </pre>
+
+        <pre style="font-weight: normal"><b>User Onboarding</b>
+    
+    When a user joins ChatterUp 
+    for the first time, they will be prompted to provide their name, and a warm welcome message will be displayed in the header with their name.
+    </pre>
+
+        <pre style="font-weight: normal"><b>Chat History and User Count</b>
+    
+    Newly joined users will have access to the chat history, enabling them to catch up on previous conversations. Users will also receive real-time information about how many others have already joined the chat.
+    </pre>
+
+        <pre
+          style="font-weight: normal"
+        ><b>Broadcasting Messages and Database Storage</b>
+    
+    Messages sent by users will be broadcasted to all connected users in real-time. Simultaneously, these messages will be securely stored in the database for future reference and retrieval.
+    </pre>
+
+        <pre style="font-weight: normal"><b>User Typing Indicators</b>
+    
+    As users type messages, a 'typing...' indicator will be displayed to all connected users, indicating which user is currently typing. The indicator will disappear once the user finishes typing or clicks outside the input box.
+    </pre>
+
+        <pre style="font-weight: normal"><b>Notification of New User Joins</b>
+    
+    When a new user joins the application, their name will be added to the notification panel, marked with an online symbol (a green dot). All connected users will be notified of this addition, fostering a sense of community.
+    </pre>
+
+        <pre
+          style="font-weight: normal"
+        ><b>Notification of User Disconnections</b>
+    
+    Whenever a user leaves the application, the notification panel will be updated to reflect the remaining connected users, and the name of the disconnected user will be removed.
+    </pre>
+
+        <pre
+          style="font-weight: normal"
+        ><b>Profile Pictures for User Consistency</b>
+    
+    Each user will have an associated profile picture displayed throughout their conversation, providing a consistent visual identity for users.
+    </pre>
+
+        <pre style="font-weight: normal"><b>Displaying Chat Messages</b>
+    
+    For a comprehensive chat experience, chat messages will display the user's name, profile picture, message content, and the time of posting. This information will be visible to all connected users.
+    </pre>
+
+        <p></p>
+      </details>
+      <br />
+      <details>
+        <summary>
+          <big><b>Tasks :</b></big>
+        </summary>
+        <p></p>
+
+        <p>Follow these steps to build the ChatterUp project:</p>
+        <pre style="font-weight: normal"><b>Project Setup</b><p></p>
+    
+    <p></p><ul><li>Set up an Express.js application and configure the necessary settings.</li>
+    <li>Initialize a MongoDB database(use mongoDB on cloud) to store chat messages and user data.</li></ul></pre>
+        <pre style="font-weight: normal"><b>Dependency Installation</b><p></p>
+    
+    <p></p><ul><li>Install the required project dependencies, including Node.js, Express.js, Socket.io, and Mongoose.</li></ul></pre>
+        <pre
+          style="font-weight: normal"
+        ><b>User Interface Development</b><p></p>
+    
+    <p></p><ul><li>Create a user-friendly chat user interface using HTML, CSS, and JavaScript or a modern front-end framework (e.g., React, Angular).</li>
+    <li>Design and integrate components for chatting and a notification panel displaying online users.</li>
+    <li>Ensure the UI is responsive and visually appealing.</li></ul></pre>
+        <pre style="font-weight: normal"><b>User Onboarding</b><p></p>
+    
+    <p></p><ul><li>Develop a user onboarding process where new users provide their name and display a welcome message.</li>
+    <li>Use front-end forms to collect user input and provide a smooth onboarding experience.</li></ul></pre>
+        <pre
+          style="font-weight: normal"
+        ><b>Chat History and User Count</b><p></p>
+    
+    <p></p><ul><li>Enable new users to access chat history, allowing them to catch up on previous conversations.</li>
+    <li>Implement real-time updates for the count of users who have joined the chat.</li></ul></pre>
+        <pre style="font-weight: normal"><b>User Typing Indicators</b><p></p>
+    
+    <p></p><ul><li>Utilize Socket.io to broadcast 'typing...' events to connected users.
+    Implement front-end logic to display and remove typing indicators as users start and finish typing.</li></ul></pre>
+        <pre
+          style="font-weight: normal"
+        ><b>Broadcasting Messages and Database Storage</b><p></p>
+    
+    <p></p><ul><li>Implement real-time message broadcasting to all connected users.</li>
+    <li>Ensure that messages are securely stored in the database for future retrieval.</li></ul></pre>
+        <pre
+          style="font-weight: normal"
+        ><b>Notification of New User Joins</b><p></p>
+    
+    <p></p><ul><li>Design the notification panel to update in real-time when a new user joins the chat.</li>
+    <li>Use Socket.io to broadcast notifications of new user joins in real-time.</li></ul></pre>
+        <pre
+          style="font-weight: normal"
+        ><b>Notification of User Disconnections</b><p></p>
+    
+    <p></p><ul><li>Use Socket.io to broadcast user disconnection events in real-time.</li></ul></pre>
+        <pre style="font-weight: normal"><b>Profile Pictures</b><p></p>
+    
+    <p></p><ul><li>You can store default profile pictures and consistently display them for a user.</li></ul></pre>
+        <pre style="font-weight: normal"><b>Displaying Chat Messages</b><p></p>
+    
+    <p></p><ul><li>Create templates for chat message display, including the user's name, profile picture, message content, and timestamp.</li>
+    <li>Use front-end components to render messages for all connected users.</li></ul></pre>
+      </details>
+      <br />
+      <details>
+        <summary>
+          <big><b>API Structure</b></big>
+        </summary>
+        <pre
+          style="font-weight: normal"
+        >The API structure for <b>ChatterUp includes:</b><p></p>
+    
+    <p>Rendering the UI (e.g.: <b>"http://localhost:3000/"</b>): The project will render the user interface (HTML page) on a specified port.
+    </p></pre>
+      </details>
+      <br />
+      <details>
+        <summary>
+          <big><b>Link to a sample project :</b></big>
+        </summary>
+        <pre
+          style="font-weight: normal"
+        > <a href="http://165.227.178.171:5000/" target="_blank">Link:</a> 
+    </pre>
+        <pre style="font-weight: normal">
+You can interact with it and conduct a thorough analysis to identify the features that need to be connected.
+    </pre
+        >
+      </details>
+      <br />
+      <details>
+        <summary>
+          <big><b>Expected Output:</b></big>
+        </summary>
+        <br /><br />
+        <b>Desktop</b>
+        <br /><br /><br />
+        <img src="https://files.codingninjas.in/picture1-31798.png" />
+        <br /><br />
+        Phone
+        <br /><br />
+        <img src="https://files.codingninjas.in/picture2-31800.png" />
+      </details>
+      <br />
+      <details open="">
+        <summary>
+          <big><b>Evaluation Criteria:</b></big>
+        </summary>
+        <div
+          _ngcontent-rek-c653=""
+          class="evaluation-criteria-list flex-column gap-16"
+        >
+          <div
+            _ngcontent-rek-c653=""
+            class="flex-row justify-content-space-between zen-typo-caption-medium ng-star-inserted"
+          >
+            <span _ngcontent-rek-c653=""
+              >EXPRESS.JS, MONGOOSE, SOCKET.IO &amp; MONGODB SETUP</span
+            ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+              >50</span
+            >
+          </div>
+          <div
+            _ngcontent-rek-c653=""
+            class="flex-row justify-content-space-between zen-typo-caption-medium ng-star-inserted"
+          >
+            <span _ngcontent-rek-c653="">CODE MODULARITY AND ORGANIZATION</span
+            ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+              >100</span
+            >
+          </div>
+          <div
+            _ngcontent-rek-c653=""
+            class="flex-row justify-content-space-between zen-typo-caption-medium ng-star-inserted"
+          >
+            <span _ngcontent-rek-c653="">Application UI</span
+            ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+              >50</span
+            >
+          </div>
+          <div
+            _ngcontent-rek-c653=""
+            class="flex-row justify-content-space-between zen-typo-caption-medium ng-star-inserted"
+          >
+            <span _ngcontent-rek-c653=""
+              >CHAT MANAGEMENT AND NOTIFICATION PANEL</span
+            ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+              >200</span
+            >
+          </div>
+          <div
+            _ngcontent-rek-c653=""
+            class="flex-row justify-content-space-between zen-typo-caption-medium ng-star-inserted"
+          >
+            <span _ngcontent-rek-c653="">ADDITIONAL TASKS</span
+            ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+              >50</span
+            >
+          </div>
+          <div
+            _ngcontent-rek-c653=""
+            class="flex-row justify-content-space-between zen-typo-caption-medium ng-star-inserted"
+          >
+            <span _ngcontent-rek-c653="">INNOVATION</span
+            ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+              >50</span
+            >
+          </div>
+          <!---->
+        </div>
+        <p></p>
+      </details>
+    </div>
+  </body>
+</html>

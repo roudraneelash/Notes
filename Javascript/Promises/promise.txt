@@ -1,0 +1,17 @@
+- Promise.all()
+- USE CASE: make parallel api calls, it will handle multiple api call
+- Promise.all([p1,p2,p3]), it takes an array of promises
+- suppose if p1 takes 3s, p2 takes 1s, p3 takes 2s time to complete, the promise will finish in 3s.
+- if any of the promise is rejected , it will throw an error
+
+- Promise.allSetteled([p1,p2,p3]);
+- waiit for all promised to settled,and returns an array [val1,err2,val3]
+
+- Promise.race - it will go for the 1st settled promise
+- Promise.any -it will throw any success
+
+
+
+
+-- promise  has 3 state : Pending, fulfilled, rejected
+-- a Promise obj has 2 arguments (resolve,reject), resolve will produce success => fulfilled, reject will produce failure => rejected

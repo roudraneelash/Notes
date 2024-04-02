@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width= initial-scale=1.0" />
+    <title>Ecom:StoreFleet</title>
+  </head>
+  <body>
+    <div _ngcontent-rek-c589="" class="description mt-12">
+      <p>
+        You have recently joined the startup <b>'StoreFleet'</b>, an instant
+        product delivery service similar to Blinkit, Zepto, and Swiggy.
+        StoreFleet aims to be a formidable competitor by offering instant
+        delivery not only for food and groceries but also for various products
+        such as smartphones and other categories. As a new team member, your
+        role is to implement new features, resolve existing bugs, and enhance
+        the project's functionality. <br /><br />
+        <br />
+      </p>
+      <details>
+        <summary>
+          <big><b>Scaffold:</b></big>
+        </summary>
+        <pre
+          style="font-weight: normal"
+        >You can clone the given github repository to get the scaffold code
+    <a href="https://github.com/content-cn/Node-CapstoneProject-StoreFleet" target="_blank">Github Link</a> 
+    </pre>
+      </details>
+      <br />
+      <details open="">
+        <summary>
+          <big><b>Objective:</b></big>
+        </summary>
+        <ol>
+          <pre
+            style="font-weight: normal"
+          ><li>Code Analysis and Debugging</li><p></p>
+    
+    <p>Thoroughly analyze the project's source code, understand the flow of each route, and identify and debug existing issues and errors.</p>
+    
+    <p>Description:</p>
+    
+    <p>This objective involves a comprehensive analysis of the project's source code. Gain an in-depth understanding of the codebase, including the flow for each route. The goal is to identify and resolve any existing issues and errors, ensuring the project's stability and reliability.
+    </p></pre>
+          <pre
+            style="font-weight: normal"
+          ><li>Implement Welcome E-mail Feature with Nodemailer</li><p></p>
+    
+    <p>Automatically send a welcome e-mail with HTML content, including the company's brand logo, to users upon successful registration.</p>
+    
+    <p><b>Description: </b></p>
+    
+    <ul><li>Implement an automatic welcome e-mail feature that uses Nodemailer to send HTML-based e-mails to users.</li> 
+    <li>The e-mail should include the company's brand <a href="https://files.codingninjas.in/logo1-32230.png" target="_blank">logo </a> and serve as a warm welcome to new registrants. Consult the image below for context.</li>
+    <a href="https://files.codingninjas.in/picture1-32306.png" target="_blank">
+    <img src="https://files.codingninjas.in/picture1-32306.png"></a> 
+    <li>The route responsible for registering a user is: 
+    <a href="https://www.postman.com/prayrit/workspace/storefleet/request/26789165-081835d7-d53c-48ef-acfa-4f009a16643f" target="_blank"><b>user signup route</b></a></li></ul>
+    
+    <p></p></pre>
+          <pre
+            style="font-weight: normal"
+          ><li>Handle Duplicate Key Error in MongoDB</li><p></p>
+    
+    <p>Ensure that only one registration with a unique email address is allowed and provide clear error messages.</p>
+    
+    <p><b>Description: </b></p>
+    
+    <ul><li>To enhance user registration, ensure that each email address is unique. Handle duplicate key errors gracefully by providing clear and user-friendly error messages when a user attempts to register with an already registered email.</li>
+    <li>Output based on default scaffold:</li>
+    <a href="https://files.codingninjas.in/picture2-32307.png" target="_blank">
+    <img src="https://files.codingninjas.in/picture2-32307.png"></a>
+    <li>Expected output after Error Handling:
+    <a href="https://files.codingninjas.in/picture3-32308.png" target="_blank">
+    <img src="https://files.codingninjas.in/picture3-32308.png">
+     </a>
+    </li></ul>
+    
+    <p></p></pre>
+          <pre
+            style="font-weight: normal"
+          ><li>Use Mongoose Middleware for Password Hashing</li><p></p>
+    
+    <p>Automatically hash user passwords using <b>bcrypt</b> via Mongoose Middleware before saving user documents.</p>
+    
+    <p><b>Description: </b></p>
+    
+    <p>Implement a Mongoose pre-hook (Middleware) in the user schema. This pre-hook should automatically hash user passwords using bcrypt before saving user documents, enhancing user security.
+    </p></pre>
+          <pre
+            style="font-weight: normal"
+          ><li>Implement Forget Password and Reset Feature</li><p></p>
+    
+    <p>Allow users to reset their passwords using a token-based approach with a time limit.</p>
+    
+    <p><b>Description: </b></p>
+    
+    <ul><li>Implement a password forgot feature for users who have forgotten their passwords for which the <b>‘resetUserPassword’</b> method is given in the scaffold.</li>
+    <li>Initially, verify the user's existence by their email address. We have provided static method <b>'getResetPasswordToken'</b> in the user schema that uses ‘crypto’ (core module of Node.js, to generate a new token) to generate a new token and set a token expiry time.
+    
+    <b>NOTE:</b>
+     
+    Upon generating a token through the crypto library, hash it and save it in the <b>'resetPasswordToken'</b> field within the user's document. Simultaneously, define a 10-minute expiration period for the generated token and store this information in the <b>'resetPasswordExpire'</b> field.
+    </li>
+    <li>Utilize Nodemailer to send the token, to the user's email address. Users can reset their passwords within the specified time frame using the provided token. Consult the image below for context.
+    <a href="https://files.codingninjas.in/picture4-32309.png" target="_blank">
+    <img src="https://files.codingninjas.in/picture4-32309.png">
+     </a>
+    <b>NOTE:</b>
+    
+    When a user submits a token for the purpose of resetting their password, the initial step is to hash this token. Subsequently, conduct a search within the user collection to identify which user's document contains a hashed token matching the provided token. If this operation occurs within the specified expiry time frame, proceed to update the password. However, if the token has expired, respond with a message indicating that the token has expired.
+    
+    </li>
+    <li>The route responsible for password feature is: <a href="https://www.postman.com/prayrit/workspace/storefleet/request/26789165-b040cca2-09b9-45d2-99d8-c29c35854fca" target="_blank"><b>Forget password route</b></a></li>
+    <li>The route responsible for password reset feature is:
+    <a href="https://www.postman.com/prayrit/workspace/storefleet/request/26789165-e8f6b0fd-3365-4e23-84c2-ebd525eaad26" target="_blank">
+    <b>Reset Password route</b></a></li></ul>
+    
+    <p></p></pre>
+          <pre
+            style="font-weight: normal"
+          ><li>Fix Bug in Securing Admin Routes</li><p></p>
+    
+    <p>Fix an issue in the <b>'authByUserRole("admin")</b>' middleware to ensure that only users with <b>'admin'</b> roles can access secured routes.</p>
+    
+    <p><b>Description:</b>
+    </p><ul> 
+    <li>Correct an existing issue in the <b>'authByUserRole("admin")</b>' middleware. </li>
+    <li>The issue allows users with roles other than <b>'admin'</b> to access routes intended only for admin users. </li>
+    <li>Ensure that only users with <b>'admin'</b> roles can access these secured routes.</li></ul>
+    </pre>
+          <pre
+            style="font-weight: normal"
+          ><li>Implement Route and Controller for Updating User Roles by Admin</li><p></p>
+    
+    <p>Create a route and associated controllers to allow users with <b>'admin'</b> roles to update the roles of other users.</p>
+    
+    <p><b>Description: </b></p>
+    
+    <p>Implement a new route, <b>'/api/storefleet/user/admin/update/:id'</b>, and its associated controllers and repository functions. 
+    </p><ul><li><b>id</b>: This represents the object identifier of the user whose role is intended to be modified by the administrator.</li>
+    <li>The admin passes the new details of the user as shown in the Postman (refer to the provided Postman link for additional information).</li></ul>
+    </pre>
+          <pre
+            style="font-weight: normal"
+          ><li>Execute product filtering, search capabilities and pagination.</li><p></p>
+    
+    <p>Implementation of search, filtration, and pagination functionalities in adherence to specified criteria, ensuring efficient data retrieval and enhanced user experience.</p>
+    
+    <p><b>Description: </b>
+    </p><ul>
+    The "getAllProducts" controller should incorporate the implementation of the following three features:<p></p>
+    
+    <p></p><li>Utilise the MongoDB regex operator (please refer to the documentation for details) to search for a specified keyword within a user document's name field in the user collection. If a match is found, the document should be retrieved.</li><p></p>
+    
+    <p></p><li>For pagination, the MongoDB "limit" method is to be used, and it's recommended to refer to the MongoDB documentation for more details.</li><p></p>
+    
+    <p><b>Note:</b> </p>
+    
+    <p>For filtration, use your logic.</p>
+    
+    <p>Refer to the Postman link for route URLs.</p>
+    
+    <p></p></ul></pre>
+          <pre
+            style="font-weight: normal"
+          ><li>Fix Review Delete Feature and Rating Update</li><p></p>
+    
+    <p>Restrict users to deleting only their own reviews and update product ratings accordingly.</p>
+    
+    <p><b>Description: </b></p>
+    
+    <ul><li>Modify the review delete feature to allow users to delete only their reviews.</li>
+    <li>When a user deletes a review, ensure the product's rating is accurately updated to reflect the change.</li></ul>
+    
+    <p></p></pre>
+          <pre
+            style="font-weight: normal"
+          ><li>Implement Controller and Repository for Placing Orders</li><p></p>
+    
+    <p>Create a controller and implement repository functions to handle the order placement process.</p>
+    
+    <p><b>Description: </b></p>
+    
+    <p>Analyze the <b>'order'</b> schema and order placement logic within the application. Create the <b>'createNewOrder'</b> controller and <b>‘createNewOrderRepo’</b> which allows users to place orders for products.
+    </p></pre>
+        </ol>
+      </details>
+      <details open="">
+        <summary>
+          <big><b>Steps:</b></big>
+        </summary>
+        Follow these steps to build the project:
+
+        <pre style="font-weight: normal"><b>API Structure</b><p></p>
+    
+    <p>Refer to the Postman Collection that contains folders with different routes for project implementation: <a href="https://www.postman.com/prayrit/workspace/storefleet/collection/26789165-4d015bc6-c27e-4696-950c-6bd0e7cb0426?action=share&amp;creator=26789165" target="_blank">Link </a>
+    </p></pre>
+        <pre style="font-weight: normal">
+Click on the provided collection URL.
+    Fork the collection to proceed with testing your application.
+    </pre
+        >
+        <pre style="font-weight: normal">
+Note: Adjust parameters (ObjectId, postId, commentId, etc.) as needed.
+    </pre
+        >
+      </details>
+      <p></p>
+
+      <p><br /></p>
+      <summary>
+        <big><b>Evaluation Criteria:</b></big>
+      </summary>
+      <p></p>
+    </div>
+    <div
+      _ngcontent-rek-c653=""
+      class="mt-16 evaluation-criteria ng-star-inserted"
+    >
+      <div
+        _ngcontent-rek-c653=""
+        class="flex-row justify-content-space-between zen-typo-caption-bold mb-12"
+      >
+        <span _ngcontent-rek-c653="">Evaluation criteria</span
+        ><span _ngcontent-rek-c653="" class="mr-4">Score</span>
+      </div>
+      <div
+        _ngcontent-rek-c653=""
+        class="evaluation-criteria-list flex-column gap-16"
+      >
+        <div
+          _ngcontent-rek-c653=""
+          class="flex-row justify-content-space-between zen-typo-caption-medium ng-star-inserted"
+        >
+          <span _ngcontent-rek-c653="">Code Analysis and Debugging</span
+          ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+            >50</span
+          >
+        </div>
+        <div
+          _ngcontent-rek-c653=""
+          class="flex-row justify-content-space-between zen-typo-caption-medium ng-star-inserted"
+        >
+          <span _ngcontent-rek-c653=""
+            >Implement Welcome E-mail Feature with Nodemailer</span
+          ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+            >50</span
+          >
+        </div>
+        <div
+          _ngcontent-rek-c653=""
+          class="flex-row justify-content-space-between zen-typo-caption-medium ng-star-inserted"
+        >
+          <span _ngcontent-rek-c653=""
+            >Handle Duplicate Key Error in MongoDB</span
+          ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+            >50</span
+          >
+        </div>
+        <div
+          _ngcontent-rek-c653=""
+          class="flex-row justify-content-space-between zen-typo-caption-medium ng-star-inserted"
+        >
+          <span _ngcontent-rek-c653=""
+            >Use Mongoose Middleware for Password Hashing</span
+          ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+            >50</span
+          >
+        </div>
+        <div
+          _ngcontent-rek-c653=""
+          class="flex-row justify-content-space-between zen-typo-caption-medium ng-star-inserted"
+        >
+          <span _ngcontent-rek-c653=""
+            >Implement Forget Password and Reset Feature</span
+          ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+            >50</span
+          >
+        </div>
+        <div
+          _ngcontent-rek-c653=""
+          class="flex-row justify-content-space-between zen-typo-caption-medium ng-star-inserted"
+        >
+          <span _ngcontent-rek-c653="">Fix Bug in Securing Admin Routes</span
+          ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+            >50</span
+          >
+        </div>
+        <div
+          _ngcontent-rek-c653=""
+          class="flex-row justify-content-space-between zen-typo-caption-medium ng-star-inserted"
+        >
+          <span _ngcontent-rek-c653=""
+            >Implement Route and Controller for Updating User Roles by
+            Admin</span
+          ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+            >50</span
+          >
+        </div>
+        <div
+          _ngcontent-rek-c653=""
+          class="flex-row justify-content-space-between zen-typo-caption-medium ng-star-inserted"
+        >
+          <span _ngcontent-rek-c653=""
+            >Execute product filtering, search capabilities and pagination</span
+          ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+            >50</span
+          >
+        </div>
+        <div
+          _ngcontent-rek-c653=""
+          class="flex-row justify-content-space-between zen-typo-caption-medium ng-star-inserted"
+        >
+          <span _ngcontent-rek-c653=""
+            >Fix Review Delete Feature and Rating Update</span
+          ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+            >50</span
+          >
+        </div>
+        <div
+          _ngcontent-rek-c653=""
+          class="flex-row justify-content-space-between zen-typo-caption-medium ng-star-inserted"
+        >
+          <span _ngcontent-rek-c653=""
+            >Implement Controller and Repository for Placing Orders</span
+          ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+            >50</span
+          >
+        </div>
+        <!---->
+      </div>
+      <div
+        _ngcontent-rek-c653=""
+        class="divider mt-12 mb-8 ng-star-inserted"
+      ></div>
+      <!---->
+      <div
+        _ngcontent-rek-c653=""
+        class="flex-row justify-content-space-between mb-12"
+      >
+        <span _ngcontent-rek-c653="" class="zen-typo-caption-medium"
+          >Total score</span
+        ><span _ngcontent-rek-c653="" class="mr-4 zen-typo-caption-bold"
+          >500</span
+        >
+      </div>
+    </div>
+  </body>
+</html>

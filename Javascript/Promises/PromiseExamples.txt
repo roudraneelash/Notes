@@ -1,0 +1,81 @@
+// - Promise.all()
+// - case 1: all success
+
+const p1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("P1 successful");
+  }, 3000);
+});
+
+const p2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("P2 successful");
+  }, 1000);
+});
+const p3 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("P3 successful");
+  }, 2000);
+});
+
+//it will all resolve after 3s, when all the promise will resolve
+Promise.all([p1, p2, p3]).then((res) => {
+  console.log(res);
+});
+
+// - case 1: failure
+
+const p1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("P1 successful");
+  }, 3000);
+});
+
+const p2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject("P2 failed");
+  }, 1000);
+});
+const p3 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("P3 successful");
+  }, 2000);
+});
+
+//it will all resolve after 1s, and catch the 1st promise failure
+Promise.all([p1, p2, p3])
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+-- Promise.allSettled();
+it will return an array with all the results, whether fulfilled or failed
+
+const p1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("P1 successful");
+  }, 3000);
+});
+
+const p2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject("P2 failed");
+  }, 1000);
+});
+const p3 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("P3 successful");
+  }, 2000);
+});
+
+//it will all resolve after 1s, and catch the 1st promise failure
+Promise.allSettled([p1, p2, p3])
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  });

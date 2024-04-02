@@ -1,0 +1,70 @@
+//promise
+
+const p= new Promise((resolve,reject))=>{
+  setTimeout(()=>{
+    resolve("Promise is fullfilled")
+  },3000)
+}
+
+// handle without async await
+
+function getData(){
+  let val;
+  p.then((res)=>{
+    val=res;
+  });
+  console.log(val);
+
+  // another simple way 
+  p.then((res)=>{
+    console.log(res);
+  })
+}
+
+getData();
+
+// handle with Async await
+
+async function handlePromise(){
+  const val= await p;
+  console.log(val);
+}
+
+await handlePromise();
+
+
+
+// Major difference w.r.t JS engine
+
+suppose the Promise is resolved after sometime
+
+const p= new Promise((resole,reject)=>{
+  setTimeout(()=>{
+    resolve("promise is resolved");
+  },10000)
+})
+
+function getData(){
+  p.then((res)=>{
+    console.log(res);
+  });
+
+  console.log("JS engine will not wait for the promise to fullfill")
+}
+getData();
+
+-- output:
+JS engine will not wait for the promise to fullfill
+promise is resolved
+
+// for Async await
+
+async function handlePromise(){
+const  val= await p;
+console.log("JS engine will wait for the promise to be fullfilled");
+console.log(val);
+}
+
+output:
+promise is resolved
+JS engine will wait for the promise to be fullfilled
