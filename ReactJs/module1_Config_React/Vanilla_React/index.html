@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla React without node_modules</title>
+  </head>
+  <body>
+    <div id="root">Not rendered</div>
+    <div>
+      <ul>
+        <li>
+          Now to integrate React we can put in the 2 CDNs i.e
+          <a href="https://legacy.reactjs.org/docs/cdn-links.html">React</a> &
+          <a href="https://legacy.reactjs.org/docs/cdn-links.html">ReactDom</a>
+        </li>
+        <li>
+          Now to integrate React we can put in the 2 CDNs i.e
+          <a href="https://legacy.reactjs.org/docs/cdn-links.html">React</a> &
+          <a href="https://legacy.reactjs.org/docs/cdn-links.html">ReactDom</a>
+        </li>
+      </ul>
+    </div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script>
+      // const header = React.createElement("h1", {}, "Heading 1");
+
+      const heading1 = React.createElement(
+        "h1",
+        { className: "heading" },
+        "Hello world"
+      );
+      const div = React.createElement("div", {}, heading1);
+      const component = React.createElement("div", {}, div);
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(component);
+    </script>
+  </body>
+</html>

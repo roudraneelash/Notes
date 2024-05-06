@@ -1,0 +1,13 @@
+Java is platform independent oops language
+JDK(JAVA DEVELOPMENT KIT)->IT HAS ->JRE(JAVA RUNTIME ENVIRONMENT)->IT HAS ->JVM(JAVA Virtual Machine)(platform dependent)
+-- major adv: portabilty
+-- WORA- write once , run anywhere
+
+Flow of a Java program 
+
+Java program ->> Compiler ->> ByteCode ->> JVM ->> Machine code
+
+- JVM(Java virtual machine)-> it has got JIT compiler , that compile the code
+
+-- first entry point of a java code is the main function.
+-- A single java file can have only one public class , as the java file is named after the public class.java

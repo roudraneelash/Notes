@@ -1,0 +1,52 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.container {
+  min-width: 300px;
+}
+ul {
+  list-style: none;
+  background-color: rgb(113, 5, 119);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+ul > li {
+  display: flex;
+  border: 1px solid black;
+  gap: 10px;
+  padding: 6px;
+}
+.btn {
+  margin-left: auto;
+  padding: 4px 6px;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.danger {
+  background-color: rgb(181, 25, 25);
+}
+.primary {
+  background-color: rgb(13, 121, 44);
+  min-width: 12%;
+}
+form {
+  padding: 0;
+  display: flex;
+}
+form > input {
+  width: 80%;
+  font-family: inherit;
+}
+form > input:focus,
+input:hover {
+  outline: none;
+}
+input[type="checkbox"] {
+  cursor: pointer; /* Ensures that checkboxes have a pointer cursor */
+}

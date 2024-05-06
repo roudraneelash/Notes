@@ -1,0 +1,47 @@
+-- Access specifiers 
+- public - can be accessed everywhere
+- private - only within the class
+- protected - within the package and subclass of a another package
+- default - can only be accessed from the same package.
+
+-- static block 
+it is the 1st block when class execution
+-- non-static block , everytime the object is created
+
+public class Singleton {
+	static int count=0;
+	String name;
+	int age;
+	
+	public Singleton()
+	{
+		count++;
+	}
+	
+	public Singleton(String name,int age)
+	{
+		this.name=name;
+		this.age=age;
+	}
+	
+	public void showDetails(){
+		System.out.println("Instance count :"+count+"\nname: "+this.name+"\nage:"+this.age);
+	}
+	static {
+		System.out.println("From Singleton class");
+	}
+	{
+		System.out.println("Singleton Object is created");
+	}
+}
+
+-- OOPS concepts
+
+- Polymorphism (overloading/overriding)
+- inheritance (extends, implements)
+- abstraction (binding the logic inside a method)
+- encapsulation (private properties, getters and setters)
+
+-- Abstract class - partial abstract , means not all the methods are defined
+-- interface is all the methods are abstract 
+-- variable is public static final.

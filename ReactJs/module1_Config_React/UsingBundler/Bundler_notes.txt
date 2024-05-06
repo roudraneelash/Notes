@@ -1,0 +1,21 @@
+Bundler is used for building tool for Frontend Applications
+
+-- Bundlers
+- Parcel
+- Vite
+- Webpack
+
+-- HMR- Hot module reloading
+-- File watcher Algorithm
+-- Bundling
+-- Minifying
+-- Cleaning excess code
+-- dev and production build
+-- super fast build algorithm
+-- Caching while development
+-- Compatible with older version of browser
+
+-- for Parcel read https://parceljs.org/features/development/
+-- for parcel the entry point is the .html file 
+
+---------------------------- Vite

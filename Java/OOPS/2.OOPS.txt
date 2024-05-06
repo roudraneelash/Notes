@@ -1,0 +1,70 @@
+Overview of OOPs(Object oriented programming)
+
+Objects & Classes
+
+--properties of Objects
+- Properties or state/variable
+- Behaviour or functions
+
+-- Four pillar of OOPS 
+
+- Abstraction : it hides the internal implementation and shows only the essential functionality to the user.
+- Abstract class + interface 
+Example : A Car object having function Brake , but the functionality of brake is not exposed, which ever class implementing brake , needs to follow the interface
+
+- Encapsulation : {access specifier}, Getters and Setters.
+- public(everywhere)
+- private (within class)
+- protected (within package)
+- default (within package and subclass in another package)
+
+- Polymorphism : Overloading(compile time Polymorphism) , Overriding(runtime Polymorphism)
+
+
+- Inheritance:
+- Single inheritance
+- Multiple Inheritance
+- Heirerchical
+- Multilevel
+
+
+----------IMP : Object Relationship , IS-A, HAS-a
+class car -> class vehicle
+car IS-A vehicle
+
+child-parent Relationship
+
+-- HAS-A Relationship
+
+when one Object has access to another object(i.e an obj used in another object class)
+Example
+
+class School{
+  List<Student> 
+}
+School has -a many Relationship with Student
+
+Association : Relationship between 2 different Objects.
+
+Aggregation(Weak relationship) : Both Objects, Can survive individually, meand ending of one object with not end other object
+Composition(Strong relationship): Ending of One Object will end another object
+
+Example: Weak Relationship
+class Student{
+
+}
+class School{
+  <List>School
+}
+// here if Student doesnt exits still School can exist , independent of each other existence
+
+
+Example:Strong relationship
+class Rooms{
+
+}
+class School{
+  <List>Room
+}
+
+if rooms gets destroyes , then School will also not exists

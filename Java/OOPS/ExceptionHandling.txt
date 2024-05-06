@@ -1,0 +1,95 @@
+Exception 
+- it's an event, that occurs during the execution of the program.
+- it will disrupt your program normal flow.
+- it creates the Exception Object, which contain information about the Error like.
+  * The type of Exception and Message
+  * Stack trace.
+- Runtime system use this Exception Object and find the class which can handle it.
+
+main() -> method1() -> method2() -> method3()
+-- Exception comes here in method3,- check if method3 can handle the Exception else -> method2()
+-- check if method2() can handle it -> else push to method1()
+-- check if method1() can handle it -> else push to main method
+if main doesnt handle the Exception properly, then Runtime system will terminate the program and print stack trace.
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		method1();
+	}
+	public static void method1() {
+		method2();
+	}
+	public static void method2() {
+		method3();
+	}
+	public static void method3() {
+		System.out.println(5/0);
+	}
+}
+
+
+Output: print the stack trace
+
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+	at Main.method3(Main.java:15)
+	at Main.method2(Main.java:12)
+	at Main.method1(Main.java:9)
+	at Main.main(Main.java:6)
+
+
+------------------------------ Exception Hierarchy -------------------------
+JVM has 2 memory space , Heap memory,Stack memory
+
+ Object -> Throwable -> Error(JVM issues),Exception
+
+ Error ->> OutOfMemoryError(Heap Memory) ->> StackOverFlowError(Stack memory full)
+ (this cannot be handled)
+
+ Exception ->> Checked(Compile time exception), UncheckedException(Runtime exception)
+
+ Runtime Exception 
+ - ClassCastException
+ - ArithmeticException
+ - IndexOutOfBoundException(Array,String)
+ - NullPointerException
+ - IllegalArgumentException(NumberFormatException)
+
+ Compiletime Exception
+ - ClassNotFoundException
+ - InterruptedException
+ - IOException(FileNotFound,EOF,SocketException)
+ - SQLException
+
+--------------------------- Error Handling ----------------------
+
+ -- throw - it is use to throw exception;
+ -- throws is used with method , highlighting that it might throw error , and the caller should handle it.
+ -- try-catch block is use to handle exception
+
+public static void handle() {
+		try {
+			throw new ArithmeticException();
+		}catch(ArithmeticException e) {
+			e.printStackTrace();
+		}
+		System.out.println("handled within the function");
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		handle();
+		try {
+			
+			fun();
+		}catch(ArithmeticException e)
+		{
+			System.out.println(e.getMessage());
+			System.out.println("The caller needs to handle it");
+		}
+	}
+	public static void fun()throws ArithmeticException{
+		System.out.println(5/0);
+		System.out.println("the error needs to be handled by the caller");
+	}
