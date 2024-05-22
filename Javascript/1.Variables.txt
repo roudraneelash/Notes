@@ -12,7 +12,7 @@ There are three types of keywords for a variable declaration in JS: var, let, an
 
 {
 var a=5;
-var a=6;// we can define and reassign a again
+a=6;// we can define and reassign a again
 }
 
 function x(){

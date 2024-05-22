@@ -1,0 +1,65 @@
+
+-SELECT
+SELECT column_name FROM table_name;
+* is all, 
+-DISTINCT(unique value)
+SELECT DISTINCT column FROM table_name;
+
+-COUNT
+SELECT COUNT column_name => it returns the number of records in the table
+
+-WHERE
+SELECT column_name FROM table  WHERE condition;
+
+-ORDER BY (ASC/DESC)=> generally used at the end of the statement
+
+SELECT store_id,last_name from customers ORDER BY store_id DESC,last_name ASC.
+
+-LIMIT to filter no of elements in the table
+-BETWEEN
+
+SELECT COUNT(*) FROM  payment WHERE amount BETWEEN 8 AND 9;
+-IN(options)
+------------------- Pattern matching
+-- LIKE is case sensitive
+- All names that begins with 'A'
+WHERE name LIKE 'A%'
+
+- All names that ends with 'a'
+WHERE name LIKE '%a'
+-- ILIKE is case insensitive
+
+SELECT fname from  customers WHERE ILIKE "_her%";
+=> here 1st character can be anything 
+
+SELECT fname from  customers WHERE ILIKE "%er%";
+=> here any fname having "er" in the name
+
+--- GROUP BY and aggregate function
+-- Aggregate functions=> take multiple input and provide single output
+- AVG()
+- SUM()
+- MAX()
+- MIN()
+- COUNT()
+- ROUND(AVG(column_name),2)
+
+-- GROUP BY(Syntax)
+SELECT column1, column2, AGGREGATE_FUNCTION(column3)
+FROM table_name
+WHERE condition
+GROUP BY column1, column2
+HAVING condition
+ORDER BY column1, column2;
+
+-------------------- JOINS
+
+- INNER JOIN-> Looking for matches in both the table on the condition of col.Common elements(Intersection)
+- FULL OUTER JOIN -> A+b
+- Cross join -> a*b, all possible combination
+- ORDER Matters
+- LEFT OUTER JOIN , select  everything from table a, and do a left outer join , include left and common elements form a and B
+- RIGHT OUTER JOIN is same, just the tables are reversed
+Example- SELECT * FROM Registrations INNER JOIN Logins On Registrations.col=Logins.name;
+
+SELECT * from registration FULL OUTER JOIN login on registration.name=login.name where registration.reg_id is NULL or login.log_id is NUll;// give u unique

@@ -1,0 +1,45 @@
+User Roles
+
+1.Admin       Manage everything
+2.Salesperson Manage product price,customers,shipping,orders and sales report
+3.Editor      Manage categories, brands, products, article and menus
+4.Shipper     view products,view orders and update order status
+5.Assistant   manage questions and reviews
+
+User entity
+ user_id
+ email
+ fname
+ lname
+ roles
+-- register user
+ Design Form to register user, checkbox for the roles, highlighting the role definitions
+ -- Edit user
+
+Entity Relationship
+Role{
+  name;
+  Description;
+}
+
+User{
+  email;
+  password;
+  fname;
+  lname;
+
+  @ManyToMany
+  List<Role> roles;
+}
+
+here ManytoMany because , Many roles can have many user, and vice versa, and the Relationship  is unidirectional, i.e user will have ref to roles
+
+Tables
+User
+user_role
+user->mapped to roles
+so for single use having one role
+(user 1 have role 1,user 2 have role1,role3)
+1-2
+2-1
+2-3

@@ -1,0 +1,153 @@
+Sure, let's go through each of these array methods with a brief explanation and a common demo:
+
+1. **forEach:**
+   - **Explanation:** Executes a provided function once for each array element.
+   - **Demo:**
+     ```javascript
+     const numbers = [1, 2, 3, 4];
+     numbers.forEach((number) => {
+         console.log(number);
+     });
+     ```
+
+2. **map:**
+   - **Explanation:** Creates a new array populated with the results of calling a provided function on every element in the calling array.
+   - **Demo:**
+     ```javascript
+     const numbers = [1, 2, 3, 4];
+     const doubledNumbers = numbers.map((number) => {
+         return number * 2;
+     });
+     console.log(doubledNumbers); // Output: [2, 4, 6, 8]
+     ```
+
+3. **find:**
+   - **Explanation:** Returns the first element in the array that satisfies the provided testing function.
+   - **Demo:**
+     ```javascript
+     const numbers = [1, 2, 3, 4];
+     const foundNumber = numbers.find((number) => {
+         return number > 2;
+     });
+     console.log(foundNumber); // Output: 3
+     ```
+
+4. **findIndex:**
+   - **Explanation:** Returns the index of the first element in the array that satisfies the provided testing function. Otherwise, it returns -1.
+   - **Demo:**
+     ```javascript
+     const numbers = [1, 2, 3, 4];
+     const index = numbers.findIndex((number) => {
+         return number === 3;
+     });
+     console.log(index); // Output: 2
+     ```
+
+5. **filter:**
+   - **Explanation:** Creates a new array with all elements that pass the test implemented by the provided function.
+   - **Demo:**
+     ```javascript
+     const numbers = [1, 2, 3, 4];
+     const filteredNumbers = numbers.filter((number) => {
+         return number % 2 === 0;
+     });
+     console.log(filteredNumbers); // Output: [2, 4]
+     ```
+
+6. **reduce:**
+   - **Explanation:** Executes a reducer function (that you provide) on each element of the array, resulting in a single output value.
+   - **Demo:**
+     ```javascript
+     const numbers = [1, 2, 3, 4];
+     const sum = numbers.reduce((accumulator, currentValue) => {
+         return accumulator + currentValue;
+     }, 0);
+     console.log(sum); // Output: 10
+     ```
+
+7. **slice:**
+   - **Explanation:** Returns a shallow copy of a portion of an array into a new array object selected from start to end (end not included).
+   - **Demo:**
+     ```javascript
+     const numbers = [1, 2, 3, 4];
+     const slicedNumbers = numbers.slice(1, 3);
+     console.log(slicedNumbers); // Output: [2, 3]
+     ```
+
+8. **splice:**
+   - **Explanation:** Changes the contents of an array by removing or replacing existing elements and/or adding new elements in place.
+   - **Demo:**
+     ```javascript
+     const numbers = [1, 2, 3, 4];
+     const removedElements = numbers.splice(1, 2);
+     console.log(removedElements); // Output: [2, 3]
+     console.log(numbers); // Output: [1, 4]
+     ```
+
+9. **flat:**
+   - **Explanation:** Creates a new array with all sub-array elements concatenated into it recursively up to the specified depth.
+   - **Demo:**
+     ```javascript
+     const numbers = [1, [2, 3], [4, [5, 6]]];
+     const flattenedNumbers = numbers.flat();
+     console.log(flattenedNumbers); // Output: [1, 2, 3, 4, [5, 6]]
+     ```
+
+Now, let's provide some code snippets to test the candidate's understanding of these methods:
+
+1. **Medium: forEach:**
+   ```javascript
+   const numbers = [1, 2, 3, 4];
+   let sum = 0;
+   numbers.forEach((number) => {
+       sum += number;
+   });
+   console.log(sum); // Output: 10
+   ```
+
+2. **Medium: map:**
+   ```javascript
+   const numbers = [1, 2, 3, 4];
+   const squaredNumbers = numbers.map((number) => {
+       return number ** 2;
+   });
+   console.log(squaredNumbers); // Output: [1, 4, 9, 16]
+   ```
+
+3. **Medium: filter:**
+   ```javascript
+   const numbers = [1, 2, 3, 4];
+   const evenNumbers = numbers.filter((number) => {
+       return number % 2 === 0;
+   });
+   console.log(evenNumbers); // Output: [2, 4]
+   ```
+
+4. **Medium: reduce:**
+   ```javascript
+   const numbers = [1, 2, 3, 4];
+   const product = numbers.reduce((accumulator, currentValue) => {
+       return accumulator * currentValue;
+   }, 1);
+   console.log(product); // Output: 24
+   ```
+
+5. **Hard: slice and splice:**
+   ```javascript
+   const numbers = [1, 2, 3, 4];
+   const slicedNumbers = numbers.slice(1, 3);
+   console.log(slicedNumbers); // Output: [2, 3]
+
+   const splicedNumbers = numbers.splice(1, 2);
+   console.log(splicedNumbers); // Output: [2, 3]
+   console.log(numbers); // Output: [1, 4]
+   ```
+
+6. **Hard: flat:**
+   ```javascript
+   const numbers = [1, [2, 3], [4, [5, 6]]];
+   const flattenedNumbers = numbers.flat(2);
+   console.log(flattenedNumbers); // Output: [1, 2, 3, 4, 5, 6]
+   ```
+
+These code snippets cover various scenarios and complexities of using array methods in JavaScript, allowing the candidate to demonstrate their proficiency in array manipulation.

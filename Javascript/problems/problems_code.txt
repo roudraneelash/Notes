@@ -1,0 +1,158 @@
+Certainly! Let's create demo code snippets for each topic to assess the candidate's in-depth knowledge:
+
+1. **Event Loop and Callbacks:**
+ 
+   console.log('Start');
+
+   setTimeout(() => console.log('setTimeout'), 0);
+
+   new Promise((resolve) => {
+       console.log('Promise');
+       resolve();
+   }).then(() => console.log('Promise resolved'));
+
+   console.log('End');
+   ```
+   **Outcome Expected:** Ask the candidate to explain the order in which the console.log statements are executed and how the event loop handles the setTimeout and Promise.
+
+2. **Hoisting and Execution Context:**
+ 
+   console.log(a); // Output: undefined
+   var a = 5;
+
+   function hoistedFunction() {
+       console.log('Function hoisted');
+   }
+   hoistedFunction(); // Output: 'Function hoisted'
+
+   console.log(b); // Output: ReferenceError: b is not defined
+   ```
+   **Outcome Expected:** Discuss with the candidate why the variable declaration is hoisted but not its initialization, and how function declarations are hoisted differently from variable declarations.
+
+3. **Closures and setTimeout:**
+ 
+   function outerFunction() {
+       var outerVar = 'I am outer';
+
+       function innerFunction() {
+           console.log(outerVar);
+       }
+
+       return innerFunction;
+   }
+
+   var innerFunc = outerFunction();
+   innerFunc(); // Output: 'I am outer'
+   ```
+   **Outcome Expected:** Ask the candidate to explain how closures work in this example and why the inner function can still access the outer function's variable after the outer function has finished executing.
+
+4. **Call Stack and Recursive Functions:**
+ 
+   function recursiveFunction(num) {
+       if (num <= 0) {
+           return;
+       }
+       console.log(num);
+       recursiveFunction(num - 1);
+   }
+
+   recursiveFunction(3);
+   ```
+   **Outcome Expected:** Discuss with the candidate how the call stack handles recursive function calls and why the output is in reverse order.
+
+5. **Promise and Event Loop Interaction:**
+ 
+   console.log('Start');
+
+   setTimeout(() => console.log('setTimeout'), 0);
+
+   Promise.resolve().then(() => console.log('Promise resolved'));
+
+   console.log('End');
+   ```
+   **Outcome Expected:** Ask the candidate to explain the order in which the console.log statements are executed and how the event loop handles promises and setTimeout.
+
+6. **Execution Context and Call/Apply/Bind:**
+ 
+   const obj = {
+       name: 'John'
+   };
+
+   function greet(message) {
+       console.log(`${message}, ${this.name}`);
+   }
+
+   greet.call(obj, 'Hello'); // Output: 'Hello, John'
+   greet.apply(obj, ['Hi']); // Output: 'Hi, John'
+
+   const boundGreet = greet.bind(obj);
+   boundGreet('Hola'); // Output: 'Hola, John'
+   ```
+   **Outcome Expected:** Discuss with the candidate how call, apply, and bind change the execution context of functions and their differences.
+
+7. **setTimeout and Asynchronous Behavior:**
+ 
+   console.log('Start');
+
+   setTimeout(() => console.log('setTimeout callback'), 0);
+
+   console.log('End');
+   ```
+   **Outcome Expected:** Ask the candidate to explain why 'End' is logged before 'setTimeout callback' despite the setTimeout having a delay of 0 milliseconds.
+
+8. **Advanced Closure Example:**
+ 
+   function createCounter() {
+       let count = 0;
+
+       return {
+           increment: () => count++,
+           decrement: () => count--,
+           getCount: () => count
+       };
+   }
+
+   const counter = createCounter();
+   counter.increment();
+   counter.increment();
+   console.log(counter.getCount()); // Output: 2
+   ```
+   **Outcome Expected:** Discuss with the candidate how closures are used to encapsulate data (count) and behavior (increment, decrement) within the createCounter function.
+
+9. **Error Handling with Promises:**
+ 
+   function fetchData() {
+       return new Promise((resolve, reject) => {
+           // Simulating an API call
+           setTimeout(() => {
+               const success = Math.random() < 0.5;
+               if (success) {
+                   resolve('Data received');
+               } else {
+                   reject('Error fetching data');
+               }
+           }, 1000);
+       });
+   }
+
+   fetchData()
+       .then((data) => console.log(data))
+       .catch((error) => console.error(error));
+   ```
+   **Outcome Expected:** Ask the candidate to explain how promises handle errors using the catch method and discuss best practices for error handling in promise chains.
+
+10. **Context Switching and Performance:**
+  
+    function heavyOperation() {
+        let result = 0;
+        for (let i = 0; i < 1000000; i++) {
+            result += i;
+        }
+        return result;
+    }
+
+    console.time('Heavy operation');
+    heavyOperation();
+    console.timeEnd('Heavy operation');
+    ```
+    **Outcome Expected:** Discuss with the candidate how context switching impacts performance, especially in scenarios involving heavy synchronous operations, and how it can be optimized.
