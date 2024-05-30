@@ -1,0 +1,81 @@
+// Student class representing the complex object
+class Student {
+    private int rollNo; // mandatory field
+    private int age; // mandatory field
+    private String fatherName; // optional field
+    private String hobby; // optional field
+
+    // Private constructor to prevent direct instantiation
+    private Student(Builder builder) {
+        this.rollNo = builder.rollNo;
+        this.age = builder.age;
+        this.fatherName = builder.fatherName;
+        this.hobby = builder.hobby;
+    }
+
+    // Getters for fields
+    public int getRollNo() {
+        return rollNo;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getFatherName() {
+        return fatherName;
+    }
+
+    public String getHobby() {
+        return hobby;
+    }
+
+    // Builder class
+    public static class Builder {
+        // Mandatory fields
+        private final int rollNo;
+        private final int age;
+
+        // Optional fields (initialized to default values)
+        private String fatherName = "";
+        private String hobby = "";
+
+        // Constructor with mandatory fields
+        public Builder(int rollNo, int age) {
+            this.rollNo = rollNo;
+            this.age = age;
+        }
+
+        // Setters for optional fields
+        public Builder fatherName(String fatherName) {
+            this.fatherName = fatherName;
+            return this;
+        }
+
+        public Builder hobby(String hobby) {
+            this.hobby = hobby;
+            return this;
+        }
+
+        // Build method to construct the final Student object
+        public Student build() {
+            return new Student(this);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Using the Builder to construct a Student object
+        Student student = new Student.Builder(123, 20)
+                .fatherName("John Doe")
+                .hobby("Reading")
+                .build();
+
+        // Using the constructed Student object
+        System.out.println("Roll No: " + student.getRollNo());
+        System.out.println("Age: " + student.getAge());
+        System.out.println("Father's Name: " + student.getFatherName());
+        System.out.println("Hobby: " + student.getHobby());
+    }
+}

@@ -1,0 +1,107 @@
+Java is static typed/strong types language.
+
+-i.e during declaring a variable , we have to define the datatype of the variable.
+-strong typed- i.e every datatype has a range which can be stored in the typed variable
+
+------------- Primitive Datatypes
+
+- Byte -1byte(8bit)
+- Short -2byte(16bits)
+- Int -4byte(32bits)
+- Long -8byte(64bits)
+
+- Char- 2 bit (16bit)
+
+-- type casting
+from lower to upper, it is done by default no error is prompted
+
+byte a=10;
+int b=a;// no issues
+
+-- 
+int a=10;
+byte b=a;//it will propmt warning
+
+-- downcasting
+
+int Bytevar=129;
+
+// byte range -128  to 127
+byte var=(byte) Bytevar;
+
+// so after 127 it will re run the loop from -128
+-- so output for 129 will be -127
+
+
+------------------ Float/double
+
+float- 32bit IEEE 754
+1bit sign |8bit exponent|23bits Mandisaa/Significant
+
+4.125=> convert to binary
+
+4-> 100
+.125->.001
+
+4.125=> 100.001
+
+step 2-> 1.00001 * 2^2
+
+----- Primitive datatypes are stored into stack memory
+
+
+--------------------- Non-Primitive type
+Class
+Array
+String
+
+for non-primitive type, the variable gets created in the heap memory. 
+
+---- String is immutable in nature. 
+
+String a="hello";this is called string literal
+
+so it gets created in the string constant pool.
+
+again if we try to create String b="hello"; it tries to check string constant pool and see if it already exists, then it refer to the same literal.
+
+
+a==b;
+
+where as String str3=new String("hello");it will create a new obj in the heap memory.
+
+i.e a==str3;it will give false.
+
+-- reference datatype
+-- wrapper class(Autoboxing and unboxing)
+all the 8 primitive type has wrapper class.
+
+primitive type variables cannot be modified via reference.
+
+example:
+
+int a=10;
+Integer b=20;
+
+changeValue(a,b){
+  a=11;
+  b=21;
+}
+
+--  after this a will be 10 only , where as b will be 21.
+-- Constant variables
+// static variables are Class property
+public static final int a=10;
+
+
+-- VarArguments
+
+instead of creating sum(int a,int b,int c)
+create sum(int ...variables){
+  it will auto create int a,b,c
+
+  int output;
+  for(int var:variables){
+    output+=var;
+  }
+}

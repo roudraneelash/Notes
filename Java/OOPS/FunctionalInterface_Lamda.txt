@@ -1,0 +1,107 @@
+- if an iterface contains only one single abstract method , it is known as functional interface.
+
+@FunctionalInterface
+public interface Bird{
+  void canFly();
+}
+
+public interface Bird{
+  void canFly();
+}
+
+-- this is functional interface, using the annotation it restricts from adding more than 1 abstract method to the interface.
+
+-- Different ways to implement the functional interface
+1. using implements
+public class Eagle implements Bird{
+  @Override
+  public void canFly(){
+    System.out.println("Eagle bird implementation");
+  }
+}
+2. Anonymous class
+
+main(){
+  Bird eagleObj= new Bird(){
+    public void canFly(){
+      System.out.println("Eagle bird implementation");
+    }
+  }
+}
+3. Lamda Expression : main adv is to avoid the extra code.
+
+main(){
+  Bird obj=()->{
+    System.out.println("Eagle bird implementation");
+  }
+}
+
+-------------------------------- Primaryly there are 4type of FunctionalInterface
+
+- Consumer
+@FunctionalInterface
+public interface Consummer<T>{
+  void accept(T t);
+}
+main(){
+  // defining the interface method for Consumer
+  Consumer<Integer> Logging=(Integer val)->{
+    if(val>10){
+      System.out.println("Logging");
+    }
+  }
+
+  Logging.accept(11);
+}
+
+// basically it takes input but doesnt return anything
+
+- Supplier
+@FunctionalInterface
+public interface Supplier<T>{
+  T get();
+}
+main(){
+  // defining the interface method for Supplier
+  Supplier<String> obj= ()->"This is a string";
+  System.out.println(obj.get());
+}
+// when we dont want to pass anything, but expect a return arg
+
+- Function
+
+@FunctionalInterface
+public interface Function<T,R>{
+  R apply(T t);
+}
+main(){
+
+  Function<Integer,String> IntegerToString=(Integer num)->{
+    (Integer num)->{
+      String output= num.toString();
+      return output;
+    }
+  }
+
+String output=IntegerToString.apply(64);
+System.out.println(output);
+}
+- Predicate
+-- accepts one arg but returns boolean
+
+@FunctionalInterface
+public interface Predicate<T>{
+  boolean apply(T t);
+}
+main(){
+
+  Predicate<Integer> isEven=(Integer num)->{
+    if(num%2==0)
+    return true;
+    else
+    return false;
+  }
+
+String output=isEven.test(64);
+System.out.println(output);
+}

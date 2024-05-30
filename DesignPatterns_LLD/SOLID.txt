@@ -1,0 +1,226 @@
+S- Single Responsibility Principle
+O- Open/Closed Principle, Open for expansion(extends) closed for modification
+L- Liskov Substitution Principle
+I- Interface Segmented Principle
+D- Dependency Inversion Principle
+
+
+-- adv
+duplicate code, reduce complexity, flexibility
+
+S- A class should have only 1 REASON TO CHANGE
+
+class Marker{
+  String name;
+  String color;
+  int year;
+  int price;
+
+  public Marker(String name,String color,int year,int price){
+    this.name= name;
+    this.color=color;
+    this.year=year;
+    this.price=price;
+  }
+}
+
+class Invoice{
+  private Marker marker;
+  private int quantity;
+
+  public Invoice(Marker marker, int qty){
+    this.marker=marker;
+    this.quantity=qty;
+  }
+  //
+  public int calculateTotal(){
+    int price= ((marker.price)*this.quantity);
+  }
+  public void printInvoice(){
+    //print invoice
+  }
+  public void saveTOdb(){
+    //save to DB
+  }
+}
+
+-- here Invoice class has 3 reason to change, saveTOdb(),printInvoice(),calculateTotal()
+-- Modified 
+
+class Invoice{
+  private Marker marker;
+  private int quantity;
+
+  public Invoice(Marker marker, int qty){
+    this.marker=marker;
+    this.quantity=qty;
+  }
+  //
+  public int calculateTotal(){
+    int price= ((marker.price)*this.quantity);
+  }
+}
+
+class InvoiceDao{
+  Invoice invoice;
+  public InvoiceDao(Invoice invoice){
+    this.invoice=invoice;
+  }
+  public void saveToDb(){
+    //save to DB
+  }
+}
+
+class InvoicePrinter{
+  Invoice invoice;
+  public InvoicePrinter(Invoice invoice){
+    this.invoice=invoice;
+  }
+  public void print(){
+    //print the Invoice
+  }
+}
+
+-- O-Open for extension but closed for modification
+
+-- rather than modifying , it is suggested to extend and increase the capabilities
+
+
+-- Liskov- child should not narrow down parent features
+public class Vehicle{
+  public Integer getNumberOfWheels(){
+    return 2;
+  }
+  public Boolean hasEngine(){
+    return true;
+  }
+}
+
+public class MotorCycle extends Vehicle{
+
+}
+public class Bicycle extends Vehicle{
+  @Override
+   public Boolean hasEngine(){
+    return null;
+  }
+}
+public class Car extends Vehicle{
+  @Override
+  public Integer getNumberOfWheels(){
+    return 4;
+  }
+}
+
+public class solution{
+  public static void main(String args[]){
+    List <Vehicle> Vehiclelist= new List<>();
+    Vehiclelist.add(new MotorCycle());
+    Vehiclelist.add(new Car());
+    Vehiclelist.add(new Bicycle());// for this null.toString() will give nullPointer exception
+    
+    for(Vehicle vehicle:Vehiclelist){
+      System.out.println(vehicle.hasEngine().toString());
+    }
+  }
+}
+
+-------------- Solution 
+
+public class Vehicle{
+  public Integer getNumberOfWheels(){
+    return 2;
+  }
+}
+
+public EngineVehicle extends Vehicle{
+  public Boolean hasEngine(){
+    return true;
+  }
+}
+
+public class MotorCycle extends EngineVehicle{
+
+}
+public class Bicycle extends Vehicle{
+  @Override
+   public Boolean hasEngine(){
+    return null;
+  }
+}
+public class Car extends EngineVehicle{
+  @Override
+  public Integer getNumberOfWheels(){
+    return 4;
+  }
+}
+
+public class solution{
+  public static void main(String args[]){
+    List <Vehicle> Vehiclelist= new List<>();
+    Vehiclelist.add(new MotorCycle());
+    Vehiclelist.add(new Car());
+    Vehiclelist.add(new Bicycle());// for this null.toString() will give nullPointer exception
+    
+    for(Vehicle vehicle:Vehiclelist){
+      System.out.println(vehicle.getNumberOfWheels().toString());CAN ONLY ACCESS features OF vehicle
+    }
+  }
+}
+
+public class MotorCycle extends Vehicle{
+
+}
+public class Bicycle extends Vehicle{
+  @Override
+   public Boolean hasEngine(){
+    return null;
+  }
+}
+public class Car extends Vehicle{
+  @Override
+  public Integer getNumberOfWheels(){
+    return 4;
+  }
+}
+
+public class solution{
+  public static void main(String args[]){
+    List <Vehicle> Vehiclelist= new List<>();
+    Vehiclelist.add(new MotorCycle());
+    Vehiclelist.add(new Car());
+    Vehiclelist.add(new Bicycle());// for this null.toString() will give nullPointer exception
+    
+    for(Vehicle vehicle:Vehiclelist){
+      System.out.println(vehicle.hasEngine().toString());
+    }
+  }
+}
+
+--------------------------------------------
+-- According to liskov principle , all the child class should be able to implement the functions for the parent , it should not narrow it down.
+-- Interface- shouuld not implemen unneccessary fucntions which is not needed
+class RestaurantInterface{
+  serveFood();
+  cookFood();
+}
+class waiter implements RestaurantInterface{
+  serveFood(){
+    //job of a waiter
+  }
+  cookFood();//unneccessary fucntions whcih is not needed
+}
+
+-- solution
+Interface waiterInterface{
+  serveFood();
+}
+
+class waiter implements waiterInterface{
+  serveFood(){
+    //implements only the requied function
+  }
+}
+
+-- Dependency injection , use Interface rather than concrete class , example , using construtor injection
+

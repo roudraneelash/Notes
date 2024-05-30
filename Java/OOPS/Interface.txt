@@ -1,0 +1,322 @@
+interface
+- contract first approach. i.e class implementing the interface, need to define all the abstract methods of the interface.
+
+-OOPs concepts in Interface.
+- Fields in interface are public static,final by default(CONSTANTS)
+- Polymorphism
+- abstraction
+- Multiple Inheritance
+
+- Java 8 features
+
+Default Methods: Allow interfaces to have methods with default implementations.
+Static Methods: Enable interfaces to have static methods.
+Functional Interfaces: Facilitate the use of lambda expressions and method references.
+Improved Method References(Itterator): Enhance readability and conciseness when referring to methods.
+Optional Class: Provide a better way to handle null values and avoid NullPointerException.
+
+------------------- abstraction
+- we can achieve full abstraction means, we can define what class must do, but not how it will do it
+
+public interface Bird{
+  public void fly();
+}
+public class Eagle implements Bird{
+  @Override
+  public void fly(){
+    // defination of the fly method
+  }
+}
+
+---------------------- Polymorphism
+
+- interface can used as a Data type.
+- We can not create the object of an interface,but reference of all the subclasses that implements it.runtime polymorphism.
+
+public interface Bird{
+  public void fly();
+}
+public class Eagle implements Bird{
+  @Override
+  public void fly(){
+    // defination of the fly method
+  }
+}
+public class Hen implements Bird{
+  @Override
+  public void fly(){
+    // defination of the fly method for hen
+  }
+}
+
+public class Main{
+  public static void main(){
+    // refer to different class
+    Bird obj1= new Eagle();
+    // refer to different class
+    Bird obj2= new Hen();
+
+    obj1.fly();
+    ob2.fly();
+  }
+}
+
+
+-------------------------- MulitpleInheritance
+
+Diamond Problem:
+
+public class WaterAnimal{
+  public boolean canBreathe(){
+    return false;
+  }
+}
+public class LandAnimal{
+  public boolean canBreathe(){
+    return false;
+  }
+}
+
+public class Crocodile extends LandAnimal,WaterAnimal{
+  // HERE canBreathe() method will not be able to decide which one to invoke.
+}
+
+--------- interface solves for MulitpleInheritance issue
+
+public interface WaterAnimal{
+  boolean canBreathe();
+}
+public interface LandAnimal{
+  boolean canBreathe();
+}
+
+public class Crocodile implements WaterAnimal,LandAnimal{
+  // it will define the method it wants to
+  public boolean canBreathe(){
+    return true;
+  }
+}
+
+
+---------------------- Fields in Interface are CONSTANTS
+
+public interface Bird{
+  int MAX_height_in_feet=2080;
+}
+
+// this is same as
+public interface Bird{
+  public static final int MAX_height_in_feet=2080;
+}
+
+-------------------------- Nested Interface
+
+- Nested interface declared within another interface/class
+- Generally it is used to group, logical related interfaced. and Nested interface
+
+
+-- nested interface is independent of inner interface and vice versa.
+
+public interface Bird{
+
+  boolean canFly();
+
+  public interface NonFlyingBird(){
+    public void canRun();
+  }
+}
+
+// independent of implementing outer interface
+public class Duck implements Bird.NonFlyingBird{
+  public void canRun(){
+    System.out.println("can run")
+  }
+}
+
+-------------------------------------- Java 8 features (default methods)
+
+public interface Vehicle {
+    // Default method
+    default void start() {
+        System.out.println("Vehicle is starting");
+    }
+
+    // Abstract method
+    void move();
+}
+
+public class Car implements Vehicle {
+    // Override the default method
+    @Override
+    public void start() {
+        System.out.println("Car is starting");
+    }
+
+    // Implement the abstract method
+    @Override
+    public void move() {
+        System.out.println("Car is moving");
+    }
+}
+
+public class Bike implements Vehicle {
+    // Use the default method
+    @Override
+    public void move() {
+        System.out.println("Bike is moving");
+    }
+}
+
+// Usage
+public class Main {
+    public static void main(String[] args) {
+        Vehicle car = new Car();
+        car.start(); // Output: Car is starting
+        car.move();  // Output: Car is moving
+
+        Vehicle bike = new Bike();
+        bike.start(); // Output: Vehicle is starting
+        bike.move();  // Output: Bike is moving
+    }
+}
+
+
+-----------------------------MulitpleInheritance issue with Default method
+
+public interface Vehicle {
+    default void start() {
+        System.out.println("Vehicle is starting");
+    }
+}
+
+public interface FourWheeler {
+    default void start() {
+        System.out.println("FourWheeler is starting");
+    }
+}
+
+public class Car implements Vehicle, FourWheeler {
+    @Override
+    public void start() {
+        Vehicle.super.start(); // Call default method from Vehicle interface
+        // FourWheeler.super.start(); // Alternatively, call default method from FourWheeler interface
+        System.out.println("Car is starting");
+    }
+
+    public static void main(String[] args) {
+        Car car = new Car();
+        car.start(); // Output: Vehicle is starting \n Car is starting
+    }
+}
+
+------------------------------ Static methods
+
+public interface Utility {
+    // Static method
+    static void printMessage(String message) {
+        System.out.println("Message: " + message);
+    }
+}
+
+// Usage
+public class Main {
+    public static void main(String[] args) {
+        // Calling static method of the interface
+        Utility.printMessage("Hello, Java 8!");
+    }
+}
+
+-- they can called with just the ref of the interface
+
+----------------------------- Functional Interface
+-- it can have only one single abstract method, with optional annotation @FunctionalInterface
+
+
+@FunctionalInterface
+public interface Calculator {
+    int calculate(int a, int b);
+}
+
+// Usage with lambda expressions
+public class Main {
+    public static void main(String[] args) {
+        // Using lambda expression to define the calculate method
+        Calculator add = (a, b) -> a + b;
+        Calculator multiply = (a, b) -> a * b;
+
+        System.out.println("Addition: " + add.calculate(5, 3));    // Output: 8
+        System.out.println("Multiplication: " + multiply.calculate(5, 3)); // Output: 15
+    }
+}
+
+----------------------------------- optional method to handle nullPointerException
+
+import java.util.Optional;
+
+public class User {
+    private String name;
+
+    public User(String name) {
+        this.name = name;
+    }
+
+    public Optional<String> getName() {
+        return Optional.ofNullable(name);
+    }
+}
+
+// Usage
+public class Main {
+    public static void main(String[] args) {
+        User user = new User(null);
+        System.out.println(user.getName().orElse("Unknown")); // Output: Unknown
+    }
+}
+
+
+------------------------------------------------ Java 9 features of private methods
+public interface MyInterface {
+
+    // Default method utilizing the private method
+    default void defaultMethod1() {
+        System.out.println("Default Method 1:");
+        commonMethod();
+    }
+
+    // Another default method utilizing the same private method
+    default void defaultMethod2() {
+        System.out.println("Default Method 2:");
+        commonMethod();
+    }
+
+    // Private method encapsulating common behavior
+    private void commonMethod() {
+        System.out.println("This is a private method shared by default methods.");
+    }
+
+    // Static method utilizing the private static method
+    static void staticMethod() {
+        System.out.println("Static Method:");
+        staticHelper();
+    }
+
+    // Private static method
+    private static void staticHelper() {
+        System.out.println("This is a private static method used by the static method.");
+    }
+}
+
+// Implementing class
+public class MyClass implements MyInterface {
+    // Implementing class doesn't need to do anything special to use default methods
+}
+
+// Usage
+public class Main {
+    public static void main(String[] args) {
+        MyClass myClass = new MyClass();
+        myClass.defaultMethod1(); // Output: Default Method 1: \n This is a private method shared by default methods.
+        myClass.defaultMethod2(); // Output: Default Method 2: \n This is a private method shared by default methods.
+        MyInterface.staticMethod(); // Output: Static Method: \n This is a private static method used by the static method.
+    }
+}

@@ -1,0 +1,187 @@
+------------------------------------------------POJO Class
+- plain old java class
+- Contains Variables and getters and setters method.
+- class should be public
+- Public default constructor
+- No annotations should be used like @Table,@Entity,@Id etc.
+- it should not extend any class or implement any interface
+
+example:
+
+Public class student {
+int name;
+private int rollNumber;
+protected String address;
+
+Public int getName ()  {
+return name;
+}
+Public void setName(int name) {
+this.name=Name;
+}
+Public int getRollNumber () {
+return rollNumber;
+}
+public void setRollNumber(int rollNumber) {
+this.rollNumber= rollNumber;
+}
+public string getAddress() {
+return address;
+}
+public void setAddress (String Address) {
+this.address=address;
+}
+}
+
+
+-----------------------------------------------Enum Class
+- it has a collection of Constants(variables which value values cannot be changed)
+- its CONSTANTS are static and final implicitly(we do not have to write it)
+- it can not extends any class, as it internally extends java.lang.Enum class
+- it can implement interfaces
+- it can have variables,constructor,methods.
+- it can not be initiated(as its constructor will be private only, even you give default,in bytecode it make it private).
+- No other class can extend Enum class
+- it can have Abstract method, and all Constants should implement that abstract method.
+
+
+Advantage of Enum:
+- Enums provide compile-time type safety which means you can only assign valid values defined in the enum.
+- Singleton Pattern: Enums are inherently singletons, so each value is instantiated only once.
+- Easy to Use: Enums provide a convenient way to work with fixed sets of constants, making the code more readable and maintainable.
+- Methods and Fields: Enums can have methods and fields, and each enum constant can have its own behavior.
+- Switch Statements: Enums work seamlessly with switch statements, enhancing readability.
+
+- Normal Enum Class
+public enum DayEnum {
+	MONDAY,
+	TUESDAY,
+	WEDNESDAY,
+	THRUSDAY,
+	FRIDAY,
+	SATURDAY,
+	SUNDAY
+}
+
+- Enum with Custom Values
+public enum Day {
+    SUNDAY("Sun"),
+    MONDAY("Mon"),
+    TUESDAY("Tue"),
+    WEDNESDAY("Wed"),
+    THURSDAY("Thu"),
+    FRIDAY("Fri"),
+    SATURDAY("Sat");
+
+    private String abbreviation;
+
+    Day(String abbreviation) {
+        this.abbreviation = abbreviation;
+    }
+
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+}
+public class EnumExample {
+    public static void main(String[] args) {
+        Day day = Day.MONDAY;
+        System.out.println(day.getAbbreviation());  // Output: Mon
+    }
+}
+
+- Method Override by Constants
+
+- Abstract method in Enum
+  public enum Shape {
+    CIRCLE {
+        @Override
+        public double area(double dimension) {
+            return Math.PI * dimension * dimension;
+        }
+    },
+    SQUARE {
+        @Override
+        public double area(double dimension) {
+            return dimension * dimension;
+        }
+    };
+
+    public abstract double area(double dimension);
+}
+
+public class Weekend{
+  public static final int monday=0,
+  public static final int tuesday=1,
+  public static final int wednesday=2,
+  public static final int thrusday=3,
+  public static final int friday=4,
+  public static final int saturday=5,
+  public static final int sunday=6,
+}
+public enum DayEnum {
+
+	MONDAY,
+	TUESDAY,
+	WEDNESDAY,
+	THRUSDAY,
+	FRIDAY,
+	SATURDAY,
+	SUNDAY
+}
+public class DayEnumDemo {
+	public static void main(String[] args) {
+
+    isWeekend(0);//return false
+    isWeekend(5);//return true
+    isWeekend(100);//this value is not expected , but we can still send this parameter
+
+  // better readability, and full control of the value we can pass  in parameter
+		isWeekend(DayEnum.WEDNESDAY);
+	}
+  public static boolean isWeekend(int day){
+    if(Weekend.saturday==day || Weekend.sunday==day){
+      return true;
+    }
+    return false;
+  }
+	public static boolean isWeekend(DayEnum day) {
+		if(DayEnum.SATURDAY==day || DayEnum.SUNDAY==day) {
+			return true;
+		}
+		return false;
+	}
+}
+
+Final Class-
+Final class cannot be inherited
+
+
+Singleton Class: this class objective is to create only 1 and 1 object
+- Eager Initialization
+- Lazy Initialization
+public class DBConnection{
+  private static DBConnection conObj;
+
+  private DBConnection(){
+  }
+  public static DBConnection getInstance(){
+   if(conObj==null)
+   {
+    conObj= new DBConnection();
+   }
+   return conObj;
+  }
+}
+// DBConnection conObj= DBConnection.getInstance();
+- Synchronization Block
+- Double Lock
+- Bill Pugh Solution
+
+-------------------------------------Immutable class
+- We can not change the value of an object once it is created.
+- Declare class as 'final' so that it  can not be extended.
+- All class members should be private. So that direct access can be avoided,
+- there should not be any setter method.
+- Example, String, wrapper class.
+Wrapper class

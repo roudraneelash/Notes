@@ -1,0 +1,130 @@
+When a functional interface extends another interface, it inherits the abstract methods from its parent interface(s). To maintain the integrity of a functional interface (which should have only one abstract method), it must not introduce new abstract methods beyond those inherited. If the parent interface is a functional interface itself, this is typically straightforward, as the child will inherit the single abstract method from the parent.
+
+### Example 1: Extending Another Functional Interface
+
+Here's an example where a functional interface extends another functional interface:
+
+#### Parent Functional Interface
+
+```java
+@FunctionalInterface
+public interface ParentFunction {
+    void performAction();
+}
+```
+
+#### Child Functional Interface
+
+```java
+@FunctionalInterface
+public interface ChildFunction extends ParentFunction {
+    // No additional abstract methods
+    // It inherits the single abstract method from ParentFunction
+}
+```
+
+#### Usage with Lambda
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        ChildFunction childFunction = () -> System.out.println("Action performed!");
+        childFunction.performAction(); // Output: Action performed!
+    }
+}
+```
+
+### Example 2: Extending a Non-Functional Interface
+
+When a functional interface extends a non-functional interface, it inherits all the abstract methods from the non-functional interface. To remain a functional interface, it must still contain exactly one abstract method.
+
+#### Non-Functional Interface
+
+```java
+public interface NonFunctional {
+    void existingMethod();
+}
+```
+
+#### Functional Interface Extending Non-Functional Interface
+
+```java
+@FunctionalInterface
+public interface ExtendedFunction extends NonFunctional {
+    void newMethod();
+    // existingMethod is inherited from NonFunctional, making two abstract methods in total
+    // newMethod is defined here, thus violating the functional interface contract
+}
+```
+
+In this case, `ExtendedFunction` would **not** be a valid functional interface because it has two abstract methods (`existingMethod` and `newMethod`). 
+
+To make it a valid functional interface, `existingMethod` and `newMethod` need to be somehow combined or the parent interface must already be a functional interface:
+
+#### Example with Default Method to Make It Work
+
+You can provide a default implementation for the inherited abstract method to make it work as a functional interface:
+
+```java
+public interface NonFunctional {
+    default void existingMethod() {
+        // Default implementation
+        System.out.println("Existing method executed.");
+    }
+}
+```
+
+```java
+@FunctionalInterface
+public interface ExtendedFunction extends NonFunctional {
+    void newMethod();
+}
+```
+
+### Combining Methods in a More Complex Scenario
+
+In some scenarios, you might need to work around or design your interfaces differently to meet the functional interface contract:
+
+```java
+@FunctionalInterface
+public interface ParentFunction1 {
+    void method1();
+}
+
+@FunctionalInterface
+public interface ParentFunction2 {
+    void method2();
+}
+
+@FunctionalInterface
+public interface CombinedFunction extends ParentFunction1, ParentFunction2 {
+    @Override
+    default void method1() {
+        // Provide a default implementation
+        System.out.println("Default method1 implementation.");
+    }
+    
+    @Override
+    void method2(); // Single abstract method, hence valid functional interface
+}
+```
+
+#### Usage
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        CombinedFunction combinedFunction = () -> System.out.println("Lambda for method2 executed!");
+        combinedFunction.method1(); // Output: Default method1 implementation.
+        combinedFunction.method2(); // Output: Lambda for method2 executed!
+    }
+}
+```
+
+### Summary
+
+- **Functional Interface Inheritance**: If a functional interface extends another functional interface, it inherits the single abstract method, maintaining the contract.
+- **Default Methods**: When inheriting abstract methods from non-functional interfaces, providing default implementations for those methods can help maintain the single abstract method requirement.
+- **Design Considerations**: Careful design of interfaces and providing default implementations where necessary can help in creating complex yet compliant functional interfaces.
+
+These practices allow you to handle inheritance scenarios while maintaining the functional interface contract, ensuring that your interfaces remain usable with lambda expressions and method references.
