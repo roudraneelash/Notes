@@ -1,0 +1,82 @@
+-- main logic is the  function take another function as an argument or returns a function as result;
+
+// Callback function, passed as a parameter in the higher order function
+function callbackFunction(){
+    console.log('I am  a callback function');
+}
+
+// higher order function
+function higherOrderFunction(func){
+    console.log('I am higher order function')
+    func()
+}
+
+higherOrderFunction(callbackFunction);
+
+--------------------- Example
+const radius=[1,2,3,4];
+// - calculate area,circumference,diameter
+
+function calculate(radius){
+let output=[];   
+for(let i=0;i<radius.length;i++)
+ {
+  output.push(Math.PI*radius[i]*radius[i]);
+ }
+  return output
+}
+
+const area=(radius)=>{
+    return (Math.PI*radius*radius).toFixed(2);
+}
+const circumference=(radius)=>{
+    return (2*Math.PI*radius.toFixed(2));
+}
+const diameter=(radius)=>{
+    return (2*radius).toFixed(2);
+}
+
+function calculate(radius,logic){
+    let output=[];
+    for(let i=0;i<radius.length;i++)
+        {
+        output.push(logic(radius[i]));
+        }
+    return output;
+}
+
+console.log(calculate(radius,area));
+console.log(calculate(radius,diameter));
+
+so here calculate is a HOF,
+
+-- to implement calculate using .prototype
+
+Array.prototype.calculate=function (logic){
+  let output=[];
+    for(let i=0;i<this.length;i++)
+        {
+        output.push(logic(this[i]));
+        }
+    return output;
+}
+
+console.log(radius.calculate(area));
+
+-------------------- HOF , .map,.filter,.reduce
+const arr=[1,2,3,4];
+function double(x){
+    return x*2;
+}
+arr.map(x=>x*2);// or 
+arr.map(double);
+
+.filter(x=>x%2==0)
+.reduce((acc,cur)=>acc+curr);
+
+
+const users=[
+    {
+        firstName:"John",lastName:"doe",age:26
+    }
+]

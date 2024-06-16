@@ -1,0 +1,80 @@
+Certainly! Here's a curated list of the questions, organized by rounds:
+
+### Technical Round (React.js and JavaScript)
+
+#### General React.js Questions
+1. What are the benefits of React?
+2. Difference between state and props?
+3. What is useReducer and useContext API?
+4. What is one-way data binding?
+5. Tell me hooks you have used?
+6. What is Redux middleware?
+7. What are hooks in React.js?
+8. Presentation component vs functional component in React.js?
+9. What are fragments in React.js?
+10. How do you optimize a React application?
+11. React states and stateless components
+12. What is virtual DOM?
+13. What are hooks like useMemo, useCallback, useEffect?
+
+JavaScript Specific Questions
+1. What is hoisting in JS?
+2. What are higher-order functions in JS?
+3. Difference between var, let, and const in JS?
+4. Bind(), call(), apply() in JS
+5. Splice & slice difference
+6. What is function currying?
+7. What are closures in JS?
+8. JavaScript array methods like filter and reduce.
+9. JavaScript guess the output questions based on variables and functions.
+
+UI and Other Related Questions
+1. Box model, CSS selector
+2. HTML5 and HTML
+3. CSS concepts like Box model, grid concept
+
+Practical Coding and Component Questions
+1. Write code to handle an API request from an API endpoint in the front end.
+2. Explain lazy-loading and code splitting.
+3. How to debounce an application?
+4. Explain data flow in the components.
+5. Write a simple component and render a component to that component.
+6. Call the API endpoint using “fetch” or “Axios” from the second component to the first component which is rendered in the app component.
+7. Explain class components and component lifecycle methods like componentDidMount() & componentWillUnmount().
+8. How to use componentWillUnmount() in the functional component?
+
+Project Related Questions
+1. Describe the projects you have worked on.
+
+Git and Version Control
+1. How to commit code?
+2. How to merge code?
+3. How to resolve merge conflicts?
+
+Coding Test Round
+1. Multiple-choice questions with low, medium, and difficult range levels.
+2. Progress bar in React and remote data fetching.
+
+Additional Technical Round Questions (React.js and JavaScript)
+
+1. Important JavaScript questions.
+2. Detailed questions on React.js hooks, virtual DOM, HTML5 and HTML, state, useMemo, useCallback, useEffect.
+3. Detailed questions on box model, CSS selector.
+4. What is hoisting?
+5. What is useEffect?
+
+Managerial Round
+
+1. Discuss projects you have worked on.
+2. Basic concepts of GIT.
+3. Rally and Agile framework discussion.
+
+Interview Preparation Tips
+
+- Focus on JavaScript and React.js concepts.
+- Prepare for basic concepts of JS for interviews.
+- Study OOPs concepts in JavaScript.
+- Review local and session storage, jQuery, AJAX fundamentals.
+- Ensure understanding of CSS concepts like the Box model and grid concept.
+
+This should help in structuring your preparation for the interviews!

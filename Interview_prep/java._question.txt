@@ -1,0 +1,22 @@
+1. OOPs principle
+2. JVM,JRE,JDK
+3. Float & double , eg: .7f-.3f
+4. Generic,Nested,Abstract,Super & sub classes.
+5. Java Memory management and Garbage collection
+6. POJO class, Enum, Final class
+7. Singleton, Immutable class
+
+8.** Java Interface
+9. Default,static,private method in interface.
+10.** Functional interface
+11.** Lamdba Expression
+12.** Streams, (parallel streams)
+
+13. Exception Handling
+
+14. collection framework()
+15. HashMap internal working
+
+
+16. Multithread and Concurrency
+17. Thread creation,lifecycle

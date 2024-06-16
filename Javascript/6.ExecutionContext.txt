@@ -33,3 +33,7 @@ function foo(){
 }
 
 output: undefined, as var is hoisted and console.log is before the execution phase. as functions are hoisted.
+
+Function Declarations: Hoisted entirely, allowing you to call functions before their declarations.
+var Declarations: Hoisted, but only the declaration, not the initialization, leading to undefined if accessed before initialization.
+let and const Declarations: Hoisted, but not initialized, causing a ReferenceError if accessed before the declaration due to the temporal dead zone.

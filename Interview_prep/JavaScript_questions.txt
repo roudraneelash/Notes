@@ -1,0 +1,84 @@
+1.Transformation of Data
+const obj = [
+  { key: 'Sample 1', data: 'Data4' },
+  { key: 'Sample 1', data: 'Data3' },
+  { key: 'Sample 1', data: 'Data3' },
+  { key: 'Sample 2', data: 'Data2' },
+  { key: 'Sample 3', data: 'Data3' },
+  { key: 'Sample 4', data: 'Data4' },
+  { key: 'Sample 5', data: 'Data5' }
+];
+
+const output = {};
+
+obj.forEach((item) => {
+  // Remove spaces in key names for the output object
+  const formattedKey = item.key.replace(' ', '');
+  
+  if (output[formattedKey]) {
+    output[formattedKey].push(item);
+  } else {
+    output[formattedKey] = [item];
+  }
+});
+
+console.log(output);
+
+2.flatten array 
+const a=[1,2,3,[4,[5,6]],7,8]
+
+flatten the array
+
+function flatArray(arr,result=[]){
+
+  arr.forEach((item)=>{
+    if(Array.isArray(item)){
+      flatArray(item,result);
+    }else{
+      result.push(item);
+    }
+  })
+
+  return result;
+}
+
+const ans= flatArray(a);
+console.log(a);
+
+1,2,3,-return 
+-[4,[5,6]],[1,2,3]-return
+-[5,6],[1,2,3,4]-return 
+-return [1,2,3,4,5,6]
+
+
+3. Memoize function 
+
+const add= (a,b)=>a+b;
+function memoizeAdd(fn){
+  // declare the map  to form a closure , and store the mapping data.
+  const cache= new map();
+  return (...args){
+    const key = JSON.stringify(args);
+    if(cache.get(keys)!=undefined)
+    {
+      return `From cache ${cache.get(key)}`;
+    }else{
+      const result=add(...args);
+      cache.set(key,result);
+      return result;
+    }
+    ... return the function
+  }
+}
+
+const memoizeAdd=memoizeOne(add);
+memoizeAdd(1,2); //3
+// Add function is not executed: previous result is returned
+
+memoizeAdd(2,3)://5
+
+//Add function is called to get new value
+
+
+memoizeAdd(2,3)://5
+//Add function is not executed:previous result is returned

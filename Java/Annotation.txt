@@ -1,0 +1,176 @@
+Annotations in Java
+
+Annotations provide a way to add metadata to your Java code. They can be used for documentation, compile-time checks, and runtime processing. They are optional and are often processed using reflection to implement certain logic based on the metadata.
+
+Types of Annotations
+
+Predefined Annotations
+
+1. @Override: Indicates that a method is intended to override a method in a superclass.
+2. @Deprecated: Marks an element as deprecated, causing a compile-time warning when the element is used.
+3. @SuppressWarnings: Suppresses specified compiler warnings.
+4. @SafeVarargs: Suppresses "heap pollution" warnings for varargs methods.
+5. @FunctionalInterface: Indicates that an interface is a functional interface.
+
+#### Meta-Annotations
+
+Meta-annotations are annotations that apply to other annotations.
+
+1.@Target: Specifies the kinds of elements an annotation type can be applied to.
+   - Example: `@Target(ElementType.METHOD)`
+
+2. @Retention: Specifies how long annotations are to be retained.
+   - `RetentionPolicy.SOURCE`: Discarded by the compiler and not recorded in the `.class` file.
+   - `RetentionPolicy.CLASS`: Recorded in the `.class` file but ignored by the JVM at runtime.
+   - `RetentionPolicy.RUNTIME`: Recorded in the `.class` file and available at runtime.
+
+3. @Documented: Indicates that annotations with this type should be documented by the javadoc tool.
+4. @Inherited: Indicates that an annotation type is automatically inherited.
+
+Custom Annotations
+
+You can define your own annotations for specific purposes.
+
+Defining Annotations
+
+Basic Custom Annotation
+public @interface MyCustomAnnotation {
+}
+
+Custom Annotation with Methods (Fields)
+
+java
+public @interface MyCustomAnnotation {
+    String name();
+}
+
+
+Usage:
+
+@MyCustomAnnotation(name = "Testing")
+public class Eagle {
+    public void fly() {
+    }
+}
+
+Custom Annotation with Default Values
+
+
+public @interface MyCustomAnnotation {
+    String name() default "development";
+}
+
+
+Usage:
+@MyCustomAnnotation(name = "Testing")
+public class Eagle {
+    public void fly() {
+    }
+}
+
+
+Meta-Annotations Example
+
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyCustomAnnotationWithInherited {
+}
+
+@MyCustomAnnotationWithInherited
+public class TestClass {
+}
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(new TestClass().getClass().getAnnotation(MyCustomAnnotationWithInherited.class));
+        // Output: @MyCustomAnnotationWithInherited()
+    }
+}
+
+
+@Repeatable Annotations
+
+Allows an annotation to be used more than once on the same element.
+
+@Repeatable(Categories.class)
+@interface Category {
+    String name();
+}
+
+@Retention(RetentionPolicy.RUNTIME)
+@interface Categories {
+    Category[] value();
+}
+
+@Category(name = "Bird")
+@Category(name = "LivingThings")
+public class Eagle {
+    public void fly() {
+    }
+}
+```
+Using Reflection to Process Annotations
+
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+
+public class AnnotationProcessor {
+    public static void main(String[] args) {
+        try {
+            // Get the class object
+            Class<MyClass> obj = MyClass.class;
+
+            // Check if the class has MyAnnotation
+            if (obj.isAnnotationPresent(MyAnnotation.class)) {
+                Annotation annotation = obj.getAnnotation(MyAnnotation.class);
+                MyAnnotation myAnnotation = (MyAnnotation) annotation;
+                System.out.println("Class Annotation:");
+                System.out.println("value: " + myAnnotation.value());
+                System.out.println("number: " + myAnnotation.number());
+            }
+
+            // Get the method object
+            Method method = obj.getMethod("myMethod");
+
+            // Check if the method has MyAnnotation
+            if (method.isAnnotationPresent(MyAnnotation.class)) {
+                Annotation annotation = method.getAnnotation(MyAnnotation.class);
+                MyAnnotation myAnnotation = (MyAnnotation) annotation;
+                System.out.println("Method Annotation:");
+                System.out.println("value: " + myAnnotation.value());
+                System.out.println("number: " + myAnnotation.number());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+Heap Pollution
+
+Heap pollution occurs when a variable of a parameterized type refers to an object that is not of that parameterized type. This typically happens when dealing with generics, particularly with raw types or unchecked type casts.
+
+Example of Heap Pollution:
+
+java
+import java.util.ArrayList;
+import java.util.List;
+
+public class HeapPollutionExample {
+    public static void main(String[] args) {
+        List<String> stringList = new ArrayList<>();
+        addElement(stringList, Integer.valueOf(42));  // Causes heap pollution
+
+        String str = stringList.get(0);  // This will cause ClassCastException at runtime
+        System.out.println(str);
+    }
+
+    // Raw type usage
+    private static void addElement(List list, Object element) {
+        list.add(element);  // Unchecked insertion
+    }
+}

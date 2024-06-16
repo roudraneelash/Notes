@@ -1,0 +1,109 @@
+What is Reflection ?
+-this is used to examine the Classes, Methods, Fields, Interface at runtime and also possible to change the behaviour of the Class too.
+
+For example:
+- What all methods present in the class.
+- what all fields present in the class.
+- what is the return type of the method.
+- what is the modifier of the class.
+- what all Interfaces class has implemented.
+- Change the value of the public and private fields of the Class etc.
+
+-- How to do Reflection of Classes.
+
+To reflect the class, we first need to get an Object of "Class"
+- instance of the class Class represents classes during runtime.
+- JVM creates one Class object for each and every class which is loaded during run time.
+- This Class object,has meta data information about the particular class like its method, fields, Constructor.
+
+-- Class Bird{}
+Bird birdObj= new Bird();
+
+// to get the object of Class for getting the metadata information of Bird class.
+
+Class birdclass= Bird.class;
+Class birdclass= Class.forName("Bird");
+Class birdclass= birdObj.getClass();
+
+
+----------------------- Reflection of Classes
+
+package reflection;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // Obtain the Class object for Eagle
+            Class<Eagle> eagleClass = Eagle.class;
+
+            // Create an instance using the public constructor
+            Constructor<Eagle> publicConstructor = eagleClass.getConstructor(String.class, int.class);
+            Eagle eagle1 = publicConstructor.newInstance("Golden Eagle", 5);
+            System.out.println("Public Constructor: " + eagle1);
+
+            // Access and modify private field 'habitat'
+            Field habitatField = eagleClass.getDeclaredField("habitat");
+            habitatField.setAccessible(true);
+            habitatField.set(eagle1, "Mountainous Regions");
+            System.out.println("After setting private field 'habitat': " + eagle1);
+
+            // Create an instance using the private constructor
+            Constructor<Eagle> privateConstructor = eagleClass.getDeclaredConstructor(String.class, int.class, String.class);
+            privateConstructor.setAccessible(true); // Make the private constructor accessible
+            Eagle eagle2 = privateConstructor.newInstance("Bald Eagle", 3, "Wetlands");
+            System.out.println("Private Constructor: " + eagle2);
+
+            // Modify private field 'species' of the second eagle
+            Field speciesField = eagleClass.getDeclaredField("species");
+            speciesField.setAccessible(true);
+            speciesField.set(eagle2, "White-tailed Eagle");
+            System.out.println("After setting private field 'species': " + eagle2);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+package reflection;
+
+public class Eagle {
+    private String species;
+    private int age;
+    private String habitat;
+
+    public Eagle() {
+    }
+
+    public Eagle(String species, int age) {
+        this.species = species;
+        this.age = age;
+    }
+
+    private Eagle(String species, int age, String habitat) {
+        this.species = species;
+        this.age = age;
+        this.habitat = habitat;
+    }
+
+    public void fly() {
+        System.out.println("Eagle is flying");
+    }
+
+    private void hunt() {
+        System.out.println("Eagle is hunting");
+    }
+
+    @Override
+    public String toString() {
+        return "Eagle{" +
+                "species='" + species + '\'' +
+                ", age=" + age +
+                ", habitat='" + habitat + '\'' +
+                '}';
+    }
+}

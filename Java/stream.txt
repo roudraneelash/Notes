@@ -1,0 +1,149 @@
+we can consider stream as a pipeline, through which our dATA passes through.
+
+collection -> create stream -> intermediate operations-> terminal operations
+
+- they are lazy in nature , only gets invoked when terminal operations is invoked.
+
+Example:
+
+List<Integer> salaryList= new ArrayList<>();
+salaryList.add(3000);
+salaryList.add(4100);
+salaryList.add(9000);
+salaryList.add(1000);
+salaryList.add(3500);
+
+int count=0;
+for(Integer salary:salaryList){
+  if(salary>3000)
+  count++;
+}
+
+System.out.println("Total Employee with salary> 3000 "+ count);
+
+
+Using Stream:
+
+long output= salaryList.stream().filter((Integer sal)-> sal>3000).count();
+
+
+----- Different ways to create a stream
+1. From collection:
+
+List<Integer> salaryList= Arrays.asList(3000,4100,9000,1000,3500);
+Stream<Integer> streamFromIntegerList=salaryList.stream();
+
+2.From Array
+Integer[] salaryArray={3000,4100,9000,1000,3500};
+Stream<Integer> streamFromIntegerArray=Arrays.stream(salaryArray);
+
+3.From static method:
+
+Stream<Integer> streamFromStaticMethod=Stream.of(1000,3500,4000,9000);
+
+4. From Stream Builder:
+Stream.Builder<Integer> streamBuilder= Stream.builder();
+streamBuilder.add(1000).add(9000).add(3500);
+
+Stream<Integer> streamFromStreamBuilder= streamBuilder.build();
+
+
+5. From Stream Iterate:
+
+Stream<Integer> streamFromIterate= Stream.Iterate(1000,(Integer n)-> n+5000).limit(5);
+
+// so it means starting value is 1000, 1000+5000, 1000+5000+5000 .... upto 5elements
+
+
+-------------------- intermediate operations
+
+1. filter(Predicate<T> predicate)
+
+Stream<String> nameStream= Stream.of("HELLO","EVERYBODY","HOW","ARE","YOU","DOING");
+Stream<String> filteredStream= nameStream.filter((String name)-> name.length()<=3);
+
+List<String> filteredNameList= filteredStream.collect(Collectors.toList());
+
+2.Map(Function<T,R> mapper)
+List<String> names = Arrays.asList("John", "Alice", "Bob", "Charlie");
+List<Integer> nameLengths = names.stream().map((String name)-> name.toLowerCase()).collect(Collectors.toList());
+
+3.flatMap(Function<T,Stream<R>>mapper)
+
+List<List<String>> sentenceList= Arrays.asList(
+  Arrays.asList("I","LOVE","JAVA"),
+  Arrays.asList("CONCEPTS","ARE","CLEAR"),
+  Array.asList("ITS","VERY","EASY")
+);
+
+Stream<String> wordsStream1= sentenceList.stream().flatMap((List<String> sentence)-> sentence.stream());
+// I lOVE JAVA CONCEPTS ARE VERY CLEAR ITS VERY EASY
+
+
+Stream<String> wordsStream2= sentenceList.stream().map((String value)-> value.toLowerCase());
+
+4.sorted
+
+Integer[] arr= {1,5,2,7,4,4,2,0,9}
+
+Stream<Integer> arrStream= Array.stream(arr).sorted();
+// decending order
+Stream<Integer> arrStream= Array.stream(arr).sorted((v1,v2)-> v2-v1 );
+
+5.peek
+6.limit
+7.
+
+
+----------------- terminal operations
+
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        // forEach(Consumer<T> action)
+        System.out.println("forEach:");
+        numbers.stream().forEach(num -> System.out.print(num + " "));
+        System.out.println();
+
+        // toArray()
+        System.out.println("toArray:");
+        Integer[] numberArray = numbers.stream().toArray(Integer[]::new);
+        System.out.println(Arrays.toString(numberArray));
+
+        // reduce(BinaryOperator<T> accumulator)
+        System.out.println("reduce:");
+        Optional<Integer> sum = numbers.stream().reduce((a, b) -> a + b);
+        sum.ifPresent(System.out::println);
+
+        // collect(Collector<T, A, R> collector)
+        System.out.println("collect:");
+        List<Integer> evenNumbers = numbers.stream()
+                                           .filter(num -> num % 2 == 0)
+                                           .collect(Collectors.toList());
+        System.out.println(evenNumbers);
+
+        // min(Comparator<? super T> comparator)
+        System.out.println("min:");
+        Optional<Integer> min = numbers.stream().min(Integer::compareTo);
+        min.ifPresent(System.out::println);
+
+        // max(Comparator<? super T> comparator)
+        System.out.println("max:");
+        Optional<Integer> max = numbers.stream().max(Integer::compareTo);
+        max.ifPresent(System.out::println);
+
+        // count()
+        System.out.println("count:");
+        long count = numbers.stream().count();
+        System.out.println(count);
+
+
+-------------- Why intermediate operations "Lazy"
+
+List<Integer> numbers = Arrays.asList(2,1,4,7,10);
+
+Stream<Integer> numberStream= numbers.stream().filter((Integer val)-> val>=3).peek((Integer val)-> System.out.println(val));
+
+// nothing will be printed
+
+numberStream.count();
+// intermediate stream operations are executed only when terminal operations is invoked
