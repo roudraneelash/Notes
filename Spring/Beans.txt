@@ -1,0 +1,19 @@
+
+Annotations
+
+@Configuration
+-- during loading up the spring projects , With Configuration Annotations, it will load the IOC container containing the beans.
+@Bean
+
+Three ways to define beans in Spring 
+
+@Bean 
+
+Integer getValue(){
+  return 16;
+}
+
+main
+ApplicationContext context= AnnotationConfigApplicationContext(Proj.config);//Configuration class, it will load all the beans
+context.getBean(Integer.clas)
+

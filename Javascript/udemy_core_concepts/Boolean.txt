@@ -1,0 +1,10 @@
+// 5 falsy values : 0, '',undefined,null NaN;
+
+console.log(Boolean(0));
+console.log(Boolean(''));
+console.log(Boolean(undefined));
+console.log(Boolean(NaN));
+
+// 2 truthy values , string and empty obj
+console.log(Boolean("abc"));
+console.log(Boolean({}))

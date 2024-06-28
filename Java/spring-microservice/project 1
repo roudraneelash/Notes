@@ -1,0 +1,46 @@
+movie-info-service-
+
+movie{
+movieId;
+name
+}
+
+rating-data-service:
+
+rating{
+movieId:
+rating:
+}
+movie-catalogue-service: Add an api to movie-catalog-service at catalog/{userId} that returns a hard-coded list of movie + rating information
+-- logic
+// get all rated movie IDs
+// for each movie ID, call movie info service and get details
+// Put them all together
+
+mymoviecatalog.com/api/kaushik
+{
+id:kaushik,
+name:kaushik,
+movies:[
+{id:1234,name:...,desc:....,rating:3},
+{id:124,name:...,desc:....,rating:5},
+..
+..
+..
+]
+}
+
+-- rest template is going to be replaced by web client , i.e reactive programming , concept of async and callbacks
+
+spring-boot-starter-webflux
+// make this a bean
+WebClient.Builder builder= WebClient.builder();
+
+webClientBuilder.build()
+.get()
+.uri("endpoint")
+.retrieve()
+.bodyToMono(Movie.class)
+.block()
+
+--- Service Discovery (Eureka)

@@ -1,4 +1,6 @@
 - if an iterface contains only one single abstract method , it is known as functional interface.
+-- Functional  interface can have toString(),equals(),hashCode()(OBJECT Class), default methods,static method 
+
 
 @FunctionalInterface
 public interface Bird{
@@ -27,6 +29,7 @@ main(){
       System.out.println("Eagle bird implementation");
     }
   }
+  eagleObj.canFly();
 }
 3. Lamda Expression : main adv is to avoid the extra code.
 
@@ -39,10 +42,12 @@ main(){
 -------------------------------- Primaryly there are 4type of FunctionalInterface
 
 - Consumer
+
 @FunctionalInterface
 public interface Consummer<T>{
   void accept(T t);
 }
+-- Example 1
 main(){
   // defining the interface method for Consumer
   Consumer<Integer> Logging=(Integer val)->{
@@ -53,6 +58,23 @@ main(){
 
   Logging.accept(11);
 }
+-- Example 2
+
+main(){
+
+  // implementation of Consumer
+  Consumer<Integer> pattern = (Integer n)->{
+    for(int i=0;i<n;i++)
+    {
+      for(int j=0;j<i;j++)
+      {
+        System.out.print("*");
+      }
+      System.out.println();
+    }
+  } 
+}
+
 
 // basically it takes input but doesnt return anything
 

@@ -1,10 +1,9 @@
 Implementing the Singleton design pattern in Java ensures that a class has only one instance and provides a global point of access to that instance. Let's go through the various methods to implement a Singleton class, including explanations and code snippets.
 
-### 1. Eager Initialization
+1. Eager Initialization
 
 In eager initialization, the instance of the Singleton class is created at the time of class loading.
 
-```java
 public class DBConnection {
     // Instance created at the time of class loading
     private static final DBConnection conObj = new DBConnection();
@@ -20,7 +19,7 @@ public class DBConnection {
 
 // Usage
 DBConnection conObj = DBConnection.getInstance();
-```
+
 
 **Pros**:
 - Simple and easy to implement.
@@ -33,7 +32,7 @@ DBConnection conObj = DBConnection.getInstance();
 
 In lazy initialization, the instance is created only when it is requested for the first time.
 
-```java
+java
 public class DBConnection {
     // Instance not created at the time of class loading
     private static DBConnection conObj;
@@ -52,7 +51,7 @@ public class DBConnection {
 
 // Usage
 DBConnection conObj = DBConnection.getInstance();
-```
+
 
 Pros:
 - Instance is created only if needed, which can save resources.
@@ -143,7 +142,7 @@ public class DBConnection {
 
 // Usage
 DBConnection conObj = DBConnection.getInstance();
-```
+
 
 - Thread-safe without synchronization.
 - Lazy-loaded instance (created only when needed).
@@ -192,7 +191,7 @@ public class DBConnection {
 
 // Usage
 DBConnection conObj = DBConnection.getInstance();
-```
+
 
 Explanation
 

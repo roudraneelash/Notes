@@ -1,0 +1,260 @@
+### Multithreading in Java: Notes and Interview Topics
+
+#### 1. **Introduction to Multithreading**
+
+- **Multithreading**: Multithreading is a process of executing multiple threads simultaneously. Each thread runs in parallel to perform different tasks.
+- **Thread**: A thread is a lightweight process. Threads in Java allow concurrent execution of two or more parts of a program for maximum utilization of CPU.
+
+#### 2. **Thread Lifecycle**
+
+1. **New**: The thread is created but not yet started.
+2. **Runnable**: The thread is ready to run and waiting for CPU time.
+3. **Blocked/Waiting**: The thread is waiting for a resource or event to proceed.
+4. **Timed Waiting**: The thread is waiting for a specified period.
+5. **Terminated**: The thread has finished execution or is aborted.
+
+#### 3. **Creating Threads**
+
+1. **By extending the `Thread` class**:
+    ```java
+    class MyThread extends Thread {
+        public void run() {
+            for (int i = 0; i < 5; i++) {
+                System.out.println(Thread.currentThread().getName() + " - " + i);
+            }
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            MyThread t1 = new MyThread();
+            t1.start();
+        }
+    }
+    ```
+
+2. **By implementing the `Runnable` interface**:
+    ```java
+    class MyRunnable implements Runnable {
+        public void run() {
+            for (int i = 0; i < 5; i++) {
+                System.out.println(Thread.currentThread().getName() + " - " + i);
+            }
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            Thread t1 = new Thread(new MyRunnable());
+            t1.start();
+        }
+    }
+    ```
+
+#### 4. **Thread Methods**
+
+- **start()**: Starts a thread by calling its run method.
+- **run()**: Contains the code that is executed by the thread.
+- **sleep(long millis)**: Makes the thread sleep for the specified duration.
+- **join()**: Waits for the thread to die.
+- **yield()**: Causes the currently executing thread object to temporarily pause and allow other threads to execute.
+- **setPriority(int priority)**: Changes the priority of the thread.
+- **interrupt()**: Interrupts the thread.
+
+#### 5. **Thread Synchronization**
+
+- **Why Synchronization?**: To prevent thread interference and memory consistency errors.
+- **Synchronized Method**:
+    ```java
+    public synchronized void synchronizedMethod() {
+        // critical section
+    }
+    ```
+- **Synchronized Block**:
+    ```java
+    public void method() {
+        synchronized(this) {
+            // critical section
+        }
+    }
+    ```
+- **Locks and `ReentrantLock`**:
+    ```java
+    ReentrantLock lock = new ReentrantLock();
+    lock.lock();
+    try {
+        // critical section
+    } finally {
+        lock.unlock();
+    }
+    ```
+
+#### 6. **Inter-thread Communication**
+
+- **wait()**: Causes the current thread to wait until another thread invokes the notify() or notifyAll() method.
+- **notify()**: Wakes up a single thread that is waiting on the object's monitor.
+- **notifyAll()**: Wakes up all the threads that are waiting on the object's monitor.
+    ```java
+    synchronized(obj) {
+        while (<condition>) {
+            obj.wait();
+        }
+        // process
+        obj.notify();
+    }
+    ```
+
+#### 7. **Thread Pools and Executors**
+
+- **Thread Pool**: A pool of worker threads that are reused to execute tasks.
+- **Executors**: Framework to manage thread pools.
+    ```java
+    ExecutorService executor = Executors.newFixedThreadPool(10);
+    executor.submit(new MyRunnable());
+    executor.shutdown();
+    ```
+
+#### 8. **Advanced Topics**
+
+- **ForkJoin Framework**: Used for parallel processing by breaking tasks into smaller subtasks.
+    ```java
+    ForkJoinPool forkJoinPool = new ForkJoinPool();
+    forkJoinPool.invoke(new RecursiveTaskExample());
+    ```
+
+- **Concurrency Utilities**:
+    - **CountDownLatch**
+    - **CyclicBarrier**
+    - **Semaphore**
+    - **Exchanger**
+    - **Phaser**
+
+#### 9. **Common Multithreading Problems**
+
+- **Deadlock**: A situation where two or more threads are blocked forever, waiting for each other.
+- **Livelock**: Threads are not blocked but are too busy responding to each other to resume work.
+- **Starvation**: A thread is perpetually denied access to resources.
+
+#### 10. **Interview Questions and Topics**
+
+- Explain the lifecycle of a thread.
+- How can you create a thread in Java?
+- What are the differences between `Runnable` and `Thread`?
+- How does synchronization work in Java?
+- What is a `volatile` variable and how is it used?
+- Explain `wait()`, `notify()`, and `notifyAll()`.
+- How do thread pools work in Java?
+- What are deadlock, livelock, and starvation?
+- How does the ForkJoin framework work?
+- What are some best practices for multithreading?
+
+### Example Code Snippets
+
+1. **Thread Synchronization Example**:
+    ```java
+    class Counter {
+        private int count = 0;
+
+        public synchronized void increment() {
+            count++;
+        }
+
+        public int getCount() {
+            return count;
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) throws InterruptedException {
+            Counter counter = new Counter();
+
+            Thread t1 = new Thread(() -> {
+                for (int i = 0; i < 1000; i++) {
+                    counter.increment();
+                }
+            });
+
+            Thread t2 = new Thread(() -> {
+                for (int i = 0; i < 1000; i++) {
+                    counter.increment();
+                }
+            });
+
+            t1.start();
+            t2.start();
+
+            t1.join();
+            t2.join();
+
+            System.out.println("Count: " + counter.getCount());
+        }
+    }
+    ```
+
+2. **Producer-Consumer Problem Using `wait()` and `notify()`**:
+    ```java
+    import java.util.LinkedList;
+    import java.util.Queue;
+
+    class ProducerConsumer {
+        private final Queue<Integer> queue = new LinkedList<>();
+        private final int LIMIT = 10;
+        private final Object lock = new Object();
+
+        public void produce() throws InterruptedException {
+            int value = 0;
+            while (true) {
+                synchronized (lock) {
+                    while (queue.size() == LIMIT) {
+                        lock.wait();
+                    }
+                    queue.add(value++);
+                    lock.notify();
+                }
+            }
+        }
+
+        public void consume() throws InterruptedException {
+            while (true) {
+                synchronized (lock) {
+                    while (queue.isEmpty()) {
+                        lock.wait();
+                    }
+                    int value = queue.poll();
+                    System.out.println("Consumed: " + value);
+                    lock.notify();
+                }
+            }
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) throws InterruptedException {
+            ProducerConsumer pc = new ProducerConsumer();
+
+            Thread producerThread = new Thread(() -> {
+                try {
+                    pc.produce();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            Thread consumerThread = new Thread(() -> {
+                try {
+                    pc.consume();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            producerThread.start();
+            consumerThread.start();
+
+            producerThread.join();
+            consumerThread.join();
+        }
+    }
+    ```
+
+These notes, code snippets, and interview topics should provide a comprehensive overview of multithreading in Java and prepare you for both practical implementation and interview questions.

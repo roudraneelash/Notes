@@ -1,0 +1,26 @@
+let j_mass,j_height,j_bmi;
+let m_mass,m_height,m_bmi;
+
+m_mass=78;
+m_height=1.69;
+j_mass=92;
+j_height=1.95;
+let markHigherBMI;
+
+function bmi(mass,height){
+  let bmi=(mass/height**2);
+  return bmi;
+}
+
+j_bmi=parseFloat(bmi(j_mass,j_height)).toFixed(2);
+m_bmi=parseFloat(bmi(m_mass,m_height)).toFixed(2);
+markHigherBMI=(j_bmi<m_bmi);
+
+if(m_bmi>j_bmi)
+  {
+    console.log(`Mark's BMI (${m_bmi}) is higher than John's (${j_bmi})`);
+  }
+else
+  {
+    console.log(`John's BMI (${j_bmi}) is higher than Mark's (${m_bmi})`);
+  }

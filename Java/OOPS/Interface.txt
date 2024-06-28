@@ -113,8 +113,6 @@ public interface Bird{
 
 - Nested interface declared within another interface/class
 - Generally it is used to group, logical related interfaced. and Nested interface
-
-
 -- nested interface is independent of inner interface and vice versa.
 
 public interface Bird{
@@ -236,6 +234,31 @@ public class Main {
 public interface Calculator {
     int calculate(int a, int b);
 }
+// class implementations
+
+class Add implements Calculator{
+  @Override
+  int calculate(int a,int b){
+    return a+b;
+  }
+}
+
+// annonymous class implementations
+main(){
+
+  // this syntax is equivalent to :
+  // Calculator calc= new Add();
+  // where Phone implements the Function internally.
+
+Calculator add= new Calculator(){
+  @Override
+  int calculate(int a,int b){
+    return a+b;
+  }
+}
+ add.calculate(2,3);
+}
+
 
 // Usage with lambda expressions
 public class Main {
