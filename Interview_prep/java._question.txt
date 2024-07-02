@@ -20,3 +20,13 @@
 
 16. Multithread and Concurrency
 17. Thread creation,lifecycle
+
+Maximum width of Binary search tree
+Variation of LRU, followed by LFU
+Design question: based on API request and response fetching (asked because of the current work experience)
+Multithreading
+DBMS - Joins, Unique Key Vs Primary Key, Deduplication and some basic key questions
+SQL - Functions, triggers, Store procedures, DDL, DML
+Version control - basic
+Design question - Integrate AI features in any finance application (tried to cover some basic scenarios like chatBot, instruction panel)
+Project discussion on newly learnt feature from one project

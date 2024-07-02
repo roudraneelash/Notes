@@ -1,5 +1,0 @@
-Interface Executor
-
-- interface ExecutorService
-- ThreadPoolExector -ForkJoinPool -ScheduledExecutorService
-  ScheduledThreadPoolExecutor
