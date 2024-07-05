@@ -169,3 +169,39 @@ console.log(veh.name); // Output: Sunny
 
 In the example above, the name property has a getter (get name()) to retrieve its value and a setter (set name(value)) to modify its value. 
 This allows controlled access and modification of the name property within the Car class.
+
+------------------------- ES6 features
+
+ES6 Features
+Some key ES6 (ECMAScript 2015) features include:
+
+Arrow Functions:
+
+const add = (a, b) => a + b;
+
+
+Template Literals:
+
+const name = 'John';
+console.log(`Hello, ${name}!`);
+
+
+Destructuring:
+const person = { name: 'John', age: 30 };
+const { name, age } = person;
+
+
+Default Parameters:
+function greet(name = 'Guest') {
+  console.log(`Hello, ${name}!`);
+}
+
+Promises:
+const promise = new Promise((resolve, reject) => {
+  // Asynchronous operation
+  if (success) {
+    resolve('Success!');
+  } else {
+    reject('Error!');
+  }
+});
