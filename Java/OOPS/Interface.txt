@@ -1,3 +1,8 @@
+Static methods in class vs  interface 
+- class: Static methods are not inherited by subclasses. However, they can be hidden (overridden) in subclasses with a new static method of the same name.
+- interface: Static methods in an interface are not inherited by classes that implement the interface. They are specific to the interface itself.
+
+
 interface
 - contract first approach. i.e class implementing the interface, need to define all the abstract methods of the interface.
 

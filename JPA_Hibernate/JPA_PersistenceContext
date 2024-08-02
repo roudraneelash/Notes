@@ -1,0 +1,255 @@
+AccessCard card1 = new AccessCard(new Date(), true, "1.0.0");
+Employee emp = new Employee("John Doe", 123456789, EmployeeType.CONTRACTOR, card1);
+
+// Create EntityManagerFactory and EntityManager
+EntityManagerFactory entityManagerFactory = null;
+EntityManager entityManager = null;
+System.out.println("**\*\*\*\***\*\*\*\***\*\*\*\***\*\***\*\*\*\***\*\*\*\***\*\*\*\***Creating entity manager");
+entityManagerFactory = Persistence.createEntityManagerFactory("myApp");
+// it exceutes all the persistence.xml config , eg: resetting all the tables, connecting to the db string
+
+    entityManager = entityManagerFactory.createEntityManager();
+
+    EntityTransaction transaction = entityManager.getTransaction();
+    transaction.begin();
+    System.out.println("*********************************************************Starting Transactions");
+
+    entityManager.persist(emp);
+    entityManager.persist(card1);
+    // till here the entity is help by Persistence context , so any call made, will return the data from the persistence context, not the db.
+    // this acts as a 1ST LEVEL CACHE
+    System.out.println(emp);
+    System.out.println(entityManager.find(Employee.class,1));
+    System.out.println("**********************************************************After Persist method is called");
+    // Commit the transaction
+    // before the commit hibernate executes the insert statement and insert into the db.
+    transaction.commit();
+    System.out.println("***********************************************************After transaction is closed");
+
+    // Close the EntityManager and EntityManagerFactory
+    entityManager.close();
+    entityManagerFactory.close();
+
+---------------- Persistence Lifecycle
+
+                          Detached
+                              |
+                              |
+            persist()         |      find()/flush()
+
+transient --------------- Managed --------------- db
+|
+remove() | persist()
+|
+Removed
+
+- persist()
+- find()
+- remove()
+- flush()
+- clear()
+- refresh()
+- merge()
+  so when an entity is created/initialised, i.e transient statement
+  when we persist using entityManager.persist(entity)-> it pushes to the managed state, i.e local CACHE(Persistence context)
+  when we try to remove any enitity using entityManager.remove(entity)-> it is being moved to remove phase, from which if we persist(), it will again move to the managed state.
+  to force commit the local cache state to the db, we can do it using flush(). it will update/write the state to the DB.
+
+### Persistence Lifecycle in JPA
+
+The JPA entity lifecycle is managed by the EntityManager and involves several states: Transient, Managed (Persistent), Detached, and Removed. Here is an overview of each state and the methods that transition entities between these states:
+
+#### 1. Transient State
+
+- **Description:** An entity is in the transient state when it is instantiated but not yet associated with a persistence context.
+- **Characteristics:**
+  - The entity is not managed by the EntityManager.
+  - Changes to the entity are not tracked or persisted.
+- **Example:**
+  ```java
+  Product product = new Product();
+  product.setName("Sample Product");
+  ```
+
+#### 2. Managed (Persistent) State
+
+- **Description:** An entity is in the managed state when it is associated with a persistence context and its changes are tracked and synchronized with the database.
+- **Transition Methods:**
+  - **persist():** Moves a transient entity to the managed state.
+    ```java
+    entityManager.persist(product);
+    ```
+  - **find():** Retrieves an entity from the database and makes it managed.
+    ```java
+    Product product = entityManager.find(Product.class, id);
+    ```
+  - **merge():** Copies the state of a detached entity into a managed entity.
+    ```java
+    Product mergedProduct = entityManager.merge(product);
+    ```
+
+#### 3. Detached State
+
+- **Description:** An entity is in the detached state when it is no longer associated with a persistence context but still represents a row in the database.
+- **Characteristics:**
+  - Changes to the entity are not tracked.
+  - The entity can be re-attached to a persistence context using `merge()`.
+- **Example:**
+  ```java
+  entityManager.detach(product);
+  ```
+
+#### 4. Removed State
+
+- **Description:** An entity is in the removed state when it is scheduled for deletion from the database.
+- **Transition Methods:**
+  - **remove():** Moves a managed entity to the removed state.
+    ```java
+    entityManager.remove(product);
+    ```
+  - **persist():** If called on a removed entity, it transitions back to the managed state.
+    ```java
+    entityManager.persist(product);
+    ```
+
+### Key Methods and Their Effects:
+
+- **persist():**
+  - Transitions a transient entity to the managed state.
+  - The entity is added to the persistence context and will be inserted into the database at the next flush.
+- **find():**
+
+  - Retrieves an entity by its primary key and makes it managed.
+  - If the entity is not found in the persistence context, it is loaded from the database.
+
+- **remove():**
+
+  - Transitions a managed entity to the removed state.
+  - The entity is scheduled for deletion from the database at the next flush.
+
+- **flush():**
+
+  - Synchronizes the persistence context to the underlying database.
+  - Forces any pending changes to be written to the database.
+
+  ```java
+  entityManager.flush();
+  ```
+
+- **clear():**
+
+  - Detaches all entities from the persistence context.
+  - The persistence context is cleared, and all managed entities become detached.
+
+  ```java
+  entityManager.clear();
+  ```
+
+- **refresh():**
+
+  - Reloads the state of a managed entity from the database.
+  - Overwrites any changes made to the entity within the persistence context.
+
+  ```java
+  entityManager.refresh(product);
+  ```
+
+- **merge():**
+  - Copies the state of a detached entity to a managed entity.
+  - If the entity is not already managed, a new managed instance is created.
+  ```java
+  Product mergedProduct = entityManager.merge(product);
+  ```
+
+### Lifecycle Transitions Summary:
+
+```plaintext
+              persist()
+Transient --------------- Managed --------------- DB
+                              |
+                 remove()     |   find()/merge()
+                              |
+                            Removed
+```
+
+### Practical Example:
+
+```java
+// Transient State
+Product product = new Product();
+product.setName("Sample Product");
+
+// Persist: Transient -> Managed
+entityManager.persist(product);
+
+// Remove: Managed -> Removed
+entityManager.remove(product);
+
+// Persist again: Removed -> Managed
+entityManager.persist(product);
+
+// Flush: Force synchronize with the database
+entityManager.flush();
+
+// Detach: Managed -> Detached
+entityManager.detach(product);
+
+// Merge: Detached -> Managed
+Product managedProduct = entityManager.merge(product);
+
+// Clear: All managed entities -> Detached
+entityManager.clear();
+```
+
+Understanding these states and transitions helps in effectively managing entity lifecycle in a JPA-based application.
+
+----------- SQL INJECTION/ STRING CONCAT
+
+String minAge="25";
+TypedQuery<Employee> query= entityManager.createQuery("select e from Employee e where e.age>"+minAge,Employee.class);
+
+-- now what might happen with this string concat
+-- user might input minAge as "25:delete e from Employee e";
+-- this is malicious sql injection
+
+---------- use parameters in JPQL
+
+        EntityManagerFactory entityManagerFactory= Persistence.createEntityManagerFactory("myApp");
+        EntityManager entityManager= entityManagerFactory.createEntityManager();
+        // for jpa query, every this is related to the Entity
+
+// TypedQuery<Employee> query= entityManager.createQuery("select e from Employee e Where e.name LIKE \"%do%\"",Employee.class);
+//select e from Employee e-> all employee entity
+// select e from Employee e Where e.name LIKE "Jo%"
+// List<Employee> resultList = query.getResultList();
+// resultList.forEach((Employee e)-> System.out.println(e));
+
+        // to fetch some part of the entity for example Name/Age/ name+age
+        // fetch name
+
+// TypedQuery<String> query= entityManager.createQuery("select e.name from Employee e Where e.name LIKE \"%do%\"",String.class);
+// List<String> resultList = query.getResultList();
+// resultList.forEach(System.out::println);
+// fetch age
+// TypedQuery<Integer> query= entityManager.createQuery("select e.ssn from Employee e ",Integer.class);
+// List<Integer> resultList = query.getResultList();
+// resultList.forEach(System.out::println);
+// fetch name,age
+// Query query= entityManager.createQuery("select e.name,e.ssn from Employee e ",Object[].class);
+// List<Object[]> resultList = query.getResultList();
+// resultList.forEach((Object[] o)-> System.out.println(o[0]+"****\*\*\*\*****"+o[1]));
+
+        // named query, parameter query
+
+// TypedQuery<Employee> query= entityManager.createNamedQuery("employee_asc",Employee.class);
+// List<Employee> resultList=query.getResultList();
+// named parameter query
+TypedQuery<Employee> query= entityManager.createNamedQuery("employee_byId",Employee.class);
+query.setParameter("id",2);
+List<Employee> resultList=query.getResultList();
+resultList.forEach(System.out::println);
+
+String minAge="25";
+TypedQuery<Employee> query= entityManager.createQuery("select e from Employee e where e.age> :minAge",Employee.class);
+
+query.setParameter("minAge",minAge);// it also gives type check , if entity datatype is int, it will through checked exception.

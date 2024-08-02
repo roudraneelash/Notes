@@ -1,0 +1,308 @@
+interface
+-- interface A{
+  void fun();
+}
+
+java 8 features
+- static method- default method of the interface, we can use this without creating any implementation class for the interface.
+- default method, to contain all the common functionality
+
+-- Lamda expressions
+
+@FunctionInterface
+interface Calcuclator{
+  int calculate(int a,int b);
+}
+
+-- to implement normally , 
+class Add implements Calcuclator{
+  public int calculate(int a,int b){
+    return a+b;
+  }
+}
+
+-- example
+
+Calcuclator add=(a,b)->a+b;
+
+-- primarily there are 4 types of FunctionalInterface
+
+- Consumer: void actions
+- Function: takes 2 arg, T,R , returns R accepting T
+- Supplier: Takes T, return T
+- Predicate: Returns boolean arg
+
+
+-- 
+
+@FunctionalInterface
+interface Consumer<T>{
+  void apply(T t);
+}
+// implementation
+Consumer<Integer> logging=(int val)->{
+  if(val%10==0)
+  System.out.println("Logging");
+}
+-- HashMap VS LINKEDHASHEDMPA VS treemAP
+HashMap,it store the key value pair, the keys are stored in buckets which are not maintained according to the insertion order.
+linkedHashMap, the buckets are next to each order, following the node pattern , and it maintains the insertion order.
+TreeHashMap, it orders the keys according to a balanced binary tree, so the keys are sorted.
+
+-- internal working of an HashMap
+primitive datatypes are compared using ==, reference datatypes are using .equals()
+to compare to different objs, we must override the equals method().
+now each obj is set as a key using the hashcode(). there might be a possibility of hashcollision, when 2 objs having same hashcode, in that case, it will be stored like a linkedKist, from java 8 it is stored as balanced binary tree.
+
+-- HashTable vs Concurrent HashMap
+HashTable implements synchronization at method level , so it blocks the table during operation. 
+Conucurrent HashMap implements optimised Conucurrent read write operations,so the operations are efficient.
+
+
+-- Comparable, Comparator
+The class only implements Comparable interface, and override the compareTo() method.
+Comparator interface, we implement it , and define the multiple compare methods on different parameters
+
+-- Multithreading 
+
+-- ways to create thread
+1. implement Runnable interface
+2. extending Thread class
+3. Lamda expressions
+4. ExecutorService
+5. Callable<T> interface
+
+1. inteface Runnable{
+  void run();
+}
+
+class Obj implements Runnable{
+  void run(){
+    sout("Thread creation");
+  }
+  main(){
+    Runnable runnable= new Obj();// new state
+    Runnable runnable=()->{
+       sout("Thread creation");
+    }
+    Thread th1= new Thread(runnable);
+    th1.start();// runnable state
+  }
+}
+class Obj extends Thread{
+  void run(){
+    sout("hello");
+  }
+  main(){
+    Thread th1= new Obj();
+    th1.start();
+  }
+}
+
+
+main(){
+ExecutorService executor = Executors.newFixedThreadPool(2);
+Runnable task1= ()->sout("hello world");
+Runnable task2= ()->sout("hello world");
+Callable<Integer> callableTask=()->{
+  sout("hola");
+  return 123;
+}
+Future<Integer> futureValue= executor.submit(callableTask);
+
+try{
+  futureValue.get();//to get the value
+}catch(Exeption e)
+{
+  sout("Exception handled");
+}
+executor.submit(task1);
+executor.submit(task2);
+
+executor.shutdown();
+}
+
+
+--- Runnable interface / Thread class
+# Runnable
+- seperation of concern , Runnable task can be using with multiple thread instances
+- for multiple inheritance , it can be used
+- Thread Pool when using Executorservices, it works with runnable and callable instances.
+
+#Thread
+the task is tightly coupled with the thread class itself.
+
+-- Life cycle of a thread
+- new(creating runnable obj)
+- runnable(thread.start(runnable obj));
+- phases
+- Blocked State: The thread is in the blocked state when it is trying to acquire a monitor lock but another thread already holds it.
+- Waiting State: The thread enters the waiting state when it waits indefinitely for another thread to perform a particular action. This can happen when using Object.wait() without a timeout.
+- Timed Waiting State: The thread is in the timed waiting state when it waits for a specified amount of time. This occurs when using methods like Thread.sleep(), Object.wait(long timeout), or Thread.join(long millis).
+- Terminated (Dead)State: The thread is in the terminated state when it has completed its execution or has been terminated due to an exception.
+
+-- Locking , 
+
+synchronization-
+Ensures that only one thread can execute a block of code or method at a time, preventing concurrent access to shared resources and avoiding data corruption.
+the lock is applicable on the instances of a class, so 2 diff instances will work parallely and concurrently.
+- method level, block level 
+(this){
+
+}
+
+-- Volatile keyword
+
+When a variable is declared volatile, changes made to that variable by one thread are visible to other threads. 
+This ensures that the most recent value is read from main memory rather than from a thread's local cache.
+
+Advance lock apis
+
+reentrant lock- a lock i created and the thread that holds the lock can acquire it multiple times.
+readwrite lock- Allows multiple threads to read shared data concurrently while ensuring exclusive access for writing.
+stamped lock
+Provides a combination of read, write, and optimistic locking.
+- optimised lock- Provides a combination of read, write, and optimistic locking.
+- Optimistic Locking: Allows for non-blocking read operations if no write lock is held.
+- Read and Write Locks: Provides exclusive locks for reading and writing.
+-- Optimistic Lock: Non block locking system , effective for read heavy , and less write operations
+- Read Phase
+-- it reads the data , and store the version of the data(more like state)
+- Write Phase
+-- it performs the write operations
+- Validation Phase
+-- it checks if the version of the data is still the same ,then it commits the changes, else it again goes to the retry Phase
+- Retry Phase
+again it repeats and perfrom the operation
+
+
+semaphores: it limits the access of concurrent threads that can access the resources
+private static final int MAX_CONCURRENT_THREADS = 3;
+private final Semaphore semaphore = new Semaphore(MAX_CONCURRENT_THREADS);
+
+-- ForkJoin Pool , it is used to handle parallel thread handling reccursively. so it breaks down a thread into smaller recursive task.
+
+Spring Boot App
+-- Ecom api Design
+-- Entity-done
+-- Enum-done
+-- Controller-done
+-- Service Layer-done
+-- DTO Layer(data modeling)
+-- Repository Layer-
+-- Exception Handling (service layer/controller/global exception)
+-- Data Handling ( from service layer)
+-- Validations
+-- searching, (natives/jpa query/store proc)
+-- commandline-> input data , 
+-- transactions(rollback false and all)
+-- testing
+-- logging
+
+-- Microservice architecture(implement MongoDB)
+-- Deployment on cloud
+
+
+-- covid api
+Here is some sample data for the covid_stats table:
+
+sql
+Copy code
+INSERT INTO covid_stats (date, location, cases, deaths, recovered) VALUES
+('2023-01-01', 'New York', 1000, 50, 900),
+('2023-01-02', 'New York', 1200, 45, 950),
+('2023-01-01', 'Los Angeles', 800, 30, 750),
+('2023-01-02', 'Los Angeles', 1000, 40, 850),
+('2023-01-01', 'Chicago', 700, 25, 650),
+('2023-01-02', 'Chicago', 900, 35, 800);
+Endpoints
+Retrieve Specific Entry
+
+Endpoint: GET /covid-stats/{id}
+Description: Retrieve a specific COVID entry by its ID.
+Example Request: GET /covid-stats/1
+Example Response:
+json
+Copy code
+{
+    "id": 1,
+    "date": "2023-01-01",
+    "location": "New York",
+    "cases": 1000,
+    "deaths": 50,
+    "recovered": 900
+}
+Get Top 5 Entries Sorted by Cases
+
+Endpoint: GET /covid-stats/top5?sortBy=cases
+Description: Get the top 5 entries sorted by the number of cases.
+Example Request: GET /covid-stats/top5?sortBy=cases
+Example Response:
+json
+Copy code
+[
+    {"id": 2, "date": "2023-01-02", "location": "New York", "cases": 1200, "deaths": 45, "recovered": 950},
+    {"id": 4, "date": "2023-01-02", "location": "Los Angeles", "cases": 1000, "deaths": 40, "recovered": 850},
+    {"id": 1, "date": "2023-01-01", "location": "New York", "cases": 1000, "deaths": 50, "recovered": 900},
+    {"id": 6, "date": "2023-01-02", "location": "Chicago", "cases": 900, "deaths": 35, "recovered": 800},
+    {"id": 3, "date": "2023-01-01", "location": "Los Angeles", "cases": 800, "deaths": 30, "recovered": 750}
+]
+Get Total Sums Based on Field
+
+Endpoint: GET /covid-stats/sum?field=cases
+Description: Get the total sum of a specific field across all entries.
+Example Request: GET /covid-stats/sum?field=cases
+Example Response:
+json
+Copy code
+{
+    "totalCases": 5600
+}
+Example Implementation
+
+
+Sure, here's the question set for the COVID API problem:
+
+1. **Endpoint Design**:
+    - Design REST endpoints for operations like retrieving specific entries, getting the top 5 entries sorted by a field, and obtaining total sums based on a field.
+    
+2. **Data Model**:
+    - Define the data model for the COVID entries. What fields will be included (e.g., date, location, number of cases, number of deaths, etc.)?
+    
+3. **Controller Implementation**:
+    - How would you implement the controller methods for each endpoint? Provide example code.
+
+4. **Service Layer**:
+    - Design the service layer to handle business logic for each endpoint. Provide example code.
+    
+5. **Repository Layer**:
+    - How would you implement the repository layer for accessing data? What technologies would you use (e.g., JPA, Hibernate)?
+    
+6. **Sorting and Filtering**:
+    - How would you implement sorting and filtering functionality in your API? Provide example code.
+    
+7. **Aggregation**:
+    - How would you implement the aggregation functionality to obtain total sums based on a field? Provide example code.
+
+8. **Exception Handling**:
+    - How would you handle exceptions in your API? Provide example code for custom exceptions and global exception handlers.
+
+9. **Unit Testing**:
+    - Write unit tests to validate the implementation of your endpoints. Provide example test cases.
+
+10. **Performance Optimization**:
+    - What strategies would you use to optimize the performance of your API? Consider aspects like caching, pagination, and database indexing.
+
+11. **Security**:
+    - How would you secure your API? Consider authentication, authorization, and protection against common vulnerabilities.
+
+12. **Documentation**:
+    - How would you document your API? Consider using tools like Swagger/OpenAPI.
+
+13. **Deployment**:
+    - How would you deploy your API? Consider the deployment environment, CI/CD pipelines, and monitoring.
+
+14. **Versioning**:
+    - How would you handle versioning of your API? Provide example strategies.
+
+Feel free to ask if you need more details or examples on any of these questions!

@@ -30,3 +30,7 @@ SQL - Functions, triggers, Store procedures, DDL, DML
 Version control - basic
 Design question - Integrate AI features in any finance application (tried to cover some basic scenarios like chatBot, instruction panel)
 Project discussion on newly learnt feature from one project
+
+
+
+
