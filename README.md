@@ -3,9 +3,10 @@
 Interview notes
 
 - Java as a platform independent language
-  JDK
-  JVM
-  JIT
+  JDK: it is required to write and compile and convert source code into bytecode. ByteCode is machine independent.
+  JRE: it converts the bytecode into machine specific code. JVM has JIT compiler that converts the bytecode into machine dependent code.
+  -JVM
+  -JIT
 - Procedure oriented langauge vs OOPS
 
 Sequence of tasks,
@@ -19,10 +20,13 @@ OOPS
 - wrapper class , Autoboxing & unboxing
 - Access modifiers
 
+-- static block excutes once when the class is loaded
+-- nonstatic block executes everytime a new instance is created
+
 -Exception Handling
 
-- compile time error- due to syntax error
-- RunTime error- Abnormal termination of a program
+- Checked Exceptins -- compile time error- due to syntax error
+- Unchecked Exceptions -- RunTime error- Abnormal termination of a program
 
 Throwable is thr parent class of all Exceptions in Java
 
