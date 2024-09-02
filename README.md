@@ -28,7 +28,7 @@ OOPS
 - Checked Exceptins -- compile time error- due to syntax error
 - Unchecked Exceptions -- RunTime error- Abnormal termination of a program
 
-Throwable is thr parent class of all Exceptions in Java
+Throwable is the parent class of all Exceptions in Java
 
 - Exception class=>belongs to RuntimeException
 - ArithmeticException(divide by 0)

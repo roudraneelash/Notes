@@ -1,4 +1,9 @@
-interface
+-------------------- static methods
+-- overridding can be stopped by declaring methods as final
+-- Method Hiding: When a static method in a subclass has the same signature as a static method in the superclass, 
+the subclass method hides the superclass method. The method that gets called depends on the reference type, not the object type.
+
+-----------------------------interface
 -- interface A{
   void fun();
 }
@@ -6,11 +11,12 @@ interface
 java 8 features
 - static method- default method of the interface, we can use this without creating any implementation class for the interface.
 - default method, to contain all the common functionality
+-- functional interface can have only one abstract method. there is not limit to static/default methods
 
 -- Lamda expressions
 
 @FunctionInterface
-interface Calcuclator{
+interface Calculator{
   int calculate(int a,int b);
 }
 
@@ -44,7 +50,7 @@ Consumer<Integer> logging=(int val)->{
   if(val%10==0)
   System.out.println("Logging");
 }
--- HashMap VS LINKEDHASHEDMPA VS treemAP
+-- HashMap VS LINKEDHASHEDMAP VS treemAP
 HashMap,it store the key value pair, the keys are stored in buckets which are not maintained according to the insertion order.
 linkedHashMap, the buckets are next to each order, following the node pattern , and it maintains the insertion order.
 TreeHashMap, it orders the keys according to a balanced binary tree, so the keys are sorted.

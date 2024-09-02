@@ -237,7 +237,7 @@ TypedQuery<Employee> query= entityManager.createQuery("select e from Employee e 
 // fetch name,age
 // Query query= entityManager.createQuery("select e.name,e.ssn from Employee e ",Object[].class);
 // List<Object[]> resultList = query.getResultList();
-// resultList.forEach((Object[] o)-> System.out.println(o[0]+"****\*\*\*\*****"+o[1]));
+// resultList.forEach((Object[] o)-> System.out.println(o[0]+"\***\*\*\*\*\*\*\***"+o[1]));
 
         // named query, parameter query
 
@@ -253,3 +253,9 @@ String minAge="25";
 TypedQuery<Employee> query= entityManager.createQuery("select e from Employee e where e.age> :minAge",Employee.class);
 
 query.setParameter("minAge",minAge);// it also gives type check , if entity datatype is int, it will through checked exception.
+
+--------------- Spring boot , custom query/native query
+
+@Query(value = "SELECT \* FROM Product WHERE name = :name AND category = :category", nativeQuery = true)
+@Query("SELECT p FROM Product p WHERE p.name = :name AND p.category = :category")
+List<Product> findByNameAndCategory(@Param("name") String name, @Param("category") String category);

@@ -18,7 +18,7 @@ Dependency Injection is the design pattern through which IOC is achieved.through
 
 -- the beans are created with the config metadata that is supplied in the form of xml cofig and annotations.
 
--- Spring IoC containers managed the lifecycly of the Spring Bean scope and injecting any required dependencies in the bean.
+-- Spring IoC containers manage the lifecycle of the Spring Bean scope and injecting any required dependencies in the bean.
 
 -- Context is like a memory location of your app, in which we add all the object instances that we want the framework to manage.
 
@@ -386,3 +386,10 @@ context path= /studentapi
 make the server run on jetty
 
 student- id,name.testscore, crud operations
+
+-------------- spring beans/@Component/@Service...
+
+@Bean: Used to define and configure beans within @Configuration classes.
+@Component: A generic annotation for Spring-managed components.
+@Service: A specialization of @Component for service layer components.
+@RestController: A specialization of @Controller for RESTful web services, automatically serializing return values to JSON/XML.
