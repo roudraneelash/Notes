@@ -1,0 +1,36 @@
+Springboot questions
+1.Different ways to get response format in xml
+2.How to connect with multiple database for same application
+3.Different Http methods
+4.Autowiring
+5.use of @qualifier
+6.what is a bean in java world
+7.Different scopes of bean
+8.how to connect with database
+9.Advantages of springboot
+10.By default which server is enabled for springboot application
+11.How to exclude the default server
+12.What is mean by scope prototype
+13.In prototype How to restrict the instances being created with different classes
+14.If I have millions of data in db how to use pagination and fetch limited number of data (expecting other than PagingAndSortingRepository approach)
+15.how to log everything inclusing sql statements in console in springboot
+16.Methods of autowiring in springboot
+17.what is default autowiring mode
+18.Passing string value and doing some regex expression and returning the string. how will you do it ? (I thought he is asking me this in springboot flow and mentioned all the steps)
+19.If you need to write complex query with multiple joins in springboot what will be your approach.
+20.How to configure data jpa
+
+Java
+1.Features in java 8 (since I told worked with java 8 version)
+2.Advantages of lambda expression
+3.Map and flatmap difference with some working snippets
+4.How will you use lambda expression for comparator
+5.ways to convert list to set and which is the best approach
+6.List<Integer> sourceList = Arrays.asList(0, 1, 2, 3, 4, 5);
+  Set<Integer> targetSet = new HashSet<>(sourceList);
+  Internal logic implementation behind this line (Set<Integer> targetSet = new HashSet<>(sourceList);)
+7.create Custom comparator to sort List<Employee> objects by id,name,city,salary based on the required condition (Asked for best approach)
+
+General
+1.About projects and tech skills worked and challenges faced
+2.Which u think as an achievement in your IT career

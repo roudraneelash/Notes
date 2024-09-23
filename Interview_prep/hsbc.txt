@@ -1,0 +1,31 @@
+Sharing some of the questions asked in HSBC interview
+
+1. React States
+2. React Props
+3. React Lifecycle
+4. Reusable Component
+5. Authentication & Authorization
+6. Pure Component
+7. functional vs class component
+8. React Hooks
+10. UseMemo()
+11. How to pass data b/w components
+12. Higher order component
+13. Context Api
+14. Redux implementation
+15. How to pass data between sibling component
+16. Login Auth implementation?
+17. How to show screens based on user role
+18. Purpose of render()
+19. How to create refs, use of refs
+20.Fragments
+21. How to reduce page loading time
+
+1. Normalization
+2. Table Joins
+3. What is SQL injection
+4. JOIN VS UNION
+5. Where clause vs Having Clause
+6. Authentication 
+
+Practice Basic JavaScript Programming, Frontend styling(css/scss),React js
