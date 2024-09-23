@@ -393,3 +393,7 @@ student- id,name.testscore, crud operations
 @Component: A generic annotation for Spring-managed components.
 @Service: A specialization of @Component for service layer components.
 @RestController: A specialization of @Controller for RESTful web services, automatically serializing return values to JSON/XML.
+
+----RestFul architecture
+----Autoconfiguration in Springboot
+---- runtime exception vs unchecked exceptions
