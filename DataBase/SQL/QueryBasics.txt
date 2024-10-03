@@ -59,6 +59,10 @@ ORDER BY column1, column2;
 - Cross join -> a*b, all possible combination
 - ORDER Matters
 - LEFT OUTER JOIN , select  everything from table a, and do a left outer join , include left and common elements form a and B
+
+select * from table a left join table B on a.key=b.key;
+
+every data from a, and map the elements of b on a. else null
 - RIGHT OUTER JOIN is same, just the tables are reversed
 Example- SELECT * FROM Registrations INNER JOIN Logins On Registrations.col=Logins.name;
 
