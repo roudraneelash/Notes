@@ -1,0 +1,112 @@
+Here’s a list of important Spring Boot questions that are commonly asked in interviews, ranging from basic to advanced levels. These cover topics like Spring Boot fundamentals, configuration, security, microservices, and performance optimization:
+
+Basic Level Questions
+
+	1.	What is Spring Boot? How is it different from Spring Framework?
+	•	Spring Boot is a framework to simplify the setup and development of Spring applications. 
+        It provides embedded servers, auto-configuration, and opinionated defaults to speed up application development compared to the core Spring Framework.
+	2.	What are the advantages of using Spring Boot?
+	•	Key benefits include:
+	•	Fast development and reduced boilerplate code.
+	•	Embedded servers like Tomcat, Jetty.
+	•	Auto-configuration for dependencies.
+	•	Production-ready features like metrics, health checks.
+	3.	Explain the @SpringBootApplication annotation.
+	•	This annotation combines @Configuration, @EnableAutoConfiguration, and @ComponentScan into a single annotation, simplifying configuration for Spring Boot applications.
+	4.	What is Spring Boot starter?
+	•	Spring Boot starters are dependency descriptors that simplify the inclusion of common dependencies. For example, spring-boot-starter-web includes libraries to build web applications.
+	5.	How do you run a Spring Boot application?
+	•	You can run it via:
+	•	mvn spring-boot:run (Maven),
+	•	gradlew bootRun (Gradle),
+	•	or by executing the main() method in the class annotated with @SpringBootApplication.
+
+Configuration and Auto-Configuration
+
+	6.	How does Spring Boot’s auto-configuration work?
+	•	Spring Boot automatically configures the necessary beans based on the classpath and existing beans. This is enabled by @EnableAutoConfiguration, which loads configuration classes (@Configuration) from META-INF/spring.factories.
+	7.	How do you disable specific auto-configuration classes in Spring Boot?
+	•	Use the @SpringBootApplication(exclude = {AutoConfigurationClass.class}) or @EnableAutoConfiguration(exclude = {AutoConfigurationClass.class}).
+	8.	How can you create a custom auto-configuration in Spring Boot?
+	•	Create a class annotated with @Configuration and register it in the spring.factories file located in META-INF/.
+	9.	How to externalize configuration in Spring Boot?
+	•	Configuration can be externalized using application.properties or application.yml. You can also override settings via environment variables, command-line arguments, and profiles.
+	10.	How do you use profiles in Spring Boot?
+	•	Profiles allow different configurations for different environments (dev, prod). Use @Profile("profileName") to load beans conditionally. Specify profiles using spring.profiles.active in application.properties or as a command-line argument.
+
+Dependency Injection and Beans
+
+	11.	What is Dependency Injection and how is it implemented in Spring Boot?
+	•	Dependency Injection (DI) is a design pattern used to inject dependencies into a class. In Spring Boot, it can be achieved via:
+	•	Constructor injection,
+	•	Setter injection,
+	•	Field injection with @Autowired.
+	12.	What is the difference between @Component, @Service, @Repository, and @Controller?
+	•	These are all specializations of @Component.
+	•	@Service: Indicates a service component (business logic).
+	•	@Repository: Indicates a DAO (Data Access Object).
+	•	@Controller: Used in MVC for handling HTTP requests.
+	13.	What is the role of the @Bean annotation?
+	•	@Bean is used to define a bean managed by Spring’s IoC container. It tells Spring to treat the method’s return value as a bean.
+	14.	How do you handle multiple beans of the same type in Spring Boot?
+	•	You can use @Primary to prioritize a bean or use @Qualifier to specify which bean to inject when multiple candidates exist.
+	15.	Explain the Spring Bean lifecycle.
+	•	A Spring Bean goes through the following lifecycle phases:
+	1.	Instantiation.
+	2.	Dependency Injection.
+	3.	Custom initialization methods (via @PostConstruct or InitializingBean).
+	4.	Use of the bean.
+	5.	Destruction (via @PreDestroy or DisposableBean).
+
+Security and Web
+
+	16.	How is security implemented in a Spring Boot application?
+	•	Spring Security provides built-in support for securing web applications. You can configure authentication (in-memory, database) and authorization using @EnableWebSecurity, filters, and global method security (@PreAuthorize, @Secured).
+	17.	How do you secure REST APIs in Spring Boot?
+	•	Use Spring Security for securing REST APIs. JWT tokens, OAuth 2, and Basic Authentication are common methods for securing REST endpoints.
+	18.	How do you handle CORS in Spring Boot?
+	•	You can handle CORS globally using properties in application.properties, or for specific controllers using @CrossOrigin on the controller or method.
+
+Microservices and Communication
+
+	19.	What are microservices, and how does Spring Boot support building microservices?
+	•	Microservices are small, independently deployable services. Spring Boot supports building microservices through ease of deployment, auto-configuration, and integration with Spring Cloud for features like service discovery, load balancing, and configuration management.
+	20.	How do you implement inter-service communication in Spring Boot?
+	•	You can implement communication between microservices using:
+	•	REST: Using RestTemplate or WebClient.
+	•	Messaging: Using message brokers like RabbitMQ, Kafka.
+	•	gRPC: For high-performance, contract-based communication.
+	21.	What is Spring Cloud and how does it integrate with Spring Boot?
+	•	Spring Cloud provides tools for building microservices architectures. It offers support for service discovery (Eureka), configuration management (Spring Cloud Config), circuit breakers (Hystrix), and load balancing (Ribbon).
+
+Error Handling, Performance & Testing
+
+	22.	How do you handle exceptions in Spring Boot?
+	•	You can use:
+	•	@ControllerAdvice for centralized exception handling across all controllers.
+	•	@ExceptionHandler to handle exceptions locally within a controller.
+	23.	How do you monitor and manage Spring Boot applications?
+	•	Spring Boot Actuator provides endpoints for monitoring and managing applications, such as /health, /metrics, /env, and /beans.
+	24.	How do you optimize the performance of a Spring Boot application?
+	•	You can optimize by:
+	•	Using caching (Spring Cache).
+	•	Optimizing database queries with @Query, pagination.
+	•	Asynchronous processing with @Async.
+	•	Using connection pooling (HikariCP) for database connections.
+	25.	What are Spring Boot actuators, and why are they important?
+	•	Actuators provide endpoints to expose operational information about the application like health, metrics, environment properties, etc. These are helpful in monitoring the production environment.
+	26.	What testing strategies are used in Spring Boot?
+	•	You can use @SpringBootTest for integration testing, @WebMvcTest for testing MVC components, and @DataJpaTest for JPA-related testing. Mocking frameworks like Mockito and assertions libraries like JUnit and AssertJ are commonly used.
+
+Advanced Topics
+
+	27.	What are Spring Boot starters, and how do you create a custom starter?
+	•	Starters are dependency descriptors. To create a custom starter, create a new Maven project with dependencies and auto-configuration classes, and add it to spring.factories.
+	28.	How does Spring Boot manage different environments (dev, prod)?
+	•	Use profiles and application-{profile}.properties for environment-specific configurations. You can also use external configuration sources like Spring Cloud Config.
+	29.	How do you set up multiple data sources in Spring Boot?
+	•	You can configure multiple DataSource beans and use @Primary or @Qualifier to specify which data source is to be used.
+	30.	How does Spring Boot handle concurrency?
+	•	Spring Boot supports concurrency through features like asynchronous processing (@Async), scheduling tasks (@Scheduled), and using thread pools (ExecutorService).
+
+These questions cover a wide range of Spring Boot topics that you can expect in interviews. Each question provides an opportunity to dive deeper into specific areas of Spring Boot, so being familiar with core concepts, advanced configuration, microservices, and security is key to acing Spring Boot interviews.

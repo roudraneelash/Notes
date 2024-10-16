@@ -37,3 +37,49 @@ https://www.geeksforgeeks.org/must-coding-questions-company-wise/#goldman-sachs-
 -
 - 3. If time permits, consider adding additional test cases.
      \*/
+Here’s a unique set of questions picked from the list you shared, ensuring diversity across topics:
+
+Easy-Level Questions
+
+	1.	Merge Two Sorted Arrays in O(n) Time:
+Merge two sorted arrays into a single sorted array.
+	2.	Second Largest Number in an Array:
+Find the second-largest number in an array of integers in O(n) time.
+	3.	String Reversal in O(n) Time:
+Reverse a given string in linear time.
+	4.	Find Duplicates in an Array in O(n) Time:
+Identify all duplicates in an array of integers in O(n) time.
+	5.	Check if String and List are Same:
+Given a string and a list of words, check if they represent the same content in O(n) time.
+	6.	Find the Very First Non-Repeating Character:
+Given a string array, return the first non-repeating character from each string.
+	7.	Print Number of Occurrences of Alphabets in a String:
+Count the occurrences of each alphabet in a string in O(n) time.
+
+Medium-Level Questions
+
+	1.	Min Number of Platforms for Trains:
+Calculate the minimum number of platforms needed for trains based on their arrival and departure times.
+	2.	Find Missing Number in Array of N-1 Integers:
+Given an array of distinct integers from 1 to N, find the missing integer.
+	3.	Minimum Number of Jumps to Reach End:
+Given an array where each element represents the maximum steps that can be made forward, return the minimum number of jumps to reach the end.
+	4.	Longest Substring Without Repeating Characters:
+Find the length of the longest substring without repeating characters in a string.
+	5.	Trapping Rainwater:
+Calculate the maximum amount of water that can be trapped between bars of given heights.
+
+Algorithmic Questions
+
+	1.	Run Length Encoding of a String:
+Compress a string using run-length encoding in O(n) time.
+	2.	Count Number of Possible Decodings of Digit Sequence:
+Count the number of possible decodings for a given sequence of digits where each digit represents a letter.
+	3.	Group Anagrams Together:
+Given an array of strings, group the anagrams together.
+	4.	N-Queens Problem:
+Solve the N-Queens problem using recursion and backtracking.
+	5.	Move Zeroes to End in O(n) Time:
+Move all zeroes in an array to the end while maintaining the order of other elements.
+
+This set offers a balanced mix of easy, medium, and algorithmic questions across different problem types like arrays, strings, linked lists, trees, and backtracking.

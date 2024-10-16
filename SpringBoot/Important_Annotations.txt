@@ -1,0 +1,109 @@
+Spring Boot uses this IoC container to manage beans and their dependencies.
+
+1. @SpringBootApplication
+
+How @SpringBootApplication works
+
+The @SpringBootApplication annotation is a composite annotation combining:
+
+	•	@Configuration
+	•	@EnableAutoConfiguration
+	•	@ComponentScan
+
+These annotations work together to configure the IoC container and enable dependency injection and auto-configuration in the Spring Boot application.
+
+Breakdown of the Annotations in @SpringBootApplication
+
+a) @Configuration
+
+	•	What it does: This annotation tells Spring that the class is a source of bean definitions. It marks the class as a Java-based configuration class, replacing the need for an XML configuration file.
+	•	How it works:
+	•	When the Spring application starts, Spring will look at all classes annotated with @Configuration and treat them as a bean factory.
+	•	Methods within this class, annotated with @Bean, define beans that will be managed by the Spring IoC container.
+
+
+b) @EnableAutoConfiguration
+
+	•	What it does: This annotation enables Spring Boot’s auto-configuration feature, which automatically configures beans and settings based on the classpath dependencies and properties files (application.properties or application.yml).
+	•	How it works:
+	•	The @EnableAutoConfiguration triggers the SpringFactoriesLoader mechanism, which scans the META-INF/spring.factories file for all AutoConfiguration classes.
+	•	Based on the classes available on the classpath (e.g., spring-web, spring-data-jpa, spring-security, etc.), Spring Boot automatically configures the necessary beans and components.
+	•	For example, if spring-web is present on the classpath, Spring Boot will configure a DispatcherServlet, and if a database driver is present, it will configure a DataSource.
+
+c) @ComponentScan
+
+	•	What it does: This annotation enables component scanning, allowing Spring to detect and register beans (classes annotated with @Component, @Service, @Repository, @Controller) in the specified package and its sub-packages.
+	•	How it works:
+	•	When the Spring application starts, the IoC container scans the package where the @SpringBootApplication class resides (and its sub-packages) to find beans.
+	•	It registers these beans with the IoC container and resolves their dependencies automatically via constructor injection, setter injection, or field injection.
+
+
+
+
+2. @RestController
+
+	•	This is a specialized version of @Controller. It combines @Controller and @ResponseBody, indicating that the class will handle REST requests and return JSON/XML responses directly (without using view resolvers).
+	•	Used to define RESTful web services.
+
+3. @RequestMapping
+
+	•	This annotation is used to map HTTP requests to handler methods of MVC and REST controllers. It can be applied at both the class and method level.
+	•	Supports different HTTP methods like GET, POST, PUT, DELETE, etc., via sub-annotations like @GetMapping, @PostMapping.
+
+4. @Autowired
+
+	•	Used for automatic dependency injection in Spring. It injects objects into fields, constructors, or methods based on the types.
+
+5. @Component
+
+	•	Marks a Java class as a Spring component. It is the most generic stereotype annotation in Spring and is a candidate for automatic detection during classpath scanning.
+	•	Variants include @Service, @Repository, and @Controller, which have specialized use cases.
+
+6. @Service
+
+	•	This annotation is a specialization of @Component, indicating that the class provides some business logic or service. It’s used to annotate service layer classes.
+
+7. @Repository
+
+	•	A specialization of @Component, this annotation is used to indicate that a class is a DAO (Data Access Object) component. It also provides exception translation, converting database-specific exceptions into Spring’s DataAccessException.
+
+8. @Entity
+
+	•	This annotation is part of the Java Persistence API (JPA) and is used to specify that the class is an entity. It is used in conjunction with Spring Data JPA to map a Java class to a database table.
+
+9. @Transactional
+
+	•	Used to handle transaction management declaratively. When applied to methods or classes, it indicates that a method or the whole class should run within a transactional context, and any database changes made within the method will be committed or rolled back based on success or failure.
+
+10. @Value
+
+	•	This annotation is used to inject values from properties files or environment variables into Spring-managed beans. For example, you can inject a property from application.properties or application.yml directly into your fields.
+
+These annotations form the backbone of building Spring Boot applications, and mastering them is crucial for any developer working with the framework.
+
+
+
+
+Lifecycle: Bringing Everything Together
+
+	1.	Application Startup:
+	•	The main() method runs the SpringApplication.run() method, which starts the SpringApplication class.
+	•	The @SpringBootApplication triggers auto-configuration and component scanning, initializing the IoC container.
+	2.	IoC Container Setup:
+	•	The container looks for beans, configuration classes, and component-scanning paths to load all beans and configurations.
+	•	Any custom beans are created based on @Bean methods or @Component classes.
+	3.	Dependency Injection:
+	•	Once all beans are loaded, the IoC container resolves dependencies by injecting them into the correct places (e.g., constructors, setters, or fields).
+	4.	Auto-Configuration:
+	•	The @EnableAutoConfiguration component looks at the classpath dependencies and configures the appropriate beans (e.g., a DispatcherServlet if spring-web is found).
+	5.	Final Setup:
+	•	After the IoC container is set up and beans are injected, the Spring Boot application is ready to process web requests, handle database interactions, or perform other tasks depending on its configuration.
+
+Summary of the Working
+
+	•	The IoC container is initialized during the application startup, managing the lifecycle of beans.
+	•	The @SpringBootApplication annotation simplifies configuration by combining @Configuration, @EnableAutoConfiguration, and @ComponentScan.
+	•	Through auto-configuration, the IoC container automatically configures beans based on the application’s dependencies.
+	•	Dependency injection is performed automatically, with the IoC container resolving dependencies and injecting them into the appropriate beans.
+
+This combination of IoC container, dependency injection, and auto-configuration forms the core of how Spring Boot applications work.

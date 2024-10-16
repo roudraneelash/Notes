@@ -91,7 +91,7 @@ class Obj implements Runnable{
     Runnable runnable=()->{
        sout("Thread creation");
     }
-    Thread th1= new Thread(runnable);
+    Thread th1= new Thread(runnable);// pass the runnable instance
     th1.start();// runnable state
   }
 }

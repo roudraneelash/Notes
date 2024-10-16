@@ -1,0 +1,27 @@
+- Rest architecture (Represented state transfer) architecture , it is used for designing distributed we services.
+- works on Client-server architecture
+- the clients demand code on request from the server , and the server response in JSON/HTML.
+- Stateless architecture, i.e each request is made via HTTP/HTTPS containing all the necessary requests. in between request the server does'nt store any state of the client.
+
+The uniform interface is often implemented using HTTP methods such as:
+
+	•	GET: Retrieve data from the server.
+	•	POST: Submit data to the server, often resulting in resource creation.
+	•	PUT: Update a resource on the server.
+	•	DELETE: Remove a resource from the server.
+
+Advantages of REST:
+
+	•	Scalability: Stateless nature and caching make RESTful systems scalable.
+	•	Flexibility: REST is language and platform-agnostic, making it highly interoperable.
+	•	Simplicity: Uses standard web protocols (HTTP) and formats (JSON, XML).
+	•	Modularity: The separation of client and server simplifies system maintenance and upgrades.
+
+----------- Stateful architecture
+
+Key Characteristics of Stateful Architectures:
+
+	•	Server Maintains State: The server needs to remember information about client interactions between requests, which makes the system more complex.
+	•	Session-based: Clients usually establish sessions with the server, where session information is retained for the duration of the interaction.
+	•	Less Scalable: Stateful architectures are generally harder to scale because each interaction depends on the server’s knowledge of previous interactions.
+	•	Example Protocols: FTP, WebSockets, stateful HTTP sessions, and traditional database connections are all examples of stateful systems.

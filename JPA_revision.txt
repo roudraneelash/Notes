@@ -1,0 +1,89 @@
+JPA_HIBERNATE is a ORM framework , to map Java pojo entity class to Relational Table
+
+-- architecture flow
+
+Business services <-> Data services <-> JDBC <-> DB
+
+- JPA is responsible for Data access service. 
+
+JPA is the interface, and hibernate implements it.
+
+Main use:
+- for accessing, persisting, and managing data between Java objects and relational db.
+- JPA is the interface, and Hibernate provides the implementations for the same.
+
+Advantages
+
+- it minimises alot of reducdant work with JDBC
+- DB consistency-> for different db, jpql handles the syntax
+- caching & performance -> Jpa cache the data, and only make write calls to the db when it is necessary,
+
+Working of JPA
+
+- PersistenceContext, that manages the data persistence.
+
+// Transient State
+Product product = new Product();
+product.setName("Sample Product");
+
+// Persist: Transient -> Managed
+entityManager.persist(product);
+
+// Remove: Managed -> Removed
+entityManager.remove(product);
+
+// Persist again: Removed -> Managed
+entityManager.persist(product);
+
+// Flush: Force synchronize with the database
+entityManager.flush();
+
+// Detach: Managed -> Detached
+entityManager.detach(product);
+
+// Merge: Detached -> Managed
+Product managedProduct = entityManager.merge(product);
+
+// Clear: All managed entities -> Detached
+entityManager.clear();
+
+---------------- Persistence Lifecycle
+
+                          Detached
+                              |
+                              |
+            persist()         |      find()/flush()
+
+transient --------------- Managed --------------- db
+|
+remove() | persist()
+|
+Removed
+
+---------- JPQL query
+
+--------------- Spring boot , custom query/native query
+
+@Query(value = "SELECT \* FROM Product WHERE name = :name AND category = :category", nativeQuery = true)
+@Query("SELECT p FROM Product p WHERE p.name = :name AND p.category = :category")
+List<Product> findByNameAndCategory(@Param("name") String name, @Param("category") String category);
+
+
+---------- Entity Mapping
+
+-- the ORM framework, maps the class to the DB Table,
+
+@Table, @Id, @Enumerated(EnumType.STRING), @Transient
+
+- CascadeType: Propagates operations (e.g., persist, remove) from the parent entity to related entities.
+  - CascadeType.PERSIST: Saves the related entity when the parent is saved.
+  - CascadeType.REMOVE: Deletes the related entity when the parent is deleted.
+  - CascadeType.ALL: Applies all cascade types.
+
+- `@JoinColumn(name = "column_name")`: Customizes the join column name.
+- `@JoinTable(name = "table_name", joinColumns = @JoinColumn(name = "column_name"), inverseJoinColumns = @JoinColumn(name = "column_name"))`: Customizes join table and columns for many-to-many relationships.
+
+@Query("SELECT p FROM Product p WHERE " + "(:name IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%', :name, '%'))) AND " + "(:category IS NULL OR p.category = :category) AND " + "(:price IS NULL OR p.price = :price)")
+List<Product> findByParams(@Param("name") String name,
+@Param("category") Category category,
+@Param("price") Double price);
