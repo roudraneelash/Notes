@@ -1,0 +1,35 @@
+1.collection of employee list, get the highest salary, (single/list of data) using Stream api. 
+Approach 1:
+find max, with one stream statement.
+then filter the list with the max.
+
+expectation: single line stream api function.
+
+2.
+interface B{
+func();
+}
+interface C{
+func();
+}
+
+class A implements B, C{
+
+func();
+}
+
+// interviewer question was : there will be function ref ambiguity , how will u solve it.
+
+3. Explain SOLID principle with example. Difference between Association vs Aggregation. (is-a / has- a relationship).
+4. sql query to find top 10 employee with salary
+5. SpringBoot annotations, @Component,@Service,@Repository, if we define repo with service annotation will it work.
+6. Discussion on JPQL custom query, Specification in SpringBoot(didn't know).
+7. Previous exp with Kafka.
+8. How will u handle sequencing in kafka-- detailed explaination, with key , Compaction . (Kafka is a major topic).
+9. React Questions, Virtual DOM, UseEffect(), Custom Hooks
+10. implement a Singly LinkedList
+11. Design a microservice where we are consuming 300+ events(update,delete,different operations) so how will u handle it, 
+    Tried an approach with factory design pattern, to handle different scenarios. But he was looking for something else, with Enums. 
+12.model vs entity
+Kafka / rabbit mq
+interception of endpoints by the backend services , how it gets mapped
