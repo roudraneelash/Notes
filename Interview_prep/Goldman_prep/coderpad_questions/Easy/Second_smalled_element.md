@@ -1,0 +1,1 @@
+// find the second smallest element in the array

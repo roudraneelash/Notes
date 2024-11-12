@@ -1,4 +1,31 @@
-	
+	22,A
+	55,B
+	33,Z
+	44,M
+	99,I
+	88,X
+
+	// sort on the basis of values of a HashMap
+
+	data set, 
+	1,"Rakshith",65,"CS",
+	2,"Pronoy",75,"EC",
+	3,"Roudra",85,"CS"
+	4,"Avinash",95,"ME"
+
+	// multi sort
+	// get top student from each student
+	// top salaried emp from each dept
+	// avg marks/salary, dept/salary wise
+
+	// diff b/w stream and parallelstream
+	// flatmap & map
+	// underlying interface for map/filter/flatmap
+
+
+
+
+
     ------------------------------      Intermediate Operations
 
     1.	filter(Predicate<T> predicate)
